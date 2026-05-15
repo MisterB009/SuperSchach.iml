@@ -22,26 +22,26 @@ public class Objekte extends JPanel {
 //        }
         g.setColor(Color.darkGray);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = Color.WHITE;
+        Color color = new Color(222, 227, 230);
         int y = 40;
         for (int i = 0; i < 8; i++) {
             int x;
             x = 80;
             for (int j = 0; j < 8; j++) {
                 if (j == 0 && i > 0) {
-                    if (color == Color.WHITE) {
-                        color = Color.BLACK;
+                    if (color.equals(new Color(222, 227, 230))) {
+                        color = new Color(140, 162, 173);
                     } else {
-                        color = Color.WHITE;
+                        color = new Color(222, 227, 230);
                     }
                 }
                 g.setColor(color);
                 g.fillRect(x, y, 80, 80);
                 x = x + 80;
-                if (color == Color.WHITE) {
-                    color = Color.BLACK;
+                if (color.equals(new Color(222, 227, 230))) {
+                    color = new Color(140, 162, 173);
                 } else {
-                    color = Color.WHITE;
+                    color = new Color(222, 227, 230);
                 }
             }
             y = y + 80;
