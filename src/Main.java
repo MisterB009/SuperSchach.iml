@@ -1,6 +1,7 @@
 import GUI.Objekte;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) {
@@ -12,5 +13,6 @@ public class Main extends JFrame {
     public Main(){
         Objekte board = new Objekte();
         add(board);
+
     }
 }
