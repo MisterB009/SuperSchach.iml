@@ -21,6 +21,7 @@ public class Brett extends JPanel implements MouseMotionListener {
     private Image pawnw;
 
     //Schwarze Figuren:
+    private Image rookb;
     private Image knightb;
     private Image bishopb;
     private Image queenb;
@@ -31,7 +32,17 @@ public class Brett extends JPanel implements MouseMotionListener {
         addMouseMotionListener(this);
         try {
             rookw = ImageIO.read(new File("img/RookW.png"));
-            knightw = ImageIO.read(new File());
+            knightw = ImageIO.read(new File("img/KnightW.png"));
+            bishopw = ImageIO.read(new File("img/BishopW.png"));
+            queenw = ImageIO.read(new File("img/QuennW.png"));
+            kingw = ImageIO.read(new File("img/KingW.png"));
+            pawnw = ImageIO.read(new File("img/PawnW.png"));
+            rookb = ImageIO.read(new File("img/RookB.png"));
+            knightb = ImageIO.read(new File("img/KnightB.png"));
+            bishopb = ImageIO.read(new File("img/BishopB.png"));
+            queenb = ImageIO.read(new File("img/QueenB.png"));
+            kingb = ImageIO.read(new File("img/KingB.png"));
+            pawnb = ImageIO.read(new File("img/PawnB.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -92,7 +103,6 @@ public class Brett extends JPanel implements MouseMotionListener {
                 switch (a){
                     case 1: g.drawImage(rookw, x, y, 60, 60, null);
                             a++;
-                    case 2: g.drawImage(knightw)
                 }
                 x = x + 80; // alle weiteren Reihen
                 if (color.equals(hell)) {
