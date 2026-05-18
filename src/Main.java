@@ -1,9 +1,7 @@
 //import GUI.MouseHover;
 import GUI.Brett;
-import GUI.Figur;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main extends JFrame {
 
