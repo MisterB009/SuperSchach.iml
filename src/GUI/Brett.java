@@ -51,7 +51,7 @@ public class Brett extends JPanel implements MouseMotionListener {
         Color dunkel = new Color(140, 162, 173);
         Color hover = new Color(200, 100, 100);
 
-        g.setColor(Color.blue); // Hintergrund
+        g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         Color color = hell;
 
