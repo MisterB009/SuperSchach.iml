@@ -8,12 +8,33 @@ import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class Objekte extends JPanel implements MouseMotionListener {
+public class Brett extends JPanel implements MouseMotionListener {
     private int hoverRow = -1;
     private int hoverCol = -1;
 
-    public Objekte(){
+    //Weiße Figuren:
+    private Image rookw;
+    private Image knightw;
+    private Image bishopw;
+    private Image queenw;
+    private Image kingw;
+    private Image pawnw;
+
+    //Schwarze Figuren:
+    private Image knightb;
+    private Image bishopb;
+    private Image queenb;
+    private Image kingb;
+    private Image pawnb;
+
+    public Brett(){
         addMouseMotionListener(this);
+        try {
+            rookw = ImageIO.read(new File("img/RookW.png"));
+            knightw = ImageIO.read(new File());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -32,6 +53,8 @@ public class Objekte extends JPanel implements MouseMotionListener {
 //        }
 
 
+        int a = 1;
+        // 1 = Turm
         Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
         Color hover = new Color(200, 100, 100);
@@ -39,6 +62,7 @@ public class Objekte extends JPanel implements MouseMotionListener {
 
         //  g.setColor(Color.blue); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//        g.fillRect(0, 0,600, 600 );
         Color color = hell;
 
         int y = 40;
@@ -65,6 +89,11 @@ public class Objekte extends JPanel implements MouseMotionListener {
 
 
                 g.fillRect(x, y, 80, 80); // füllen
+                switch (a){
+                    case 1: g.drawImage(rookw, x, y, 60, 60, null);
+                            a++;
+                    case 2: g.drawImage(knightw)
+                }
                 x = x + 80; // alle weiteren Reihen
                 if (color.equals(hell)) {
                     color = dunkel;

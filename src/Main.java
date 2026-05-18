@@ -1,5 +1,6 @@
 //import GUI.MouseHover;
-import GUI.Objekte;
+import GUI.Brett;
+import GUI.Figur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +17,7 @@ public class Main extends JFrame {
 
     }
     public Main(){
-        Objekte board = new Objekte();
-        add(board, BorderLayout.CENTER);
-
+        Brett board = new Brett();
+        add(board);
     }
 }
