@@ -1,5 +1,7 @@
 package GUI;
 
+import Funktion.turm;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,9 @@ public class Brett extends JPanel implements MouseMotionListener {
     private int hoverCol = -1;
 
     //Weiße Figuren:
-    private Image rookw;
+    private turm rookwl;
+    private turm rookwr;
+
     private Image knightw;
     private Image bishopw;
     private Image queenw;
@@ -21,31 +25,22 @@ public class Brett extends JPanel implements MouseMotionListener {
     private Image pawnw;
 
     //Schwarze Figuren:
-    private Image rookb;
+    private turm rookbl;
+    private turm rookbr;
     private Image knightb;
     private Image bishopb;
     private Image queenb;
     private Image kingb;
     private Image pawnb;
 
-    public Brett(){
+
+    // A: Koordinatensystem Methode
+    public Brett(){ // attribute befüülen mit eigenschaften
         addMouseMotionListener(this);
-        try {
-            rookw = ImageIO.read(new File("img/RookW.png"));
-            knightw = ImageIO.read(new File("img/KnightW.png"));
-            bishopw = ImageIO.read(new File("img/BishopW.png"));
-            queenw = ImageIO.read(new File("img/QuennW.png"));
-            kingw = ImageIO.read(new File("img/KingW.png"));
-            pawnw = ImageIO.read(new File("img/PawnW.png"));
-            rookb = ImageIO.read(new File("img/RookB.png"));
-            knightb = ImageIO.read(new File("img/KnightB.png"));
-            bishopb = ImageIO.read(new File("img/BishopB.png"));
-            queenb = ImageIO.read(new File("img/QueenB.png"));
-            kingb = ImageIO.read(new File("img/KingB.png"));
-            pawnb = ImageIO.read(new File("img/PawnB.png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        rookwl = new turm(1,80,60);// farbe und Position
+        rookwr = new turm(1,640,60);
+        rookbl = new turm(0,80,640);
+        rookbr = new turm(0,640,640);
     }
 
 
@@ -85,15 +80,7 @@ public class Brett extends JPanel implements MouseMotionListener {
                     g.setColor(color);
                 }
 
-
-
-
                 g.fillRect(x, y, 80, 80); // füllen
-                switch (a){
-                    case 1: g.drawImage(rookw, x, y, 60, 60, null);
-                            a++;
-  //                  case 2: g.drawImage(knightw)
-                }
                 x = x + 80; // alle weiteren Reihen
                 if (color.equals(hell)) {
                     color = dunkel;
@@ -105,6 +92,10 @@ public class Brett extends JPanel implements MouseMotionListener {
         }
         int xstart = 80;
         int ystart = 40;
+
+        //Startaufstellung
+        this.zeichneStartaufstellung(g);
+
 
         // Seitenränder
         int charwertbuchstabe = 65;
@@ -131,6 +122,9 @@ public class Brett extends JPanel implements MouseMotionListener {
             charwertzahl++;
         }
     }
+
+
+
     @Override
     public void mouseMoved(MouseEvent e) {
 
@@ -152,8 +146,16 @@ public class Brett extends JPanel implements MouseMotionListener {
             hoverRow = -1;
             hoverCol = -1;
         }
-
         repaint();
+    }
+
+    public void zeichneStartaufstellung(Graphics g){
+        g.drawImage(rookwl.getZeichnen(), rookwl.getX(), rookwl.getY(), 60, 60, null);
+        g.drawImage(rookwr.getZeichnen(), rookwr.getX(), rookwr.getY(), 60, 60, null);
+        g.drawImage(rookbl.getZeichnen(), rookbl.getX(), rookbl.getY(), 60, 60, null);
+        g.drawImage(rookbr.getZeichnen(), rookbr.getX(), rookbr.getY(), 60, 60, null);
+
+
     }
 
     @Override
@@ -161,3 +163,5 @@ public class Brett extends JPanel implements MouseMotionListener {
 
     }
 }
+
+//

@@ -6,7 +6,7 @@ public class Figur {
     private String name;
     private int x;
     private int y;
-    private String position;
+    // private String role ;
 
     public Figur(String name, int x, int y)
 
