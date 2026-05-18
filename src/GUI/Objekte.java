@@ -31,23 +31,21 @@ public class Objekte extends JPanel implements MouseMotionListener {
 //            e.printStackTrace();
 //        }
 
-        int startX = 80;
-        int startY = 40;
-        int feldgröße = 80;
 
         Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
-        Color hover = new Color(200, 30, 30);
+        Color hover = new Color(200, 100, 100);
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = hell; // rechteck oben links (A1)
+        Color color = hell;
+
         int y = 40;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) { // Zeilen
             int x;
             x = 80;
-            for (int j = 0; j < 8; j++) {
-                if (j == 0 && i > 0) { // erste Reihe und nicht A1 Farbwechsel
+            for (int j = 0; j < 8; j++) {// Spalte
+                if (j == 0 && i > 0) { // Color immer abwechseln
                     if (color.equals(hell)) {
                         color = dunkel;
                     } else {
@@ -61,6 +59,7 @@ public class Objekte extends JPanel implements MouseMotionListener {
                 } else {
                     g.setColor(color);
                 }
+
 
 
 
@@ -115,7 +114,7 @@ public class Objekte extends JPanel implements MouseMotionListener {
         if (x >= startX && x < startX + 8 * feldGroesse &&
                 y >= startY && y < startY + 8 * feldGroesse) {
 
-            hoverCol = (x - startX) / feldGroesse;
+            hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
             hoverRow = (y - startY) / feldGroesse;
 
         } else {
