@@ -17,7 +17,6 @@ public class Brett extends JPanel implements MouseMotionListener {
     //Weiße Figuren:
     private turm rookwl;
     private turm rookwr;
-
     private Image knightw;
     private Image bishopw;
     private Image queenw;
@@ -37,10 +36,10 @@ public class Brett extends JPanel implements MouseMotionListener {
     // A: Koordinatensystem Methode
     public Brett(){ // attribute befüülen mit eigenschaften
         addMouseMotionListener(this);
-        rookwl = new turm(1,80,60);// farbe und Position
-        rookwr = new turm(1,640,60);
-        rookbl = new turm(0,80,640);
-        rookbr = new turm(0,640,640);
+        rookwl = new turm(1, 80, 40+(7*80));// farbe und Position
+        rookwr = new turm(1, 80+(7*80), 40+(7*80));
+        rookbl = new turm(0, 80, 40);
+        rookbr = new turm(0, 80+(7*80), 40);
     }
 
 
@@ -48,16 +47,12 @@ public class Brett extends JPanel implements MouseMotionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int a = 1;
-        // 1 = Turm
         Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
         Color hover = new Color(200, 100, 100);
-        Color blau2 = new Color(50, 150, 50);
 
-        //  g.setColor(Color.blue); // Hintergrund
+        g.setColor(Color.blue); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-//        g.fillRect(0, 0,600, 600 );
         Color color = hell;
 
         int y = 40;
@@ -96,10 +91,9 @@ public class Brett extends JPanel implements MouseMotionListener {
         //Startaufstellung
         this.zeichneStartaufstellung(g);
 
-
         // Seitenränder
         int charwertbuchstabe = 65;
-        int charwertzahl = 49;
+        int charwertzahl = 56;
         g.setColor(Color.white);
         for (int i = 0; i < 8; i++) {
             char asciibuchstabe = (char) charwertbuchstabe;
@@ -119,7 +113,7 @@ public class Brett extends JPanel implements MouseMotionListener {
             int sy = ystart +40 + (hoehe/2);
             g.drawString(zahl, 40, sy);
             ystart = ystart + 80;
-            charwertzahl++;
+            charwertzahl--;
         }
     }
 
@@ -150,12 +144,10 @@ public class Brett extends JPanel implements MouseMotionListener {
     }
 
     public void zeichneStartaufstellung(Graphics g){
-        g.drawImage(rookwl.getZeichnen(), rookwl.getX(), rookwl.getY(), 60, 60, null);
-        g.drawImage(rookwr.getZeichnen(), rookwr.getX(), rookwr.getY(), 60, 60, null);
-        g.drawImage(rookbl.getZeichnen(), rookbl.getX(), rookbl.getY(), 60, 60, null);
-        g.drawImage(rookbr.getZeichnen(), rookbr.getX(), rookbr.getY(), 60, 60, null);
-
-
+        g.drawImage(rookwl.getZeichnen(), rookwl.getX()+rookwl.getKorrekturx(), rookwl.getY()+rookwl.getKorrektury(), 80, 80, null);
+        g.drawImage(rookwr.getZeichnen(), rookwr.getX()+rookwr.getKorrekturx(), rookwr.getY()+rookwr.getKorrektury(), 80, 80, null);
+        g.drawImage(rookbl.getZeichnen(), rookbl.getX()+rookbl.getKorrekturx(), rookbl.getY()+rookbl.getKorrektury(), 80, 80, null);
+        g.drawImage(rookbr.getZeichnen(), rookbr.getX()+rookbr.getKorrekturx(), rookbr.getY()+rookbr.getKorrektury(), 80, 80, null);
     }
 
     @Override

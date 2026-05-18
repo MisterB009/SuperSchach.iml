@@ -9,6 +9,8 @@ public class turm {
     public static final int SCHWARZ = 0;
     public static final int WEIß = 1;
     private int farbe;
+    private final int korrekturx = -2;
+    private final int korrektury = 0;
 
     private int x;
     private int y;
@@ -62,5 +64,13 @@ public class turm {
 
     public void setX(int x) {
         this.x = x;
+    }
+
+    public int getKorrekturx() {
+        return korrekturx;
+    }
+
+    public int getKorrektury() {
+        return korrektury;
     }
 }
