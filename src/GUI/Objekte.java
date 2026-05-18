@@ -3,10 +3,20 @@ package GUI;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class Objekte extends JPanel {
+public class Objekte extends JPanel implements MouseMotionListener {
+    private int hoverRow = -1;
+    private int hoverCol = -1;
+
+    public Objekte(){
+        addMouseMotionListener(this);
+    }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -20,34 +30,54 @@ public class Objekte extends JPanel {
 //        } catch (IOException e){
 //            e.printStackTrace();
 //        }
-        g.setColor(Color.darkGray);
+
+        int startX = 80;
+        int startY = 40;
+        int feldgröße = 80;
+
+        Color hell = new Color(222, 227, 230);
+        Color dunkel = new Color(140, 162, 173);
+        Color hover = new Color(200, 30, 30);
+
+        g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = new Color(222, 227, 230);
+        Color color = hell; // rechteck oben links (A1)
         int y = 40;
         for (int i = 0; i < 8; i++) {
             int x;
             x = 80;
             for (int j = 0; j < 8; j++) {
-                if (j == 0 && i > 0) {
-                    if (color.equals(new Color(222, 227, 230))) {
-                        color = new Color(140, 162, 173);
+                if (j == 0 && i > 0) { // erste Reihe und nicht A1 Farbwechsel
+                    if (color.equals(hell)) {
+                        color = dunkel;
                     } else {
-                        color = new Color(222, 227, 230);
+                        color = hell;
                     }
                 }
-                g.setColor(color);
-                g.fillRect(x, y, 80, 80);
-                x = x + 80;
-                if (color.equals(new Color(222, 227, 230))) {
-                    color = new Color(140, 162, 173);
+
+                // HOVER hinzufügen
+                if (i == hoverRow && j == hoverCol) {
+                    g.setColor(hover);
                 } else {
-                    color = new Color(222, 227, 230);
+                    g.setColor(color);
+                }
+
+
+
+                g.fillRect(x, y, 80, 80); // füllen
+                x = x + 80; // alle weiteren Reihen
+                if (color.equals(hell)) {
+                    color = dunkel;
+                } else {
+                    color = hell;
                 }
             }
             y = y + 80;
         }
         int xstart = 80;
         int ystart = 40;
+
+        // Seitenränder
         int charwertbuchstabe = 65;
         int charwertzahl = 49;
         for (int i = 0; i < 8; i++) {
@@ -70,5 +100,34 @@ public class Objekte extends JPanel {
             ystart = ystart + 80;
             charwertzahl++;
         }
+    }
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+        int startX = 80;
+        int startY = 40;
+        int feldGroesse = 80;
+
+        int x = e.getX();
+        int y = e.getY();
+
+        // Prüfen ob Maus auf dem Brett ist
+        if (x >= startX && x < startX + 8 * feldGroesse &&
+                y >= startY && y < startY + 8 * feldGroesse) {
+
+            hoverCol = (x - startX) / feldGroesse;
+            hoverRow = (y - startY) / feldGroesse;
+
+        } else {
+            hoverRow = -1;
+            hoverCol = -1;
+        }
+
+        repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
     }
 }
