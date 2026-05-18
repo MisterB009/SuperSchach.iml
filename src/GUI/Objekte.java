@@ -20,15 +20,15 @@ public class Objekte extends JPanel {
 //        } catch (IOException e){
 //            e.printStackTrace();
 //        }
-        g.setColor(Color.darkGray);
+        g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = new Color(222, 227, 230);
+        Color color = new Color(222, 227, 230); // rechteck oben links (A1)
         int y = 40;
         for (int i = 0; i < 8; i++) {
             int x;
             x = 80;
             for (int j = 0; j < 8; j++) {
-                if (j == 0 && i > 0) {
+                if (j == 0 && i > 0) { // erste Reihe und nicht A1 Farbwechsel
                     if (color.equals(new Color(222, 227, 230))) {
                         color = new Color(140, 162, 173);
                     } else {
@@ -36,8 +36,8 @@ public class Objekte extends JPanel {
                     }
                 }
                 g.setColor(color);
-                g.fillRect(x, y, 80, 80);
-                x = x + 80;
+                g.fillRect(x, y, 80, 80); // füllen
+                x = x + 80; // alle weiteren Reihen
                 if (color.equals(new Color(222, 227, 230))) {
                     color = new Color(140, 162, 173);
                 } else {
