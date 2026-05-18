@@ -35,8 +35,9 @@ public class Objekte extends JPanel implements MouseMotionListener {
         Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
         Color hover = new Color(200, 100, 100);
+        Color blau2 = new Color(50, 150, 50);
 
-        g.setColor(Color.darkGray); // Hintergrund
+        //  g.setColor(Color.blue); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         Color color = hell;
 
@@ -79,6 +80,7 @@ public class Objekte extends JPanel implements MouseMotionListener {
         // Seitenränder
         int charwertbuchstabe = 65;
         int charwertzahl = 49;
+        g.setColor(Color.white);
         for (int i = 0; i < 8; i++) {
             char asciibuchstabe = (char) charwertbuchstabe;
             String text = String.valueOf(asciibuchstabe);
