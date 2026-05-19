@@ -5,42 +5,40 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class turm {
+public class Bauer {
     public static final int SCHWARZ = 0;
     public static final int WEIß = 1;
     private int farbe;
     private final int korrekturx = -2;
-    private final int korrektury = 0;
+    private final int korrektury = -1;
 
     private int x;
     private int y;
 
     private Image zeichnen;
 
-    public turm(int farbe, int x, int y) {
+    public Bauer(int farbe, int x, int y){
         this.setFarbe(farbe);
         this.x = x;
         this.y = y;
         if (farbe == 0){ // schwarz
             try {
-                zeichnen = ImageIO.read(new File("img/RookB.png"));
+                zeichnen = ImageIO.read(new File("img/PawnB.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (farbe == 1){ // weiß
             try {
-                zeichnen = ImageIO.read(new File("img/RookW.png"));
+                zeichnen = ImageIO.read(new File("img/PawnW.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        // Funktion - visuell wie darf er gezogen werden?
-    }
-    public Image getZeichnen(){
-        return zeichnen;
     }
 
+    public int getFarbe() {
+        return farbe;
+    }
 
     public void setFarbe(int farbe) {
         if (farbe == SCHWARZ || farbe == WEIß) {
@@ -50,12 +48,12 @@ public class turm {
         }
     }
 
-    public int getY() {
-        return y;
+    public int getKorrekturx() {
+        return korrekturx;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public int getKorrektury() {
+        return korrektury;
     }
 
     public int getX() {
@@ -66,11 +64,19 @@ public class turm {
         this.x = x;
     }
 
-    public int getKorrekturx() {
-        return korrekturx;
+    public int getY() {
+        return y;
     }
 
-    public int getKorrektury() {
-        return korrektury;
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Image getZeichnen() {
+        return zeichnen;
+    }
+
+    public void setZeichnen(Image zeichnen) {
+        this.zeichnen = zeichnen;
     }
 }
