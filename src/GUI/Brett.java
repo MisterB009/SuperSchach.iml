@@ -14,6 +14,8 @@ public class Brett extends JPanel implements MouseListener {
     private int Yfarbeanders = 0;//Schalter falls die Farbe des Feldes schon geändert wurde
     private ArrayList<Integer> positionenFigurenX;
     private ArrayList<Integer> positionenFigurenY;
+    private int HilfsX = -1;
+    private int HilfsY = -1;
 
     //Weiße Figuren:
     private Turm rookwl;
@@ -190,9 +192,12 @@ public class Brett extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (Yfarbeanders >= 1){//A: Hier noch einfügen das der hover bei einem anderen Klick direkt wechselt und kein Doppelklick benötigt ist.
+        if (Yfarbeanders >= 1&&e.getX() >= HilfsX&&e.getX() < HilfsX+80&&
+                    e.getY() >= HilfsY&&e.getY() < HilfsY+80){
             hoverCol = -1;
             hoverRow = -1;
+            HilfsX = -1;
+            HilfsY = -1;
             Yfarbeanders = 0;
             repaint();
         }else {
@@ -207,6 +212,8 @@ public class Brett extends JPanel implements MouseListener {
             for (int i = 0; i < positionenFigurenX.size(); i++) {
                 if (x >= positionenFigurenX.get(i)&&x < positionenFigurenX.get(i)+80&&
                         y >= positionenFigurenY.get(i)&&y < positionenFigurenY.get(i)+80){
+                    HilfsX = positionenFigurenX.get(i);
+                    HilfsY = positionenFigurenY.get(i);
                     YFigur++;
                     break;
                 }
@@ -224,11 +231,15 @@ public class Brett extends JPanel implements MouseListener {
                     hoverRow = -1;
                     hoverCol = -1;
                     Yfarbeanders = 0;
+                    HilfsX = -1;
+                    HilfsY = -1;
                 }
 
             } else {
                 hoverRow = -1;
                 hoverCol = -1;
+                HilfsX = -1;
+                HilfsY = -1;
             }
             YFigur = 0;
             repaint();
