@@ -5,12 +5,15 @@ import Funktion.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class Brett extends JPanel implements MouseMotionListener {
+public class Brett extends JPanel implements MouseListener {
     private int hoverRow = -1;
     private int hoverCol = -1;
+    private int Yfarbeanders = 0;//Schalter falls die Farbe des Feldes schon geändert wurde
+    private ArrayList<Integer> positionenFigurenX;
+    private ArrayList<Integer> positionenFigurenY;
 
     //Weiße Figuren:
     private Turm rookwl;
@@ -39,23 +42,57 @@ public class Brett extends JPanel implements MouseMotionListener {
 
     // A: Koordinatensystem Methode
     public Brett(){ // attribute befüülen mit eigenschaften
-        addMouseMotionListener(this);
+        addMouseListener(this);
+        positionenFigurenX = new ArrayList<>();
+        positionenFigurenY = new ArrayList<>();
         rookwl = new Turm(1, 80, 8*80);// farbe und Position
+        positionenFigurenX.add(rookwl.getX());
+        positionenFigurenY.add(rookwl.getY());
         rookwr = new Turm(1, 8*80, 8*80);//Felder = Zeile/ Spalte * Feldgröße
+        positionenFigurenX.add(rookwr.getX());
+        positionenFigurenY.add(rookwr.getY());
         rookbl = new Turm(0, 80, 80);
+        positionenFigurenX.add(rookbl.getX());
+        positionenFigurenY.add(rookbl.getY());
         rookbr = new Turm(0, 8*80, 80);
+        positionenFigurenX.add(rookbr.getX());
+        positionenFigurenY.add(rookbr.getY());
         knightwl = new Springer(1, 2*80, 8*80);
+        positionenFigurenX.add(knightwl.getX());
+        positionenFigurenY.add(knightwl.getY());
         knightwr = new Springer(1, 7*80, 8*80);
+        positionenFigurenX.add(knightwr.getX());
+        positionenFigurenY.add(knightwr.getY());
         knightbl = new Springer(0, 2*80, 80);
+        positionenFigurenX.add(knightbl.getX());
+        positionenFigurenY.add(knightbl.getY());
         knightbr = new Springer(0, 7*80, 80);
+        positionenFigurenX.add(knightbr.getX());
+        positionenFigurenY.add(knightbr.getY());
         bishopwl = new Laeufer(1, 3*80, 8*80);
+        positionenFigurenX.add(bishopwl.getX());
+        positionenFigurenY.add(bishopwl.getY());
         bishopwr = new Laeufer(1, 6*80, 8*80);
+        positionenFigurenX.add(bishopwr.getX());
+        positionenFigurenY.add(bishopwr.getY());
         bishopbl = new Laeufer(0, 3*80, 80);
+        positionenFigurenX.add(bishopbl.getX());
+        positionenFigurenY.add(bishopbl.getY());
         bishopbr = new Laeufer(0, 6*80, 80);
+        positionenFigurenX.add(bishopbr.getX());
+        positionenFigurenY.add(bishopbr.getY());
         queenw = new Dame(1, 4*80, 8*80);
+        positionenFigurenX.add(queenw.getX());
+        positionenFigurenY.add(queenw.getY());
         queenb = new Dame(0, 4*80, 80);
+        positionenFigurenX.add(queenb.getX());
+        positionenFigurenY.add(queenb.getY());
         kingw = new Koenig(1, 5*80, 8*80);
+        positionenFigurenX.add(kingw.getX());
+        positionenFigurenY.add(kingw.getY());
         kingb = new Koenig(0, 5*80, 80);
+        positionenFigurenX.add(kingb.getX());
+        positionenFigurenY.add(kingb.getY());
         pawnsw = new ArrayList<>();
         pawnsb = new ArrayList<>();
         int px = 80;
@@ -65,6 +102,12 @@ public class Brett extends JPanel implements MouseMotionListener {
             pawnb = new Bauer(0, px, 2*80);
             pawnsb.add(pawnb);
             px = px + 80;
+        }
+        for (int i = 0; i < 8; i++) {
+            positionenFigurenX.add(pawnsw.get(i).getX());
+            positionenFigurenX.add(pawnsb.get(i).getX());
+            positionenFigurenY.add(pawnsw.get(i).getY());
+            positionenFigurenY.add(pawnsb.get(i).getY());
         }
     }
 
@@ -146,27 +189,50 @@ public class Brett extends JPanel implements MouseMotionListener {
 
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-
-        int startX = 80;
-        int startY = 80;
-        int feldGroesse = 80;
-
-        int x = e.getX();
-        int y = e.getY();
-
-        // Prüfen ob Maus auf dem Brett ist
-        if (x >= startX && x < startX + 8 * feldGroesse &&
-                y >= startY && y < startY + 8 * feldGroesse) {
-
-            hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
-            hoverRow = (y - startY) / feldGroesse;
-
-        } else {
-            hoverRow = -1;
+    public void mouseClicked(MouseEvent e) {
+        if (Yfarbeanders >= 1){//A: Hier noch einfügen das der hover bei einem anderen Klick direkt wechselt und kein Doppelklick benötigt ist.
             hoverCol = -1;
+            hoverRow = -1;
+            Yfarbeanders = 0;
+            repaint();
+        }else {
+            int startX = 80;
+            int startY = 80;
+            int feldGroesse = 80;
+            int YFigur = 0;//Schalter ober Maus über Figur ist
+
+            int x = e.getX();
+            int y = e.getY();
+
+            for (int i = 0; i < positionenFigurenX.size(); i++) {
+                if (x >= positionenFigurenX.get(i)&&x < positionenFigurenX.get(i)+80&&
+                        y >= positionenFigurenY.get(i)&&y < positionenFigurenY.get(i)+80){
+                    YFigur++;
+                    break;
+                }
+            }
+
+            // Prüfen ob Maus auf dem Brett ist
+            if (x >= startX && x < startX + 8 * feldGroesse &&
+                    y >= startY && y < startY + 8 * feldGroesse) {
+
+                if (YFigur >= 1){
+                    hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
+                    hoverRow = (y - startY) / feldGroesse;
+                    Yfarbeanders = 1;
+                }else {
+                    hoverRow = -1;
+                    hoverCol = -1;
+                    Yfarbeanders = 0;
+                }
+
+            } else {
+                hoverRow = -1;
+                hoverCol = -1;
+            }
+            YFigur = 0;
+            repaint();
         }
-        repaint();
     }
 
     public void zeichneStartaufstellung(Graphics g){
@@ -193,7 +259,58 @@ public class Brett extends JPanel implements MouseMotionListener {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
+//        int startX = 80;
+//        int startY = 80;
+//        int feldGroesse = 80;
+//        int YFigur = 0;//Schalter ober Maus über Figur ist
+//
+//        int x = e.getX();
+//        int y = e.getY();
+//
+//        for (int i = 0; i < positionenFigurenX.size(); i++) {
+//            if (x >= positionenFigurenX.get(i)&&x < positionenFigurenX.get(i)+80&&
+//                    y >= positionenFigurenY.get(i)&&y < positionenFigurenY.get(i)+80){
+//                YFigur++;
+//                break;
+//            }
+//        }
+//
+//        // Prüfen ob Maus auf dem Brett ist
+//        if (x >= startX && x < startX + 8 * feldGroesse &&
+//                y >= startY && y < startY + 8 * feldGroesse) {
+//
+//            if (YFigur >= 1){
+//                hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
+//                hoverRow = (y - startY) / feldGroesse;
+//            }else {
+//                hoverRow = -1;
+//                hoverCol = -1;
+//            }
+//
+//        } else {
+//            hoverRow = -1;
+//            hoverCol = -1;
+//        }
+//        YFigur = 0;
+//        repaint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+//        hoverCol = -1;
+//        hoverRow = -1;
+//        repaint();
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }
