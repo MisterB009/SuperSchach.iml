@@ -1,34 +1,35 @@
-package Funktion;
+package Model;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Dame {
+public class Laeufer {
     public static final int SCHWARZ = 0;
     public static final int WEIß = 1;
     private int farbe;
-    private final int korrekturx = 0;
-    private final int korrektury = 0;
+    private final int korrekturx = -2;
+    private final int korrektury = -1;
 
     private int x;
     private int y;
 
     private Image zeichnen;
-    public Dame(int farbe, int x, int y){
+
+    public Laeufer(int farbe, int x, int y){
         this.setFarbe(farbe);
         this.x = x;
         this.y = y;
         if (farbe == 0){ // schwarz
             try {
-                zeichnen = ImageIO.read(new File("img/QueenB.png"));
+                zeichnen = ImageIO.read(new File("img/BishopB.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (farbe == 1){ // weiß
             try {
-                zeichnen = ImageIO.read(new File("img/QueenW.png"));
+                zeichnen = ImageIO.read(new File("img/BishopW.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
