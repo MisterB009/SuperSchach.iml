@@ -20,30 +20,30 @@ public class Brett extends JPanel implements MouseListener {
     // Brett aus Figuren
     private Figur[][] aufstellung; // Variable erzeugen
 
-    //Weiße Figuren:
-    private Turm2 rookwl2;
-    private Turm rookwl;
-    private Turm rookwr;
-    private Springer knightwl;
-    private Springer knightwr;
-    private Laeufer bishopwl;
-    private Laeufer bishopwr;
-    private Dame queenw;
-    private Koenig kingw;
-    private Bauer pawnw;
-    private ArrayList<Bauer>pawnsw;
-
-    //Schwarze Figuren:
-    private Turm rookbl;
-    private Turm rookbr;
-    private Springer knightbl;
-    private Springer knightbr;
-    private Laeufer bishopbl;
-    private Laeufer bishopbr;
-    private Dame queenb;
-    private Koenig kingb;
-    private Bauer pawnb;
-    private ArrayList<Bauer>pawnsb;
+//    //Weiße Figuren:
+//    private Turm2 rookwl2;
+//    private Turm rookwl;
+//    private Turm rookwr;
+//    private Springer knightwl;
+//    private Springer knightwr;
+//    private Laeufer bishopwl;
+//    private Laeufer bishopwr;
+//    private Dame queenw;
+//    private Koenig kingw;
+//    private Bauer pawnw;
+//    private ArrayList<Bauer>pawnsw;
+//
+//    //Schwarze Figuren:
+//    private Turm rookbl;
+//    private Turm rookbr;
+//    private Springer knightbl;
+//    private Springer knightbr;
+//    private Laeufer bishopbl;
+//    private Laeufer bishopbr;
+//    private Dame queenb;
+//    private Koenig kingb;
+//    private Bauer pawnb;
+//    private ArrayList<Bauer>pawnsb;
 
 
     // A: Koordinatensystem Methode - Aufstellung Methode
@@ -53,41 +53,42 @@ public class Brett extends JPanel implements MouseListener {
         // übersichtlicher:
         // Türme
         aufstellung = new Figur[9][9]; // 8 reihen & Spalten erzeugen
-        aufstellung[1][1] = new Turm2(0,1,1);
-        aufstellung[1][2] = new Turm2(0,1,2);
-        aufstellung[1][3] = new Turm2(0,1,3);
-        aufstellung[1][4] = new Turm2(0,1,4);
-        aufstellung[1][5] = new Turm2(0,1,5);
-        aufstellung[1][6] = new Turm2(0,1,6);
-        aufstellung[1][7] = new Turm2(0,1,7);
-        aufstellung[1][8] = new Turm2(0,1,8);
+        aufstellung[1][1] = new Turm2(1,1,1);
+        aufstellung[1][2] = new Springer2(1,1,2);
+        aufstellung[1][3] = new Laeufer2(1,1,3);
+        aufstellung[1][4] = new Dame2(1,1,4);
+        aufstellung[1][5] = new Koenig2(1,1,5);
+        aufstellung[1][6] = new Laeufer2(1,1,6);
+        aufstellung[1][7] = new Springer2(1,1,7);
+        aufstellung[1][8] = new Turm2(1,1,8);
 
-        aufstellung[2][1] = new Turm2(0,2,1);
-        aufstellung[2][2] = new Turm2(0,2,2);
-        aufstellung[2][3] = new Turm2(0,2,3);
-        aufstellung[2][4] = new Turm2(0,2,4);
-        aufstellung[2][5] = new Turm2(0,2,5);
-        aufstellung[2][6] = new Turm2(0,2,6);
-        aufstellung[2][7] = new Turm2(0,2,7);
-        aufstellung[2][8] = new Turm2(0,2,8);
+        // ggf. schleife
+        aufstellung[2][1] = new Bauer2(1,2,1);
+        aufstellung[2][2] = new Bauer2(1,2,2);
+        aufstellung[2][3] = new Bauer2(1,2,3);
+        aufstellung[2][4] = new Bauer2(1,2,4);
+        aufstellung[2][5] = new Bauer2(1,2,5);
+        aufstellung[2][6] = new Bauer2(1,2,6);
+        aufstellung[2][7] = new Bauer2(1,2,7);
+        aufstellung[2][8] = new Bauer2(1,2,8);
 
-
-        aufstellung[7][1] = new Turm2(0,7,1);
-        aufstellung[7][2] = new Turm2(0,7,2);
-        aufstellung[7][3] = new Turm2(0,7,3);
-        aufstellung[7][4] = new Turm2(0,7,4);
-        aufstellung[7][5] = new Turm2(0,7,5);
-        aufstellung[7][6] = new Turm2(0,7,6);
-        aufstellung[7][7] = new Turm2(0,7,7);
-        aufstellung[7][8] = new Turm2(0,7,8);
+        // ggf. schleife
+        aufstellung[7][1] = new Bauer2(0,7,1);
+        aufstellung[7][2] = new Bauer2(0,7,2);
+        aufstellung[7][3] = new Bauer2(0,7,3);
+        aufstellung[7][4] = new Bauer2(0,7,4);
+        aufstellung[7][5] = new Bauer2(0,7,5);
+        aufstellung[7][6] = new Bauer2(0,7,6);
+        aufstellung[7][7] = new Bauer2(0,7,7);
+        aufstellung[7][8] = new Bauer2(0,7,8);
 
         aufstellung[8][1] = new Turm2(0,8,1);
-        aufstellung[8][2] = new Turm2(0,8,2);
-        aufstellung[8][3] = new Turm2(0,8,3);
-        aufstellung[8][4] = new Turm2(0,8,4);
-        aufstellung[8][5] = new Turm2(0,8,5);
-        aufstellung[8][6] = new Turm2(0,8,6);
-        aufstellung[8][7] = new Turm2(0,8,7);
+        aufstellung[8][2] = new Springer2(0,8,2);
+        aufstellung[8][3] = new Laeufer2(0,8,3);
+        aufstellung[8][4] = new Dame2(0,8,4);
+        aufstellung[8][5] = new Koenig2(0,8,5);
+        aufstellung[8][6] = new Laeufer2(0,8,6);
+        aufstellung[8][7] = new Springer2(0,8,7);
         aufstellung[8][8] = new Turm2(0,8,8);
 
 

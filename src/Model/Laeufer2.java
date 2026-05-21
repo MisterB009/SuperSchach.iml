@@ -4,29 +4,22 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Bauer2 extends Figur {
+public class Laeufer2 extends Figur {
+    public Laeufer2(int farbe, int spalten, int zeilen) {
+        super(farbe, spalten, zeilen);
 
-    public Bauer2(int farbe, int zeile, int spalte) {
-        super(farbe, zeile, spalte);
         if (farbe == 0){ // schwarz
             try {
-                bild = ImageIO.read(new File("img/PawnB.png"));
+                bild = ImageIO.read(new File("img/BishopB.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (farbe == 1){ // weiß
             try {
-                bild = ImageIO.read(new File("img/PawnW.png"));
+                bild = ImageIO.read(new File("img/BishopW.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-//    @Override
-//    public boolean istGueltigerZug(){
-//
-//    }
-//    Aufgabenzettel 7
-
 }

@@ -1,0 +1,23 @@
+Schachbrett muster
+Schachbrett Zahlen außen / Buchstaben
+Schachbrett hoverfarben
+Schachfiguren stehen auf feldern
+Schachbrett Mousklick mit Feldern, auf denen Figuren stehen
+
+Schachfiguren erben von Klasse figuren
+
+Aufgaben
+Figuren können gewählt werden
+Figuren können Position verändern
+Figur überprüft, es es eigenen Weg gehen durfte
+Figur kann geschlagen werden (tot)
+
+Figuren prüfen, ob der Zug legal ist (2. nicht an eigenen Figuren vorbei ziehen )
+König checkt, ob er im Schach steht
+
+Timer läuft > für jeden Spieler
+Figurenzüge werden in einem Textfeld gespeichert und ausgegeben
+Aufgabeangebot
+Remieangebot
+
+Willkommenscreeen - Auswahl zwischen Spielmodi
