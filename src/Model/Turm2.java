@@ -24,6 +24,10 @@ public class Turm2 extends Figur{
         }
     }
 
+//    @Override
+//    public boolean istGueltigerZug(int ){
+//        return true;
+//    }
 
     // @Override
 //    public boolean istGueltigerZug(int zielRow, int zielCol) {

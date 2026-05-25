@@ -27,5 +27,9 @@ public class Springer2 extends Figur {
 //        x +/- 2 && y +/-1  ||
     //    x +/- 1 && y +/-2
 //    }
-//    Aufgabenzettel 7
+
+//    @Override
+//    public boolean istGueltigerZug(){
+//        return true;
+//    }
 }

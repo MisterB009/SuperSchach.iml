@@ -1,14 +1,15 @@
+#Fertig
 Schachbrett muster
 Schachbrett Zahlen außen / Buchstaben
 Schachbrett hoverfarben
 Schachfiguren stehen auf feldern
 Schachbrett Mousklick mit Feldern, auf denen Figuren stehen
-
 Schachfiguren erben von Klasse figuren
-
-Aufgaben
 Figuren können gewählt werden
-Figuren können Position verändern
+Figuren können Position verändern ??
+
+#Aufgaben
+
 Figur überprüft, es es eigenen Weg gehen durfte
 Figur kann geschlagen werden (tot)
 
@@ -21,3 +22,10 @@ Aufgabeangebot
 Remieangebot
 
 Willkommenscreeen - Auswahl zwischen Spielmodi
+Figuren Sound
+
+// ggf. alte Schachfiguren anzeigen, die man geschlagen hat; jeder hat seinen eigenen Platz, können sich überlappen
+Klong Sound bei bewegung (ggf. in Einstellungen ändern)
+
+
+java swing

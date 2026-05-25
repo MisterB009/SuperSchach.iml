@@ -25,8 +25,8 @@ public class Bauer2 extends Figur {
 
 //    @Override
 //    public boolean istGueltigerZug(){
-//
+//        return true;
 //    }
-//    Aufgabenzettel 7
+
 
 }

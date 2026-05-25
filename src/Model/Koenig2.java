@@ -23,4 +23,9 @@ public class Koenig2 extends Figur{
                 }
             }
     }
+
+//    @Override
+//    public boolean istGueltigerZug(){
+//        return true;
+//    }
 }

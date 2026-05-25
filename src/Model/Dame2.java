@@ -22,6 +22,11 @@ public class Dame2 extends Figur {
             }
         }
     }
+
+//    @Override
+//    public boolean istGueltigerZug(){
+//        return true;
+//    }
     //    public boolean istGueltigerZug(int zielRow, int zielCol) {
 //        return zielRow == row || zielCol == col // // wenn die Dame in der Zeile oder Spalte bleibt ist es true
 //        ||  ;  // Differenz ZielfeldX zu StartfeldX = Diff ZielfeldY zu StartfeldY

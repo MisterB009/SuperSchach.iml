@@ -52,10 +52,8 @@ public class Figur {
     }
 
     // Aufgabe: Jede Figur muss wissen, wie sie gezogen werden darf
-//    public abstract boolean istGueltigerZug(int zielRow, int zielCol) {
-//
-//    }
-    // Hinweis: Aufgabenzettel 7
+    public abstract boolean istGueltigerZug(int zielRow, int zielCol) {
+    }
 
     // Aufgabe: Wenn die Figur geschlagen wurde, muss diese Weg.
 }
