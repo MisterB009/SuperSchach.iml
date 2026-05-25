@@ -9,8 +9,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class Brett extends JPanel implements MouseListener {
-    private int hoverRow = -1;
-    private int hoverCol = -1;
+    private int letzteStartZeile = -1;
+    private int letzteStartSpalte = -1;
+    private int letzteZielZeile = -1;
+    private int letzteZielSpalte = -1;
+
     private int Yfarbeanders = 0;//Schalter falls die Farbe des Feldes schon geändert wurde
     private ArrayList<Integer> positionenFigurenX;
     private ArrayList<Integer> positionenFigurenY;
@@ -19,6 +22,10 @@ public class Brett extends JPanel implements MouseListener {
 
     // Brett aus Figuren
     private Figur[][] aufstellung; // Variable erzeugen
+
+    private Figur ausgewaehlteFigur =null;
+    private int startZeile;
+    private int startSpalte;
 
 //    //Weiße Figuren:
 //    private Turm2 rookwl2;
@@ -191,12 +198,20 @@ public class Brett extends JPanel implements MouseListener {
                     }
                 }
 
-                // HOVER hinzufügen
-                if (i == hoverRow && j == hoverCol) {
+                // Markierung Startfeld
+                if (i == letzteStartZeile && j == letzteStartSpalte) {
+                    g.setColor(hover);
+                } else if (i == letzteZielSpalte && j == letzteZielZeile) {
                     g.setColor(hover);
                 } else {
                     g.setColor(color);
                 }
+
+                // Markierung Zielfeld
+                if (i == letzteStartZeile && j == letzteStartSpalte) {
+                    g.setColor(hover);
+                }
+
 
                 g.fillRect(y2, x2, 80, 80); // füllen
                 y2 = y2 + 80; // alle weiteren Reihen
@@ -215,7 +230,7 @@ public class Brett extends JPanel implements MouseListener {
         //Startaufstellung
 //        this.zeichneStartaufstellung(g);
 
-        // Seitenränder
+        // Seitenränder -- Könnte man auch in Aufstellung machen?
         int charwertbuchstabe = 65;
         int charwertzahl = 56;
         g.setColor(Color.white);
@@ -257,64 +272,6 @@ public class Brett extends JPanel implements MouseListener {
         }
     }
 
-
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (Yfarbeanders >= 1&&e.getX() >= HilfsX&&e.getX() < HilfsX+80&& // wurde auf das Bild geklickt & / wurde auf ein anderes Feld gegklickt?
-                    e.getY() >= HilfsY&&e.getY() < HilfsY+80){
-            hoverCol = -1;
-            hoverRow = -1;
-            HilfsX = -1;
-            HilfsY = -1;
-            Yfarbeanders = 0;
-            repaint();
-        }else {
-            int startX = 80;
-            int startY = 80;
-            int feldGroesse = 80;
-            int YFigur = 0; //Schalter ober Maus über Figur ist
-
-            int x = e.getX();
-            int y = e.getY();
-
-            for (int i = 0; i < positionenFigurenX.size(); i++) { // Ist das Angeklickte Feld, auf der Eine Figur draufsteht?
-                if (x >= positionenFigurenX.get(i)&&x < positionenFigurenX.get(i)+80&&
-                        y >= positionenFigurenY.get(i)&&y < positionenFigurenY.get(i)+80){
-                    HilfsX = positionenFigurenX.get(i);
-                    HilfsY = positionenFigurenY.get(i);
-                    YFigur++;
-                    break;
-                }
-            }
-
-            // Prüfen ob Maus auf dem Brett ist
-            if (x >= startX && x < startX + 8 * feldGroesse &&
-                    y >= startY && y < startY + 8 * feldGroesse) {
-
-                if (YFigur >= 1){
-                    hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
-                    hoverRow = (y - startY) / feldGroesse;
-                    Yfarbeanders = 1;
-                }else {
-                    hoverRow = -1;
-                    hoverCol = -1;
-                    Yfarbeanders = 0;
-                    HilfsX = -1;
-                    HilfsY = -1;
-                }
-
-            } else {
-                hoverRow = -1;
-                hoverCol = -1;
-                HilfsX = -1;
-                HilfsY = -1;
-            }
-            YFigur = 0;
-            repaint();
-        }
-    }
-
 //    public void zeichneStartaufstellung(Graphics g){
 ////        g.drawImage(rookwl.getZeichnen(), rookwl.getX()+rookwl.getKorrekturx(), rookwl.getY()+rookwl.getKorrektury(), 80, 80, null);
 //        g.drawImage(rookwr.getZeichnen(), rookwr.getX()+rookwr.getKorrekturx(), rookwr.getY()+rookwr.getKorrektury(), 80, 80, null);
@@ -337,6 +294,125 @@ public class Brett extends JPanel implements MouseListener {
 //            g.drawImage(pawnsb.get(i).getZeichnen(), pawnsb.get(i).getX()+pawnsb.get(i).getKorrekturx(), pawnsb.get(i).getY()+pawnsb.get(i).getKorrektury(), 80, 80, null);
 //        }
 //    }
+
+
+@Override
+public void mouseClicked(MouseEvent e) {
+    int spalte = e.getX() / 80;
+    int zeile = 9 - (e.getY() / 80);
+
+    // außerhalb des Bretts
+    if (spalte < 1 || spalte > 8 || zeile < 1 || zeile > 8) {
+        return;
+    }
+
+    // ===== ERSTER KLICK =====
+    if (ausgewaehlteFigur == null) {
+
+        Figur figur = aufstellung[zeile][spalte];
+
+        // steht dort eine Figur?
+        if (figur != null) {
+
+            ausgewaehlteFigur = figur;
+            letzteStartZeile = 8 - zeile;
+            letzteStartSpalte = spalte - 1;
+
+            startZeile = zeile;
+            startSpalte = spalte;
+
+            System.out.println("Figur ausgewählt");
+            repaint();
+        }
+
+    }
+
+    // Zweiter Klick, Figur ausgewählt
+    else {
+
+        if (zeile == startZeile && spalte == startSpalte) {
+            // auswahl abbrechen
+            ausgewaehlteFigur = null;
+            letzteStartSpalte = -1;
+            letzteStartZeile = -1;
+            repaint();
+            return;
+        } else {
+            // Figur bewegen
+            aufstellung[zeile][spalte] = ausgewaehlteFigur;
+
+            // altes Feld leeren
+            aufstellung[startZeile][startSpalte] = null;
+
+            // neue Position speichern
+            ausgewaehlteFigur.setZeile(zeile);
+            ausgewaehlteFigur.setSpalte(spalte);
+
+            //anmalen
+            letzteZielSpalte = 8 - zeile;
+            letzteZielZeile = spalte -1;
+
+            // Auswahl zurücksetzen
+            ausgewaehlteFigur = null;
+
+            repaint();
+        }
+    }
+}
+
+//}
+//    if (Yfarbeanders >= 1&&e.getX() >= HilfsX&&e.getX() < HilfsX+80&& // wurde auf das Bild geklickt & / wurde auf ein anderes Feld gegklickt?
+//            e.getY() >= HilfsY&&e.getY() < HilfsY+80){
+//        hoverCol = -1;
+//        hoverRow = -1;
+//        HilfsX = -1;
+//        HilfsY = -1;
+//        Yfarbeanders = 0;
+//        repaint();
+//    }else {
+//        int startX = 80;
+//        int startY = 80;
+//        int feldGroesse = 80;
+//        int YFigur = 0; //Schalter ober Maus über Figur ist
+//
+//        int x = e.getX();
+//        int y = e.getY();
+//
+//        for (int i = 0; i < positionenFigurenX.size(); i++) { // Ist das Angeklickte Feld, auf der Eine Figur draufsteht?
+//            if (x >= positionenFigurenX.get(i)&&x < positionenFigurenX.get(i)+80&&
+//                    y >= positionenFigurenY.get(i)&&y < positionenFigurenY.get(i)+80){
+//                HilfsX = positionenFigurenX.get(i);
+//                HilfsY = positionenFigurenY.get(i);
+//                YFigur++;
+//                break;
+//            }
+//        }
+//
+//        // Prüfen ob Maus auf dem Brett ist
+//        if (x >= startX && x < startX + 8 * feldGroesse &&
+//                y >= startY && y < startY + 8 * feldGroesse) {
+//
+//            if (YFigur >= 1){
+//                hoverCol = (x - startX) / feldGroesse; // In welcher Zeile/ Spalte bin ich?
+//                hoverRow = (y - startY) / feldGroesse;
+//                Yfarbeanders = 1;
+//            }else {
+//                hoverRow = -1;
+//                hoverCol = -1;
+//                Yfarbeanders = 0;
+//                HilfsX = -1;
+//                HilfsY = -1;
+//            }
+//        } else {
+//            hoverRow = -1;
+//            hoverCol = -1;
+//            HilfsX = -1;
+//            HilfsY = -1;
+//        }
+//        YFigur = 0;
+//        repaint();
+//    }
+//}
 
     @Override
     public void mousePressed(MouseEvent e) {
