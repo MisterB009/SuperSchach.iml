@@ -18,7 +18,6 @@ public class Figur {
     }
 
     // Getter & Setter
-
     public int getFarbe() {
         return farbe;
     }
@@ -50,10 +49,4 @@ public class Figur {
     public void setSpalte(int spalte) {
         this.spalte = spalte;
     }
-
-    // Aufgabe: Jede Figur muss wissen, wie sie gezogen werden darf
-    public abstract boolean istGueltigerZug(int zielRow, int zielCol) {
-    }
-
-    // Aufgabe: Wenn die Figur geschlagen wurde, muss diese Weg.
 }

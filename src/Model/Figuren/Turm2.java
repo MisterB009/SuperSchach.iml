@@ -1,10 +1,12 @@
-package Model;
+package Model.Figuren;
+
+import Model.Figur;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Turm2 extends Figur{
+public class Turm2 extends Figur {
 
     public Turm2(int farbe, int zeile, int spalte) {
         super(farbe, zeile, spalte);

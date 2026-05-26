@@ -1,10 +1,12 @@
-package Model;
+package Model.Figuren;
+
+import Model.Figur;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Koenig2 extends Figur{
+public class Koenig2 extends Figur {
     public Koenig2(int farbe, int spalten, int zeilen) {
         super(farbe, spalten, zeilen);
 

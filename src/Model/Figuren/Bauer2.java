@@ -1,4 +1,6 @@
-package Model;
+package Model.Figuren;
+
+import Model.Figur;
 
 import javax.imageio.ImageIO;
 import java.io.File;
