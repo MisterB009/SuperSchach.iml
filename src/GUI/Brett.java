@@ -15,6 +15,8 @@ public class Brett extends JPanel {
     private Figur ausgewaehlteFigur = null;
     private int startZeile;
     private int startSpalte;
+    int hx,hy;
+
 
 
     public Brett() {
@@ -31,7 +33,10 @@ public class Brett extends JPanel {
 
         Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
-        Color hover = new Color(150, 200, 100);
+        Color klick = new Color(80, 124, 101);
+        Color zugauswahl = new Color(121, 155, 130);
+        Color lzherkunft = new Color(146, 177, 102);
+        Color lzziel = new Color(195, 216, 135);
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -53,9 +58,14 @@ public class Brett extends JPanel {
 
                 // Markierung Figur
                 if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
-                    g.setColor(Color.green);
+                    g.setColor(klick);
+                    hx =  x2;
+                    hy = y2;
                 } else if (i == logik.getLetzteZielSpalte() && j == logik.getLetzteZielZeile()) {
-                    g.setColor(hover);
+                    g.setColor(lzherkunft);
+                    g.fillRect(hx, hy, 80, 80);
+                    repaint();
+                    g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
                     g.setColor(color);
                 }
