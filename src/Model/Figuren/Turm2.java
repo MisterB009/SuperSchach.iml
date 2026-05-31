@@ -26,14 +26,22 @@ public class Turm2 extends Figur {
         }
     }
 
-//    @Override
-//    public boolean istGueltigerZug(int ){
-//        return true;
-//    }
+    @Override
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
 
-    // @Override
-//    public boolean istGueltigerZug(int zielRow, int zielCol) {
-//        return zielRow == row || zielCol == col; // wenn der TUrm in der Zeile oder Spalte bleibt ist es true
-//    }
-//    Aufgabenzettel 7
+        // gleiche Position -> kein Zug
+        if (zielZeile == zeile && zielSpalte == spalte) {
+            System.out.println("gleiches Feld gewählt");
+            return false;
+
+        }
+
+        if(zielZeile == zeile ||zielSpalte == spalte ){ // bleibt in Startzeile/-Spalte
+            System.out.println("legaler Zug");
+            return true;
+        }
+        System.out.println("illegaler Zug");
+        return false;
+
+    }
 }

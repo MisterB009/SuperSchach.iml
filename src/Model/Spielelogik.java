@@ -47,6 +47,34 @@ public class Spielelogik {
 
     }
 
+    // abwechseldes Ziehen (Figur 0/ 1)
+
+    public boolean bewegeFigur(int startZeile, int startSpalte,
+                               int zielZeile, int zielSpalte) {
+
+        Figur figur = aufstellung[startZeile][startSpalte];
+
+        if (figur == null) { // keine Figur
+            return false;
+        }
+
+        if (!figur.istGueltigerZug(zielZeile, zielSpalte, aufstellung)) { // macht die Figur legalen Zug?
+            System.out.println("Illegale Bewegung");
+            return false;
+        }
+
+        aufstellung[zielZeile][zielSpalte] = figur;
+        aufstellung[startZeile][startSpalte] = null;
+
+        figur.setZeile(zielZeile);
+        figur.setSpalte(zielSpalte);
+
+        setLetzteStartPosition(startZeile, startSpalte);
+        setLetzteZielPosition(zielZeile, zielSpalte);
+
+        return true;
+    }
+
     // Getter & Setter
     public Figur getFigur(int zeile, int spalte) {
         if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {

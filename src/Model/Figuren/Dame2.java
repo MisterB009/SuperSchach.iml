@@ -35,4 +35,9 @@ public class Dame2 extends Figur {
 //
 //    }
 
+    @Override
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
+        // Später die Bauernlogik
+        return true;
+    }
 }

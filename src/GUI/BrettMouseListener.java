@@ -35,17 +35,18 @@ public class BrettMouseListener extends MouseAdapter {
 
         Figur[][] felder = logik.getFelder();
 
-        // ===== ERSTER KLICK =====
+        // ===== ERSTER KLICK ===== Figur wählen
         if (ausgewaehlteFigur == null) {
 
             Figur figur = felder[zeile][spalte];
-
             if (figur != null) {
 
                 ausgewaehlteFigur = figur;
 
                 startZeile = zeile;
                 startSpalte = spalte;
+                System.out.println("Start Zeile: " + startZeile);
+                System.out.println("Start Spalte: "+ startSpalte);
 
                 logik.setLetzteStartPosition(zeile, spalte);
 
@@ -53,97 +54,39 @@ public class BrettMouseListener extends MouseAdapter {
             }
         }
 
-        // ===== ZWEITER KLICK =====
+        // ===== ZWEITER KLICK ===== bewegen
         else {
-
-            // gleiche Figur wieder anklicken
+            // gleiche Position wieder anklicken = Reset
             if (zeile == startZeile && spalte == startSpalte) {
-
                 ausgewaehlteFigur = null;
-
                 logik.resetMarkierung();
-
                 brett.repaint();
                 return;
             }
 
-            // Figur bewegen
-            felder[zeile][spalte] = ausgewaehlteFigur;
-
-            felder[startZeile][startSpalte] = null;
-
-            ausgewaehlteFigur.setZeile(zeile);
-            ausgewaehlteFigur.setSpalte(spalte);
-
-            logik.setLetzteZielPosition(zeile, spalte);
-
+            // legaler Zug
+            boolean erfolgreich = logik.bewegeFigur(startZeile,startSpalte,zeile, spalte );
+            if (!erfolgreich) {
+                ausgewaehlteFigur = null;
+                logik.resetMarkierung();
+                brett.repaint();
+                return;
+            }
             ausgewaehlteFigur = null;
-
             brett.repaint();
         }
     }
-//    @Override
-//    public void mouseClicked(MouseEvent e) {
-//    int spalte = e.getX() / 80;
-//    int zeile = 9 - (e.getY() / 80);
-//
-//    // außerhalb des Bretts
-//    if (spalte < 1 || spalte > 8 || zeile < 1 || zeile > 8) {
-//        return;
-//    }
-//
-//    // ===== ERSTER KLICK =====
-//    if (ausgewaehlteFigur == null) {
-//
-//        Figur[][] aufstellung = logik.getFelder();
-//        Figur figur = aufstellung[zeile][spalte];
-//
-//        // steht dort eine Figur?
-//        if (figur != null) {
-//
-//            ausgewaehlteFigur = figur;
-//            letzteStartZeile = 8 - zeile;
-//            letzteStartSpalte = spalte - 1;
-//
-//            startZeile = zeile;
-//            startSpalte = spalte;
-//
-//            System.out.println("Figur ausgewählt");
-//            repaint();
-//        }
-//
-//    }
-//
-//    // Zweiter Klick, Figur ausgewählt
-//    else {
-//
-//        if (zeile == startZeile && spalte == startSpalte) {
-//            // auswahl abbrechen
-//            ausgewaehlteFigur = null;
-//            letzteStartSpalte = -1;
-//            letzteStartZeile = -1;
-//            repaint();
-//            return;
-//        } else {
-//            // Figur bewegen
-//            aufstellung[zeile][spalte] = ausgewaehlteFigur;
-//
-//            // altes Feld leeren
-//            aufstellung[startZeile][startSpalte] = null;
-//
-//            // neue Position speichern
-//            ausgewaehlteFigur.setZeile(zeile);
-//            ausgewaehlteFigur.setSpalte(spalte);
-//
-//            //anmalen
-//            letzteZielSpalte = 8 - zeile;
-//            letzteZielZeile = spalte -1;
-//
-//            // Auswahl zurücksetzen
-//            ausgewaehlteFigur = null;
-//
-//            repaint();
-//        }
-//    }
-//}
+
+
+    public Figur getAusgewaehlteFigur() {
+        return ausgewaehlteFigur;
+    }
+
+    public int getStartSpalte() {
+        return startSpalte;
+    }
+
+    public int getStartZeile() {
+        return startZeile;
+    }
 }
