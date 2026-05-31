@@ -2,7 +2,7 @@ package Model;
 
 import java.awt.*;
 
-public class Figur {
+public abstract class Figur {
     protected static final int SCHWARZ = 0;
     protected static final int WEIß = 1;
     protected int farbe;
@@ -16,6 +16,10 @@ public class Figur {
         this.zeile = spalten;
         this.spalte = zeilen;
     }
+
+    public abstract boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder);
+
+    //  steht etwas im Weg?
 
     // Getter & Setter
     public int getFarbe() {

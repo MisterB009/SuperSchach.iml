@@ -1,4 +1,5 @@
 public class Kontorlle {
 }
 
-// erhält Regeln & SPeicher aus der Logik /Speicher ; Regeln aus der Figur übergeben
+// erhält Regeln & SPeicher a
+// us der Logik /Speicher ; Regeln aus der Figur übergeben

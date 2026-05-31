@@ -25,10 +25,45 @@ public class Bauer2 extends Figur {
         }
     }
 
-//    @Override
-//    public boolean istGueltigerZug(){
-//        return true;
-//    }
+
+    @Override
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
+        // gleiche Position -> kein Zug
+        if (zielZeile == zeile && zielSpalte == spalte) {
+            System.out.println("gleiches Feld gewählt");
+            return false;
+        }
+        if (farbe == WEIß) {
+
+            // eine Zeile nach vorne, gleiche Spalte
+            if (zielZeile == zeile + 1 && zielSpalte == spalte) {
+                System.out.println("legaler Zug");
+                return true;
+            }
+            if (zeile == 2 && zielZeile == 4) {
+                return true;
+            }
+        }
+
+        // Schwarz
+        if (farbe == SCHWARZ) {
+
+            // eine Zeile nach vorne (aus schwarzer Sicht)
+            if (zielZeile == zeile - 1 && zielSpalte == spalte) {
+                System.out.println("legaler Zug");
+                return true;
+            }
+            if (zeile == 7 && zielZeile == 5) {
+                return true;
+            }
+
+        }
+        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
+
+        System.out.println("illegaler Zug");
+        return false;
+
+    }
 
 
 }

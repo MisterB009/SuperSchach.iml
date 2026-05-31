@@ -1,0 +1,9 @@
+Figur:
+Figur/ letzte Startzeile/ letzte Startspalte (figurposition finden) - in jew Figur
+getLetzteStartZeile()
+getLetzteStartSpalte()
+getAusgewaehlteFigur()
+berechne mögliche Züge ( in jeder einzelnen Figur -
+(visuell zeigen)
+setzte Figur
+setzeFigur(Figur figur, int zeile, int spalte)

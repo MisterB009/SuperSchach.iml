@@ -34,4 +34,10 @@ public class Springer2 extends Figur {
 //    public boolean istGueltigerZug(){
 //        return true;
 //    }
+
+    @Override
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte,Figur[][] felder) {
+        // Später die Bauernlogik
+        return true;
+    }
 }

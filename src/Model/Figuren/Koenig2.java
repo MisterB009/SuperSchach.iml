@@ -26,8 +26,9 @@ public class Koenig2 extends Figur {
             }
     }
 
-//    @Override
-//    public boolean istGueltigerZug(){
-//        return true;
-//    }
+    @Override
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte,Figur[][] felder) {
+        // Später die König
+        return true;
+    }
 }
