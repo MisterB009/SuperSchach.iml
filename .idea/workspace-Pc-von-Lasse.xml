@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d2bc0c89-672e-46d1-98f7-30eb099a7429" name="Changes" comment="Buttons funktionieren jetzt im Start screen" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Vererbung-Figuren" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLabDefaultAccount">
+    <option name="defaultAccountId" value="d5453c44-6b71-4d1d-9ea1-551c958f45df" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;MisterB024&quot;,
+      &quot;fullname&quot;: &quot;Lasse Borwig&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.com/MisterB024/SuperSchach.git&quot;,
+    &quot;second&quot;: &quot;d5453c44-6b71-4d1d-9ea1-551c958f45df&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3DlJ1yC0cHIO0FQf8jM4ImuhQyV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/labor/OneDrive - Wirtschaftsakademie Schleswig-Holstein GmbH/1. Semester/Programmieren 1/SuperSchach",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2bc0c89-672e-46d1-98f7-30eb099a7429" name="Changes" comment="" />
+      <created>1778850512422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778850512422</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial">
+      <option name="closed" value="true" />
+      <created>1778850633454</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778850633454</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test Lasse">
+      <option name="closed" value="true" />
+      <created>1778850831345</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778850831345</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Erster Test mit visuellen Objekten">
+      <option name="closed" value="true" />
+      <created>1778855195275</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778855195275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Funktionierendes Schachbrett ohne Figuren, mit Koordinaten">
+      <option name="closed" value="true" />
+      <created>1778876513266</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778876513266</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Anpassung der Farben vom Spielbrett">
+      <option name="closed" value="true" />
+      <created>1778877296068</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778877296068</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Erstellen der Figuren">
+      <option name="closed" value="true" />
+      <created>1779107048969</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1779107048970</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Figuren PNGs">
+      <option name="closed" value="true" />
+      <created>1779110463267</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779110463267</updated>
+    </task>
+    <task id="LOCAL-00008" summary="angepasste Figuren">
+      <option name="closed" value="true" />
+      <created>1779112050146</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1779112050146</updated>
+    </task>
+    <task id="LOCAL-00009" summary="überflüssige Klassen gelöscht">
+      <option name="closed" value="true" />
+      <created>1779116331764</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1779116331764</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Pixelgrößen der PNGs und die Verschiebung auf dem Brett angepasst">
+      <option name="closed" value="true" />
+      <created>1779137504722</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779137504722</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Hintergrundfarbe geändert">
+      <option name="closed" value="true" />
+      <created>1779137730987</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779137730987</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Figuren hunzugefügt">
+      <option name="closed" value="true" />
+      <created>1779175053511</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779175053511</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Hover angepasst, sodass nur Figurenfelder gehovert werden">
+      <option name="closed" value="true" />
+      <created>1779189475426</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779189475426</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fehler gelöst beim Hovern">
+      <option name="closed" value="true" />
+      <created>1779190273234</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779190273234</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Test">
+      <option name="closed" value="true" />
+      <created>1779870825037</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779870825037</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Hover und Anzeige des letzen Zuges angepasst mit Auftrag in Class Brett">
+      <option name="closed" value="true" />
+      <created>1779873122902</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779873122902</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Buttons funktionieren jetzt im Start screen">
+      <option name="closed" value="true" />
+      <created>1780044815260</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1780044815260</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial" />
+    <MESSAGE value="Test Lasse" />
+    <MESSAGE value="Erster Test mit visuellen Objekten" />
+    <MESSAGE value="Funktionierendes Schachbrett ohne Figuren, mit Koordinaten" />
+    <MESSAGE value="Anpassung der Farben vom Spielbrett" />
+    <MESSAGE value="Erstellen der Figuren" />
+    <MESSAGE value="Figuren PNGs" />
+    <MESSAGE value="angepasste Figuren" />
+    <MESSAGE value="überflüssige Klassen gelöscht" />
+    <MESSAGE value="Pixelgrößen der PNGs und die Verschiebung auf dem Brett angepasst" />
+    <MESSAGE value="Hintergrundfarbe geändert" />
+    <MESSAGE value="Figuren hunzugefügt" />
+    <MESSAGE value="Hover angepasst, sodass nur Figurenfelder gehovert werden" />
+    <MESSAGE value="Fehler gelöst beim Hovern" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="Hover und Anzeige des letzen Zuges angepasst mit Auftrag in Class Brett" />
+    <MESSAGE value="Buttons funktionieren jetzt im Start screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buttons funktionieren jetzt im Start screen" />
+  </component>
+</project>
