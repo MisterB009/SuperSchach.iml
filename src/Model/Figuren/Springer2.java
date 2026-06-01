@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Springer2 extends Figur {
-    public Springer2(int farbe, int spalten, int zeilen) {
-        super(farbe, spalten, zeilen);
+    public Springer2(int farbe) {
+        super(farbe);
         if (farbe == 0){ // schwarz
             try {
                 bild = ImageIO.read(new File("img/KnightB.png"));
@@ -36,7 +36,7 @@ public class Springer2 extends Figur {
 //    }
 
     @Override
-    public boolean istGueltigerZug(int zielZeile, int zielSpalte,Figur[][] felder) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] felder) {
         // Später die Bauernlogik
         return true;
     }

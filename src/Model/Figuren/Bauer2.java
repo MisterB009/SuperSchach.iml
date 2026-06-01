@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Bauer2 extends Figur {
 
-    public Bauer2(int farbe, int zeile, int spalte) {
-        super(farbe, zeile, spalte);
+    public Bauer2(int farbe) {
+        super(farbe);
         if (farbe == 0){ // schwarz
             try {
                 bild = ImageIO.read(new File("img/PawnB.png"));
@@ -27,20 +27,20 @@ public class Bauer2 extends Figur {
 
 
     @Override
-    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] felder) {
         // gleiche Position -> kein Zug
-        if (zielZeile == StartZeile && zielSpalte == StartSpalte) {
+        if (zielZeile == startZeile && zielSpalte == startSpalte) {
             System.out.println("gleiches Feld gewählt");
             return false;
         }
-        if (farbe == WEIß) {
+        if (farbe == WEISS) {
 
             // eine Zeile nach vorne, gleiche Spalte
-            if (zielZeile == StartZeile + 1 && zielSpalte == StartSpalte) {
+            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
                 System.out.println("legaler Zug");
                 return true;
             }
-            if (StartZeile == 2 && zielZeile == 4) {
+            if (startZeile == 2 && zielZeile == 4) {
                 return true;
             }
         }
@@ -49,11 +49,11 @@ public class Bauer2 extends Figur {
         if (farbe == SCHWARZ) {
 
             // eine Zeile nach vorne (aus schwarzer Sicht)
-            if (zielZeile == StartZeile - 1 && zielSpalte == StartSpalte) {
+            if (zielZeile == startZeile - 1 && zielSpalte == startSpalte) {
                 System.out.println("legaler Zug");
                 return true;
             }
-            if (StartZeile == 7 && zielZeile == 5) {
+            if (startZeile == 7 && zielZeile == 5) {
                 return true;
             }
 

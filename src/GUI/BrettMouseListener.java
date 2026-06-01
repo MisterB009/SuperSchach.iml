@@ -25,11 +25,11 @@ public class BrettMouseListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        int spalte = e.getX() / 80;
-        int zeile = e.getY() / 80;
+        int spalte = ( e.getX() - 80) / 80 ;
+        int zeile = (e.getY() - 80) / 80  ;
 
         // außerhalb
-        if (spalte < 1 || spalte > 8 || zeile < 1 || zeile > 8) {
+        if (spalte < 0 || spalte > 7 || zeile < 0 || zeile > 7) {
             return;
         }
 

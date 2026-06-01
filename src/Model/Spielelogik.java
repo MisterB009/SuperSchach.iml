@@ -3,7 +3,7 @@ package Model;
 import Model.Figuren.*;
 
 public class Spielelogik {
-    private Figur[][] aufstellung; // feld anlegen
+    private Figur[][] felder; // feld anlegen
 
     private int letzteStartZeile = -1;
     private int letzteStartSpalte = -1;
@@ -11,66 +11,66 @@ public class Spielelogik {
     private int letzteZielSpalte = -1;
 
     public Spielelogik() {
-        this.aufstellung = new Figur[9][9]; // ##
+        this.felder = new Figur[8][8]; // ##
         initialisiereAufstellung();
     }
 
     private void initialisiereAufstellung() {
-        // weiß
-        aufstellung[1][1] = new Turm2(0, 1, 1);
-        aufstellung[1][2] = new Springer2(0, 1, 2);
-        aufstellung[1][3] = new Laeufer2(0, 1, 3);
-        aufstellung[1][4] = new Dame2(0, 1, 4);
-        aufstellung[1][5] = new Koenig2(0, 1, 5);
-        aufstellung[1][6] = new Laeufer2(0, 1, 6);
-        aufstellung[1][7] = new Springer2(0, 1, 7);
-        aufstellung[1][8] = new Turm2(0, 1, 8);
+        // --- Schwarze Figuren (oben) ---
+        felder[0][0] = new Turm2(Figur.SCHWARZ);
+        felder[0][1] = new Springer2(Figur.SCHWARZ);
+        felder[0][2] = new Laeufer2(Figur.SCHWARZ);
+        felder[0][3] = new Dame2(Figur.SCHWARZ);
+        felder[0][4] = new Koenig2(Figur.SCHWARZ);
+        felder[0][5] = new Laeufer2(Figur.SCHWARZ);
+        felder[0][6] = new Springer2(Figur.SCHWARZ);
+        felder[0][7] = new Turm2(Figur.SCHWARZ);
 
-        for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[2][spalte] = new Bauer2(0, 2, spalte);
-
+        for (int i = 0; i < 8; i++) {
+            felder[1][i] = new Bauer2(Figur.SCHWARZ);
         }
 
-        // schwarz
-        aufstellung[8][1] = new Turm2(1, 8, 1);
-        aufstellung[8][2] = new Springer2(1, 8, 2);
-        aufstellung[8][3] = new Laeufer2(1, 8, 3);
-        aufstellung[8][4] = new Dame2(1, 8, 4);
-        aufstellung[8][5] = new Koenig2(1, 8, 5);
-        aufstellung[8][6] = new Laeufer2(1, 8, 6);
-        aufstellung[8][7] = new Springer2(1, 8, 7);
-        aufstellung[8][8] = new Turm2(1, 8, 8);
-
-        for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[7][spalte] = new Bauer2(1, 7, spalte); // Weiße Bauern
+        // --- Weiße Figuren (unten) ---
+        for (int i = 0; i < 8; i++) {
+            felder[6][i] = new Bauer2(Figur.WEISS);
         }
 
+        felder[7][0] = new Turm2(Figur.WEISS);
+        felder[7][1] = new Springer2(Figur.WEISS);
+        felder[7][2] = new Laeufer2(Figur.WEISS);
+        felder[7][3] = new Dame2(Figur.WEISS);
+        felder[7][4] = new Koenig2(Figur.WEISS);
+        felder[7][5] = new Laeufer2(Figur.WEISS);
+        felder[7][6] = new Springer2(Figur.WEISS);
+        felder[7][7] = new Turm2(Figur.WEISS);
     }
+
+
 
     // abwechseldes Ziehen (Figur 0/ 1)
 
     public boolean bewegeFigur(int startZeile, int startSpalte,
                                int zielZeile, int zielSpalte) {
 
-        Figur figur = aufstellung[startZeile][startSpalte];
+        Figur figur = felder[startZeile][startSpalte];
 
         if (figur == null) { // keine Figur
             return false;
         }
 
-        if (!figur.istGueltigerZug(zielZeile, zielSpalte, aufstellung)) { // macht die Figur legalen Zug?
+        if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, felder)) { // macht die Figur legalen Zug?
             System.out.println("Illegale Bewegung");
-            Figur figurNochDa = aufstellung[zielZeile][zielSpalte];
+            Figur figurNochDa = felder[zielZeile][zielSpalte];
             System.out.println("Ist hier was?! " + figurNochDa);
             printBrett();
             return false;
         }
 
-        aufstellung[zielZeile][zielSpalte] = figur;
-        aufstellung[startZeile][startSpalte] = null;
+        felder[zielZeile][zielSpalte] = figur;
+        felder[startZeile][startSpalte] = null;
 
-        figur.setStartZeile(zielZeile);
-        figur.setStartSpalte(zielSpalte);
+//        figur.setStartZeile(zielZeile);
+//        figur.setStartSpalte(zielSpalte);
 
         setLetzteStartPosition(startZeile, startSpalte);
         setLetzteZielPosition(zielZeile, zielSpalte);
@@ -83,16 +83,13 @@ public class Spielelogik {
         if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {
             return null;
         }
-        return aufstellung[zeile][spalte];
+        return felder[zeile][spalte];
     }
 
     public void setzeFigur(Figur figur, int zeile, int spalte) {
-        aufstellung[zeile][spalte] = figur;
+        felder[zeile][spalte] = figur;
     }
 
-    public Figur[][] getFelder() {
-        return aufstellung;
-    }
 
     public void setLetzteStartPosition(int zeile, int spalte) {
         letzteStartZeile = 8 - zeile;
@@ -127,17 +124,17 @@ public class Spielelogik {
         return letzteZielZeile;
     }
 
-    public Figur[][] getAufstellung() {
-        return aufstellung;
+    public Figur[][] getFelder() {
+        return felder;
     }
 
     // aufstellung ansehen
     public void printBrett() {
-        for (int zeile = 0; zeile < 9; zeile++) {
+        for (int zeile = 0; zeile < 8; zeile++) {
 
-            for (int spalte = 0; spalte < 9; spalte++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
 
-                Figur figur = aufstellung[zeile][spalte];
+                Figur figur = felder[zeile][spalte];
 
                 if (figur == null) {
                     System.out.print(".. ");

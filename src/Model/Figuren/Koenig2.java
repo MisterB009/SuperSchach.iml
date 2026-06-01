@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Koenig2 extends Figur {
-    public Koenig2(int farbe, int spalten, int zeilen) {
-        super(farbe, spalten, zeilen);
+    public Koenig2(int farbe) {
+        super(farbe);
 
 
             if (farbe == 0){ // schwarz
@@ -27,7 +27,7 @@ public class Koenig2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int zielZeile, int zielSpalte,Figur[][] felder) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] felder) {
         // Später die König
         return true;
     }

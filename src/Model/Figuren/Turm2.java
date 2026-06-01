@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Turm2 extends Figur {
 
-    public Turm2(int farbe, int zeile, int spalte) {
-        super(farbe, zeile, spalte);
+    public Turm2(int farbe) {
+        super(farbe);
 
         if (farbe == 0){ // schwarz
             try {
@@ -27,21 +27,21 @@ public class Turm2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] aufstellung) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung) {
 
         // gleiche Position -> kein Zug
-        if (zielZeile == StartZeile && zielSpalte == StartSpalte) {
+        if (zielZeile == startZeile && zielSpalte == startSpalte) {
             System.out.println("gleiches Feld gewählt");
             return false;
         }
         // horizontaler Zug
-        if (zielZeile == StartZeile) {
+        if (zielZeile == startZeile) {
 
-            int richtung = (zielSpalte > StartSpalte) ? 1 : -1; // ist Zielspalte größer als Startspalte -> richtung 1 = wird größer
+            int richtung = (zielSpalte > startSpalte) ? 1 : -1; // ist Zielspalte größer als Startspalte -> richtung 1 = wird größer
 
-            for (int spalte = StartSpalte + richtung; spalte != zielSpalte; spalte += richtung) { // zwischenfelder durchgehen
+            for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) { // zwischenfelder durchgehen
 
-                if (aufstellung[StartZeile][spalte] != null) { // eine Figur auf dem Weg
+                if (aufstellung[startZeile][spalte] != null) { // eine Figur auf dem Weg
                     System.out.println("Figur blockiert den Weg");
                     System.out.println("Zielzeile: " + zielZeile);
                     System.out.println("Zielspalte: " + zielSpalte);
@@ -63,13 +63,13 @@ public class Turm2 extends Figur {
 
 
         // vertikal
-        if (zielSpalte == StartSpalte){
+        if (zielSpalte == startSpalte){
 
-            int richtung = (zielZeile > StartZeile) ? 1 : -1; // hier ggf. tauschen?
+            int richtung = (zielZeile > startZeile) ? 1 : -1; // hier ggf. tauschen?
 
-            for (int zeile = StartZeile + richtung; zeile != zielSpalte; zeile += richtung) { // zwischenfelder durchgehen
+            for (int zeile = startZeile + richtung; zeile != zielSpalte; zeile += richtung) { // zwischenfelder durchgehen
 
-                if (aufstellung[zeile][StartSpalte] != null) { // eine Figur auf dem Weg
+                if (aufstellung[zeile][startSpalte] != null) { // eine Figur auf dem Weg
                     System.out.println("Figur blockiert den Weg");
                     System.out.println("Zielzeile: " + zielZeile);
                     System.out.println("Zielspalte: " + zielSpalte);

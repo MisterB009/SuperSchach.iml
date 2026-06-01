@@ -42,7 +42,7 @@ public class Brett extends JPanel {
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         Color color = dunkel;
 
-        int y3 = 640;
+        int y3 = 80;
 
         for (int i = 0; i < 8; i++) { // Zeilen
             int x3;
@@ -58,12 +58,12 @@ public class Brett extends JPanel {
 
                 // Markierung Figur
                 if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
-                    g.setColor(klick);
-                    hx =  y3;
-                    hy = x3;
-                } else if (i == logik.getLetzteZielSpalte() && j == logik.getLetzteZielZeile()) {
-                    g.setColor(lzherkunft);
-                    g.fillRect(hx, hy, 80, 80);
+                    g.setColor(Color.red);
+                    hx =  x3 ;
+                    hy = y3;
+                } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
+                    g.setColor(Color.black);
+                    g.fillRect(hx + 80, hy +80 , 80, 80);
                     repaint();
                     g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
@@ -79,7 +79,7 @@ public class Brett extends JPanel {
                     color = dunkel;
                 }
             }
-            y3 = y3 - 80;
+            y3 = y3 + 80;
         }
         int xstart = 80;
         int ystart = 80;
@@ -113,16 +113,16 @@ public class Brett extends JPanel {
         // Figuren aufstellen
         Figur[][] aufstellung = logik.getFelder();
 
-        for (int zeile = 0; zeile < 9; zeile++) {
+        for (int zeile = 0; zeile < 8; zeile++) {
 
-            for (int spalte = 0; spalte < 9; spalte++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
 
                 Figur figur = aufstellung[zeile][spalte];
 
                 if (figur != null) {
 
-                    int x = spalte * 80;
-                    int y = zeile * 80;
+                    int x = spalte * 80 + 80;
+                    int y = zeile * 80 + 80;
                     g.drawImage(figur.getBild(), x, y, 80, 80, this);
                 }
             }
