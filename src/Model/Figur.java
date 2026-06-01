@@ -7,14 +7,14 @@ public abstract class Figur {
     protected static final int WEIß = 1;
     protected int farbe;
     protected Image bild;
-    protected int zeile;
-    protected int spalte;
+    protected int StartZeile;
+    protected int StartSpalte;
 
     // Construktor
-    public Figur(int farbe, int spalten, int zeilen) {
+    public Figur(int farbe, int zeilen1, int spalten1) {
         this.farbe = farbe;
-        this.zeile = spalten;
-        this.spalte = zeilen;
+        this.StartZeile = zeilen1;
+        this.StartSpalte = spalten1;
     }
 
     public abstract boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder);
@@ -38,19 +38,19 @@ public abstract class Figur {
         this.bild = bild;
     }
 
-    public int getZeile() {
-        return zeile;
+    public int getStartZeile() {
+        return StartZeile;
     }
 
-    public void setZeile(int zeile) {
-        this.zeile = zeile;
+    public void setStartZeile(int startZeile) {
+        this.StartZeile = startZeile;
     }
 
-    public int getSpalte() {
-        return spalte;
+    public int getStartSpalte() {
+        return StartSpalte;
     }
 
-    public void setSpalte(int spalte) {
-        this.spalte = spalte;
+    public void setStartSpalte(int startSpalte) {
+        this.StartSpalte = startSpalte;
     }
 }

@@ -66,8 +66,8 @@ public class Spielelogik {
         aufstellung[zielZeile][zielSpalte] = figur;
         aufstellung[startZeile][startSpalte] = null;
 
-        figur.setZeile(zielZeile);
-        figur.setSpalte(zielSpalte);
+        figur.setStartZeile(zielZeile);
+        figur.setStartSpalte(zielSpalte);
 
         setLetzteStartPosition(startZeile, startSpalte);
         setLetzteZielPosition(zielZeile, zielSpalte);

@@ -27,19 +27,49 @@ public class Turm2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] aufstellung) {
 
         // gleiche Position -> kein Zug
-        if (zielZeile == zeile && zielSpalte == spalte) {
+        if (zielZeile == StartZeile && zielSpalte == StartSpalte) {
             System.out.println("gleiches Feld gewählt");
             return false;
 
         }
+        // horizontaler Zug
+        if (zielZeile == StartZeile) {
 
-        if(zielZeile == zeile ||zielSpalte == spalte ){ // bleibt in Startzeile/-Spalte
+            int richtung = (zielSpalte > StartSpalte) ? 1 : -1; // ist Zielspalte größer als Startspalte -> richtung 1 = wird größer
+
+            for (int spalte = StartSpalte + richtung; spalte != zielSpalte; spalte += richtung) { // zwischenfelder durchgehen
+
+                if (aufstellung[StartZeile][spalte] != null) { // eine Figur auf dem Weg
+                    System.out.println("Figur blockiert den Weg");
+                    System.out.println("Zielzeile: " + zielZeile);
+                    System.out.println("Zielspalte: " + zielSpalte);
+                    return false;
+                    }
+                }
+            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];      // was ist das für eine Figur?
+                if(figurImWeg.getFarbe() == this.getFarbe()){
+                    System.out.println("Figur gehört dir");
+                    return false;
+                }
+                if(figurImWeg.getFarbe() != this.getFarbe()){
+                    System.out.println("Figur schlagen.");
+                    return true;
+                }
+                System.out.println("keiner dazwischen");
+                return true;
+            }
+
+
+
+        if (zielSpalte == StartSpalte){
             System.out.println("legaler Zug");
             return true;
         }
+
+
         System.out.println("illegaler Zug");
         return false;
 
