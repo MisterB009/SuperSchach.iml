@@ -31,8 +31,8 @@ public class Brett extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Color hell = new Color(222, 227, 230);
         Color dunkel = new Color(140, 162, 173);
+        Color hell = new Color(222, 227, 230);
         Color klick = new Color(80, 124, 101);
         Color zugauswahl = new Color(121, 155, 130);
         Color lzherkunft = new Color(146, 177, 102);
@@ -40,27 +40,27 @@ public class Brett extends JPanel {
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = hell;
+        Color color = dunkel;
 
-        int x2 = 80;
+        int y3 = 640;
 
         for (int i = 0; i < 8; i++) { // Zeilen
-            int y2;
-            y2 = 80;
+            int x3;
+            x3 = 80;
             for (int j = 0; j < 8; j++) {// Spalte
                 if (j == 0 && i > 0) { // Color immer abwechseln
-                    if (color.equals(hell)) {
-                        color = dunkel;
-                    } else {
+                    if (color.equals(dunkel)) {
                         color = hell;
+                    } else {
+                        color = dunkel;
                     }
                 }
 
                 // Markierung Figur
                 if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
                     g.setColor(klick);
-                    hx =  x2;
-                    hy = y2;
+                    hx =  y3;
+                    hy = x3;
                 } else if (i == logik.getLetzteZielSpalte() && j == logik.getLetzteZielZeile()) {
                     g.setColor(lzherkunft);
                     g.fillRect(hx, hy, 80, 80);
@@ -70,16 +70,16 @@ public class Brett extends JPanel {
                     g.setColor(color);
                 }
 
-                g.fillRect(y2, x2, 80, 80); // füllen
-                y2 = y2 + 80; // alle weiteren Reihen
+                g.fillRect(x3, y3, 80, 80); // füllen
+                x3 = x3 + 80; // alle weiteren Reihen
 
-                if (color.equals(hell)) {
-                    color = dunkel;
-                } else {
+                if (color.equals(dunkel)) {
                     color = hell;
+                } else {
+                    color = dunkel;
                 }
             }
-            x2 = x2 + 80;
+            y3 = y3 - 80;
         }
         int xstart = 80;
         int ystart = 80;
@@ -121,8 +121,8 @@ public class Brett extends JPanel {
 
                 if (figur != null) {
 
-                    int x = (spalte - 1) * 80 + 80;
-                    int y = (9 - zeile) * 80;
+                    int x = spalte * 80;
+                    int y = zeile * 80;
                     g.drawImage(figur.getBild(), x, y, 80, 80, this);
                 }
             }

@@ -33,7 +33,6 @@ public class Turm2 extends Figur {
         if (zielZeile == StartZeile && zielSpalte == StartSpalte) {
             System.out.println("gleiches Feld gewählt");
             return false;
-
         }
         // horizontaler Zug
         if (zielZeile == StartZeile) {
@@ -58,14 +57,35 @@ public class Turm2 extends Figur {
                     System.out.println("Figur schlagen.");
                     return true;
                 }
-                System.out.println("keiner dazwischen");
+            System.out.println("keiner dazwischen");
+            return true;
+        }
+
+
+        // vertikal
+        if (zielSpalte == StartSpalte){
+
+            int richtung = (zielZeile > StartZeile) ? 1 : -1; // hier ggf. tauschen?
+
+            for (int zeile = StartZeile + richtung; zeile != zielSpalte; zeile += richtung) { // zwischenfelder durchgehen
+
+                if (aufstellung[zeile][StartSpalte] != null) { // eine Figur auf dem Weg
+                    System.out.println("Figur blockiert den Weg");
+                    System.out.println("Zielzeile: " + zielZeile);
+                    System.out.println("Zielspalte: " + zielSpalte);
+                    return false;
+                }
+            }
+            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];      // was ist das für eine Figur?
+            if(figurImWeg.getFarbe() == this.getFarbe()){
+                System.out.println("Figur gehört dir");
+                return false;
+            }
+            if(figurImWeg.getFarbe() != this.getFarbe()){
+                System.out.println("Figur schlagen.");
                 return true;
             }
-
-
-
-        if (zielSpalte == StartSpalte){
-            System.out.println("legaler Zug");
+            System.out.println("keiner dazwischen");
             return true;
         }
 

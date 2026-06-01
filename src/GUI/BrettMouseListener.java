@@ -26,7 +26,7 @@ public class BrettMouseListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
 
         int spalte = e.getX() / 80;
-        int zeile = 9 - (e.getY() / 80);
+        int zeile = e.getY() / 80;
 
         // außerhalb
         if (spalte < 1 || spalte > 8 || zeile < 1 || zeile > 8) {

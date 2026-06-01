@@ -17,32 +17,32 @@ public class Spielelogik {
 
     private void initialisiereAufstellung() {
         // weiß
-        aufstellung[1][1] = new Turm2(1, 1, 1);
-        aufstellung[1][2] = new Springer2(1, 1, 2);
-        aufstellung[1][3] = new Laeufer2(1, 1, 3);
-        aufstellung[1][4] = new Dame2(1, 1, 4);
-        aufstellung[1][5] = new Koenig2(1, 1, 5);
-        aufstellung[1][6] = new Laeufer2(1, 1, 6);
-        aufstellung[1][7] = new Springer2(1, 1, 7);
-        aufstellung[1][8] = new Turm2(1, 1, 8);
+        aufstellung[1][1] = new Turm2(0, 1, 1);
+        aufstellung[1][2] = new Springer2(0, 1, 2);
+        aufstellung[1][3] = new Laeufer2(0, 1, 3);
+        aufstellung[1][4] = new Dame2(0, 1, 4);
+        aufstellung[1][5] = new Koenig2(0, 1, 5);
+        aufstellung[1][6] = new Laeufer2(0, 1, 6);
+        aufstellung[1][7] = new Springer2(0, 1, 7);
+        aufstellung[1][8] = new Turm2(0, 1, 8);
 
         for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[2][spalte] = new Bauer2(1, 2, spalte);
+            aufstellung[2][spalte] = new Bauer2(0, 2, spalte);
 
         }
 
         // schwarz
-        aufstellung[8][1] = new Turm2(0, 8, 1);
-        aufstellung[8][2] = new Springer2(0, 8, 2);
-        aufstellung[8][3] = new Laeufer2(0, 8, 3);
-        aufstellung[8][4] = new Dame2(0, 8, 4);
-        aufstellung[8][5] = new Koenig2(0, 8, 5);
-        aufstellung[8][6] = new Laeufer2(0, 8, 6);
-        aufstellung[8][7] = new Springer2(0, 8, 7);
-        aufstellung[8][8] = new Turm2(0, 8, 8);
+        aufstellung[8][1] = new Turm2(1, 8, 1);
+        aufstellung[8][2] = new Springer2(1, 8, 2);
+        aufstellung[8][3] = new Laeufer2(1, 8, 3);
+        aufstellung[8][4] = new Dame2(1, 8, 4);
+        aufstellung[8][5] = new Koenig2(1, 8, 5);
+        aufstellung[8][6] = new Laeufer2(1, 8, 6);
+        aufstellung[8][7] = new Springer2(1, 8, 7);
+        aufstellung[8][8] = new Turm2(1, 8, 8);
 
         for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[7][spalte] = new Bauer2(0, 7, spalte); // Weiße Bauern
+            aufstellung[7][spalte] = new Bauer2(1, 7, spalte); // Weiße Bauern
         }
 
     }
@@ -60,6 +60,9 @@ public class Spielelogik {
 
         if (!figur.istGueltigerZug(zielZeile, zielSpalte, aufstellung)) { // macht die Figur legalen Zug?
             System.out.println("Illegale Bewegung");
+            Figur figurNochDa = aufstellung[zielZeile][zielSpalte];
+            System.out.println("Ist hier was?! " + figurNochDa);
+            printBrett();
             return false;
         }
 
@@ -126,5 +129,38 @@ public class Spielelogik {
 
     public Figur[][] getAufstellung() {
         return aufstellung;
+    }
+
+    // aufstellung ansehen
+    public void printBrett() {
+        for (int zeile = 0; zeile < 9; zeile++) {
+
+            for (int spalte = 0; spalte < 9; spalte++) {
+
+                Figur figur = aufstellung[zeile][spalte];
+
+                if (figur == null) {
+                    System.out.print(".. ");
+                } else {
+
+                    String symbol = "";
+
+                    if (figur instanceof Turm2) symbol = "T";
+                    else if (figur instanceof Springer2) symbol = "S";
+                    else if (figur instanceof Laeufer2) symbol = "L";
+                    else if (figur instanceof Dame2) symbol = "D";
+                    else if (figur instanceof Koenig2) symbol = "K";
+                    else if (figur instanceof Bauer2) symbol = "B";
+
+                    if (figur.getFarbe() == 1) {
+                        System.out.print("W" + symbol + " ");
+                    } else {
+                        System.out.print("S" + symbol + " ");
+                    }
+                }
+            }
+
+            System.out.println();
+        }
     }
 }
