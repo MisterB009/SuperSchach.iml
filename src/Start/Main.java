@@ -1,5 +1,6 @@
 package Start;//import GUI.MouseHover;
 import GUI.Brett;
+import Multiplayer.MPBrett;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class Main extends JFrame {
         private JButton Multiplayer;
         private JButton Einstellungen;
         private Image hintergrund;
+        private MPLobby mpLobby;
         Color dG = new Color(110, 110,110);
         Color dGHover = new Color(140, 140, 140);
 
@@ -41,15 +43,25 @@ public class Main extends JFrame {
             g.drawImage(hintergrund,0,0,this.getWidth(),this.getHeight(),null);
             super.paintComponent(g);
         }
+        public void Brettanzeigen(MPBrett lobby){
+            getContentPane();
+            removeAll();
+            setLayout(new BorderLayout());
+            add(lobby);
+            revalidate();
+            repaint();
+            mpLobby.dispose();
+        }
 
         public WilkommenScreen(){
             setOpaque(false);
             MouseStart mouseStart = new MouseStart(this);
             this.setLayout(new GridBagLayout());
+            Dimension btngroesse = new Dimension(250,45);
 
 
             Start = new JLabel("MegaSchach");
-            Font groeseSchrift = new Font("Arial", Font.BOLD, 30);
+            Font groeseSchrift = new Font("Arial", Font.BOLD, 100);
             Start.setFont(groeseSchrift);
             Start.setForeground(Color.WHITE);
             GridBagConstraints c = new GridBagConstraints();
@@ -79,6 +91,7 @@ public class Main extends JFrame {
             Einzelspieler.setContentAreaFilled(false);
             Einzelspieler.setForeground(Color.WHITE);
             Einzelspieler.addMouseListener(mouseStart);
+            Einzelspieler.setPreferredSize(btngroesse);
             Einzelspieler.addActionListener(e -> {
                 getContentPane();
                 removeAll();
@@ -92,8 +105,6 @@ public class Main extends JFrame {
             c.gridx = 0;
             c.insets = new Insets(0,0,20,0);
             c.gridy = 1;
-            c.gridwidth = 10;
-            c.fill = GridBagConstraints.HORIZONTAL;
             add(Einzelspieler, c);
 
 
@@ -117,15 +128,15 @@ public class Main extends JFrame {
             Multiplayer.setContentAreaFilled(false);
             Multiplayer.setForeground(Color.WHITE);
             Multiplayer.addMouseListener(mouseStart);
+            Multiplayer.setPreferredSize(btngroesse);
             Multiplayer.addActionListener(e -> {
-
+                mpLobby = new MPLobby(this);
+                mpLobby.setVisible(true);
             });
             c = new GridBagConstraints();
             c.gridx = 0;
             c.insets = new Insets(0,0,20,0);
             c.gridy = 2;
-            c.gridwidth = 10;
-            c.fill = GridBagConstraints.HORIZONTAL;
             add(Multiplayer, c);
 
 
@@ -149,14 +160,13 @@ public class Main extends JFrame {
             Einstellungen.setContentAreaFilled(false);
             Einstellungen.setForeground(Color.WHITE);
             Einstellungen.addMouseListener(mouseStart);
+            Einstellungen.setPreferredSize(btngroesse);
             Einstellungen.addActionListener(e -> {
 
             });
             c = new GridBagConstraints();
             c.gridx = 0;
             c.gridy = 3;
-            c. gridwidth = 10;
-            c.fill = GridBagConstraints.HORIZONTAL;
             add(Einstellungen, c);
         }
     }

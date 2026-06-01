@@ -2,12 +2,14 @@ package GUI;
 
 import Model.Figur;
 import Model.Spielelogik;
+import Multiplayer.MPBrett;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BrettMouseListener extends MouseAdapter {
     private Brett brett;
+    private MPBrett mpBrett;
     private Spielelogik logik;
 
     private Figur ausgewaehlteFigur = null;
@@ -18,6 +20,10 @@ public class BrettMouseListener extends MouseAdapter {
 
     public BrettMouseListener(Brett brett, Spielelogik logik) {
         this.brett = brett;
+        this.logik = logik;
+    }
+    public BrettMouseListener(MPBrett mpBrett, Spielelogik logik){
+        this.mpBrett = mpBrett;
         this.logik = logik;
     }
 
