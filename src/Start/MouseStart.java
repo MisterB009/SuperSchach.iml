@@ -7,11 +7,16 @@ import java.awt.event.MouseListener;
 
 public class MouseStart implements MouseListener {
     Main.WilkommenScreen func;
+    MPLobby lobby;
     Color dG = new Color(110, 110,110);
     Color dGHover = new Color(140, 140, 140);
     public MouseStart(Main.WilkommenScreen func){
         super();
         this.func = func;
+    }
+    public MouseStart(MPLobby lobby){
+        super();
+        this.lobby = lobby;
     }
     @Override
     public void mouseClicked(MouseEvent e) {
