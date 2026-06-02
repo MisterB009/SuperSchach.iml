@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 public class Main extends JFrame {
     JFrame frame;
@@ -29,6 +30,7 @@ public class Main extends JFrame {
         private JButton Einstellungen;
         private Image hintergrund;
         private MPLobby mpLobby;
+        private Settings settings;
         Color dG = new Color(110, 110,110);
         Color dGHover = new Color(140, 140, 140);
 
@@ -162,7 +164,8 @@ public class Main extends JFrame {
             Einstellungen.addMouseListener(mouseStart);
             Einstellungen.setPreferredSize(btngroesse);
             Einstellungen.addActionListener(e -> {
-
+                settings = new Settings();
+                settings.setVisible(true);
             });
             c = new GridBagConstraints();
             c.gridx = 0;
