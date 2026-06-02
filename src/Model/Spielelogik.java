@@ -49,8 +49,7 @@ public class Spielelogik {
 
     // abwechseldes Ziehen (Figur 0/ 1)
 
-    public boolean bewegeFigur(int startZeile, int startSpalte,
-                               int zielZeile, int zielSpalte) {
+    public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
         Figur figur = felder[startZeile][startSpalte];
 
@@ -62,7 +61,7 @@ public class Spielelogik {
             System.out.println("Illegale Bewegung");
             Figur figurNochDa = felder[zielZeile][zielSpalte];
             System.out.println("Ist hier was?! " + figurNochDa);
-            printBrett();
+//            printBrett();
             return false;
         }
 
@@ -92,13 +91,13 @@ public class Spielelogik {
 
 
     public void setLetzteStartPosition(int zeile, int spalte) {
-        letzteStartZeile = 8 - zeile;
-        letzteStartSpalte = spalte - 1;
+        letzteStartZeile = zeile;
+        letzteStartSpalte = spalte;
     }
 
     public void setLetzteZielPosition(int zeile, int spalte) {
-        letzteZielZeile = spalte - 1;
-        letzteZielSpalte = 8 - zeile;
+        letzteZielZeile = zeile;
+        letzteZielSpalte = spalte;
     }
 
     public void resetMarkierung() {

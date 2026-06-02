@@ -25,11 +25,12 @@ public class BrettMouseListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        int spalte = ( e.getX() - 80) / 80 ;
-        int zeile = (e.getY() - 80) / 80  ;
+        int zeile =  (e.getY()) / 80 -1 ;
+        int spalte = e.getX() / 80 -1 ;
+
 
         // außerhalb
-        if (spalte < 0 || spalte > 7 || zeile < 0 || zeile > 7) {
+        if (spalte < 0 || spalte > 8 || zeile < 0 || zeile > 8) {
             return;
         }
 
@@ -45,8 +46,10 @@ public class BrettMouseListener extends MouseAdapter {
 
                 startZeile = zeile;
                 startSpalte = spalte;
-                System.out.println("Start Zeile: " + startZeile);
-                System.out.println("Start Spalte: "+ startSpalte);
+                System.out.println(
+                        "Klick: Zeile=" + zeile
+                                + " Spalte=" + spalte
+                );
 
                 logik.setLetzteStartPosition(zeile, spalte);
 

@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class Brett extends JPanel {
+    private static final int FELDGROESSE = 80;
+    private static final int BRETT_GROESSE = 8 * FELDGROESSE;
 
     private Spielelogik logik; // Referenz auf die Spielelogik
 
@@ -30,6 +32,9 @@ public class Brett extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // immer mittig
+//        int offsetX = (getWidth() - BRETT_GROESSE) / 2;
+//        int offsetY = (getHeight() - BRETT_GROESSE) / 2;
 
         Color dunkel = new Color(140, 162, 173);
         Color hell = new Color(222, 227, 230);
@@ -57,14 +62,18 @@ public class Brett extends JPanel {
                 }
 
                 // Markierung Figur
-                if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
-                    g.setColor(Color.red);
-                    hx =  x3 ;
-                    hy = y3;
+                if (i == logik.getLetzteStartZeile()  && j == logik.getLetzteStartSpalte()) {
+                    g.setColor(lzherkunft);
+                    hx =  x3 + 80;
+                    hy =  y3 - 160;
+                    System.out.println(
+                            "Markierung: Zeile=" + logik.getLetzteStartZeile()
+                                    + " Spalte=" + logik.getLetzteStartSpalte()
+                    );
                 } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
-                    g.setColor(Color.black);
-                    g.fillRect(hx + 80, hy +80 , 80, 80);
-                    repaint();
+                    g.setColor(color);
+                    g.fillRect(hx , hy , 80, 80);
+//                    repaint();
                     g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
                     g.setColor(color);
@@ -81,6 +90,8 @@ public class Brett extends JPanel {
             }
             y3 = y3 + 80;
         }
+
+
         int xstart = 80;
         int ystart = 80;
 

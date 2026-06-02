@@ -28,42 +28,43 @@ public class Bauer2 extends Figur {
 
     @Override
     public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] felder) {
-        // gleiche Position -> kein Zug
-        if (zielZeile == startZeile && zielSpalte == startSpalte) {
-            System.out.println("gleiches Feld gewählt");
-            return false;
-        }
-        if (farbe == WEISS) {
-
-            // eine Zeile nach vorne, gleiche Spalte
-            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
-                System.out.println("legaler Zug");
-                return true;
-            }
-            if (startZeile == 2 && zielZeile == 4) {
-                return true;
-            }
-        }
-
-        // Schwarz
-        if (farbe == SCHWARZ) {
-
-            // eine Zeile nach vorne (aus schwarzer Sicht)
-            if (zielZeile == startZeile - 1 && zielSpalte == startSpalte) {
-                System.out.println("legaler Zug");
-                return true;
-            }
-            if (startZeile == 7 && zielZeile == 5) {
-                return true;
-            }
-
-        }
-        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
-
-        System.out.println("illegaler Zug");
-        System.out.println("Zielzeile: " + zielSpalte);
-        System.out.println("Zielzeile: " + zielZeile);
-        return false;
+        return true;
+//        // gleiche Position -> kein Zug
+//        if (zielZeile == startZeile && zielSpalte == startSpalte) {
+//            System.out.println("gleiches Feld gewählt");
+//            return false;
+//        }
+//        if (farbe == WEISS) {
+//
+//            // eine Zeile nach vorne, gleiche Spalte
+//            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
+//                System.out.println("legaler Zug");
+//                return true;
+//            }
+//            if (startZeile == 2 && zielZeile == 4) {
+//                return true;
+//            }
+//        }
+//
+//        // Schwarz
+//        if (farbe == SCHWARZ) {
+//
+//            // eine Zeile nach vorne (aus schwarzer Sicht)
+//            if (zielZeile == startZeile - 1 && zielSpalte == startSpalte) {
+//                System.out.println("legaler Zug");
+//                return true;
+//            }
+//            if (startZeile == 7 && zielZeile == 5) {
+//                return true;
+//            }
+//
+//        }
+//        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
+//
+//        System.out.println("illegaler Zug");
+//        System.out.println("Zielzeile: " + zielSpalte);
+//        System.out.println("Zielzeile: " + zielZeile);
+//        return false;
 
     }
 
