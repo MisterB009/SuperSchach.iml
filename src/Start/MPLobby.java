@@ -171,8 +171,10 @@ public class MPLobby extends JFrame {
             setLayout(new GridBagLayout());
             Dimension ipgroesse = new Dimension(100,30);
             MouseStart mouseStart = new MouseStart(MPLobby.this);
+            this.setBackground(Color.darkGray);
 
             text = new JLabel("Hier die IP-Adresse bitte eingeben: ");
+            text.setForeground(Color.WHITE);
             GridBagConstraints c = new GridBagConstraints();
             c.gridx = 0;
             c.gridy = 0;
