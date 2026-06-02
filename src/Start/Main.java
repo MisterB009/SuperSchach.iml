@@ -87,6 +87,7 @@ public class Main extends JFrame {
                     g2.dispose();
                     super.paintComponent(g);
                 }
+                //test
             };
             Einzelspieler.setFocusPainted(false);
             Einzelspieler.setBorderPainted(false);
