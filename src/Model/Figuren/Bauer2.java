@@ -90,9 +90,10 @@ public class Bauer2 extends Figur {
                 }
             }
         }
-        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
+        // en passent (speicherung des letzten Zuges; wege)
+        // umwandlung
 
-        System.out.println("illegaler Zug");
+        System.out.println("illegaler Zug: Bauer");
         System.out.println("Zielzeile: " + zielSpalte);
         System.out.println("Zielzeile: " + zielZeile);
         return false;
