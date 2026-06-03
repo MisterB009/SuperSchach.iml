@@ -40,27 +40,6 @@ public class Turm2 extends Figur {
 
             int richtung = (zielSpalte > startSpalte) ? 1 : -1; // ist Zielspalte größer als Startspalte -> richtung 1 = wird größer
 
-//            for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) { // zwischenfelder durchgehen
-//                System.out.println("hi2");
-//                if (aufstellung[startZeile][spalte] != null) { // eine Figur auf dem Weg
-//                    System.out.println("Figur blockiert den Weg");
-//                    return false;
-//                }
-//            }
-//            System.out.println("du darfst gehen- h");
-//            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
-//            if(figurImWeg != null){
-//                if(figurImWeg.getFarbe() == this.getFarbe()){
-//                    System.out.println("Figur gehört dir");
-//                    return false;
-//                }
-//                if(figurImWeg.getFarbe() != this.getFarbe()){
-//                    System.out.println("Figur schlagen.");
-//                    return true;
-//                }
-//            }
-//            System.out.println("horizontal Gültig");
-//            return true;
 // Zwischenfelder prüfen
             for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) {
                 if (aufstellung[startZeile][spalte] != null) {

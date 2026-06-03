@@ -19,10 +19,7 @@ public class Brett extends JPanel {
     private int startSpalte;
     int hx,hy;
 
-
-
     public Brett() {
-
         this.logik = new Spielelogik(); // Spielelogik erzeugen
         addMouseListener(new BrettMouseListener(this, logik));
 
@@ -78,7 +75,6 @@ public class Brett extends JPanel {
                 } else {
                     g.setColor(color);
                 }
-
                 g.fillRect(x3, y3, 80, 80); // füllen
                 x3 = x3 + 80; // alle weiteren Reihen
 
@@ -91,10 +87,8 @@ public class Brett extends JPanel {
             y3 = y3 + 80;
         }
 
-
         int xstart = 80;
         int ystart = 80;
-
 
         // Seitenränder -
         int charwertbuchstabe = 65;

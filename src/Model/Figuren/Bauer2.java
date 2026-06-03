@@ -28,45 +28,73 @@ public class Bauer2 extends Figur {
 
     @Override
     public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] felder) {
-        return true;
-//        // gleiche Position -> kein Zug
-//        if (zielZeile == startZeile && zielSpalte == startSpalte) {
-//            System.out.println("gleiches Feld gewählt");
-//            return false;
-//        }
-//        if (farbe == WEISS) {
-//
-//            // eine Zeile nach vorne, gleiche Spalte
-//            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
-//                System.out.println("legaler Zug");
-//                return true;
-//            }
-//            if (startZeile == 2 && zielZeile == 4) {
-//                return true;
-//            }
-//        }
-//
-//        // Schwarz
-//        if (farbe == SCHWARZ) {
-//
-//            // eine Zeile nach vorne (aus schwarzer Sicht)
-//            if (zielZeile == startZeile - 1 && zielSpalte == startSpalte) {
-//                System.out.println("legaler Zug");
-//                return true;
-//            }
-//            if (startZeile == 7 && zielZeile == 5) {
-//                return true;
-//            }
-//
-//        }
-//        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
-//
-//        System.out.println("illegaler Zug");
-//        System.out.println("Zielzeile: " + zielSpalte);
-//        System.out.println("Zielzeile: " + zielZeile);
-//        return false;
+        // gleiche Position -> kein Zug
+        if (zielZeile == startZeile && zielSpalte == startSpalte) {
+            System.out.println("gleiches Feld gewählt");
+            return false;
+        }
+        if (farbe == WEISS) {
+            // eine Zeile nach vorne, gleiche Spalte
+            if (zielZeile == startZeile - 1
+                    && zielSpalte == startSpalte
+                    && felder[zielZeile][zielSpalte] == null) {
+                return true;
+            }
+            if (felder[5][startSpalte] == null
+                    && startZeile == 6 && zielZeile == 4
+                    && zielSpalte == startSpalte) { // doppelzug
+                return true;
+            }
+            if (zielZeile == startZeile + 1
+                    && Math.abs(zielSpalte - startSpalte) == 1) {
 
+                Figur zielFigur = felder[zielZeile][zielSpalte];
+
+                if (zielFigur != null
+                        && zielFigur.getFarbe() != this.getFarbe()) {
+                    return true;
+                }
+            } // schräg schlagen
+            if (zielZeile == startZeile - 1
+                    && Math.abs(startSpalte - zielSpalte) == 1) {
+
+                Figur zielFigur = felder[zielZeile][zielSpalte];
+                if (zielFigur != null
+                        && zielFigur.getFarbe() != this.getFarbe()) {
+                    return true;
+
+                }
+            }
+        }
+
+        // Schwarz
+        if (farbe == SCHWARZ) {
+            // eine Zeile nach vorne (aus schwarzer Sicht)
+            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
+                System.out.println("legaler Zug");
+                return true;
+            }
+            if (felder[2][startSpalte] == null
+                    && startZeile == 1 && zielZeile == 3
+                    && zielSpalte == startSpalte) { // doppelzug
+                return true;
+            }
+            if (zielZeile == startZeile + 1
+                    && Math.abs(startSpalte - zielSpalte) == 1) {
+
+                Figur zielFigur = felder[zielZeile][zielSpalte];
+                if (zielFigur != null
+                        && zielFigur.getFarbe() != this.getFarbe()) {
+                    return true;
+
+                }
+            }
+        }
+        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
+
+        System.out.println("illegaler Zug");
+        System.out.println("Zielzeile: " + zielSpalte);
+        System.out.println("Zielzeile: " + zielZeile);
+        return false;
     }
-
-
 }
