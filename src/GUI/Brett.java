@@ -66,10 +66,10 @@ public class Brett extends JPanel {
                     g.setColor(lzherkunft);
                     hx =  x3 + 80;
                     hy =  y3 - 160;
-                    System.out.println(
-                            "Markierung: Zeile=" + logik.getLetzteStartZeile()
-                                    + " Spalte=" + logik.getLetzteStartSpalte()
-                    );
+//                    System.out.println(
+//                            "Markierung: Zeile=" + logik.getLetzteStartZeile()
+//                                    + " Spalte=" + logik.getLetzteStartSpalte()
+//                    );
                 } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
                     g.setColor(color);
                     g.fillRect(hx , hy , 80, 80);
@@ -132,7 +132,7 @@ public class Brett extends JPanel {
 
                 if (figur != null) {
 
-                    int x = spalte * 80 + 80;
+                    int x = spalte * 80 + 80;// werden verschoben, s.d. sie auf den Feldern dargestellt werden
                     int y = zeile * 80 + 80;
                     g.drawImage(figur.getBild(), x, y, 80, 80, this);
                 }

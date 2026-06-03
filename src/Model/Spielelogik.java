@@ -56,12 +56,11 @@ public class Spielelogik {
         if (figur == null) { // keine Figur
             return false;
         }
-
+        printBrett();
         if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, felder)) { // macht die Figur legalen Zug?
             System.out.println("Illegale Bewegung");
             Figur figurNochDa = felder[zielZeile][zielSpalte];
             System.out.println("Ist hier was?! " + figurNochDa);
-//            printBrett();
             return false;
         }
 

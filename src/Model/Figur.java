@@ -53,4 +53,27 @@ public abstract class Figur {
 //    public void setStartSpalte(int startSpalte) {
 //        this.StartSpalte = startSpalte;
 //    }
+
+
+        protected boolean istZielfeldLeer(Figur[][] aufstellung,
+                                      int zielZeile,
+                                      int zielSpalte) {
+
+        return aufstellung[zielZeile][zielSpalte] == null;
+    }
+
+    protected boolean istEigeneFigur(Figur[][] aufstellung, int zielZeile, int zielSpalte) {
+
+        Figur figurAufFeld = aufstellung[zielZeile][zielSpalte];
+
+        return figurAufFeld != null &&
+                figurAufFeld.getFarbe() == this.getFarbe();
+    }
+
+    protected boolean istGegnerischeFigur(Figur[][] aufstellung, int zielZeile, int zielSpalte) {
+
+        Figur figurAufFeld = aufstellung[zielZeile][zielSpalte];
+
+        return figurAufFeld != null && figurAufFeld.getFarbe() != this.getFarbe();
+    }
 }
