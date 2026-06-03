@@ -11,14 +11,25 @@ import java.util.Set;
 
 public class Main extends JFrame {
     JFrame frame;
+    private Image icon;
+
+
     public static void main(String[] args) {
         new Main();
     }
+
     public Main(){
         frame = this;
         //setSize(1000, 1000);
+        setMinimumSize(new Dimension(1500,1000));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        try {
+            icon = ImageIO.read(new File("img/Icon.png"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        setIconImage(icon);
         WilkommenScreen start = new WilkommenScreen();
         add(start);
         setVisible(true);
@@ -31,6 +42,13 @@ public class Main extends JFrame {
         private Image hintergrund;
         private MPLobby mpLobby;
         private Settings settings;
+
+        private JPanel bretter;
+        private JPanel uhr;
+        private JPanel spieler1;
+        private JPanel spieler2;
+        private JPanel filler;
+
         Color dG = new Color(110, 110,110);
         Color dGHover = new Color(140, 140, 140);
 
@@ -44,6 +62,7 @@ public class Main extends JFrame {
             }
             g.drawImage(hintergrund,0,0,this.getWidth(),this.getHeight(),null);
             super.paintComponent(g);
+
         }
         public void Brettanzeigen(MPBrett lobby){
             getContentPane();
@@ -98,9 +117,59 @@ public class Main extends JFrame {
             Einzelspieler.addActionListener(e -> {
                 getContentPane();
                 removeAll();
-                this.setLayout(new BorderLayout());
+//                this.setLayout(new BorderLayout());
+//                Brett board = new Brett();
+//                add(board);
+
+                bretter = new JPanel(new BorderLayout());
+                uhr = new JPanel();
+                spieler1 = new JPanel();
+                spieler2 = new JPanel();
+                filler = new JPanel();
+
                 Brett board = new Brett();
-                add(board);
+                bretter.add(board, BorderLayout.CENTER);
+                this.setLayout(new GridBagLayout());
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.gridx = 1;
+                gbc.gridy = 0;
+                gbc.weightx = 1.0;
+                gbc.weighty = 0.0;
+                spieler2.setBackground(Color.GREEN);
+                spieler2.setPreferredSize(new Dimension(0, 60)); // Wunschhöhe 60px
+                add(spieler2, gbc);
+
+                gbc.gridx = 0;
+                gbc.gridy = 1;
+                gbc.weightx = 0.0;
+                gbc.weighty = 1.0;
+                filler.setBackground(Color.YELLOW);
+                filler.setPreferredSize(new Dimension(80, 0)); // Wunschbreite 80px
+                add(filler, gbc);
+
+                gbc.gridx = 1;
+                gbc.gridy = 1;
+                gbc.weightx = 1.0;
+                gbc.weighty = 1.0;
+                add(bretter, gbc);
+
+                gbc.gridx = 2;
+                gbc.gridy = 1;
+                gbc.weightx = 0.0;
+                gbc.weighty = 1.0;
+                uhr.setBackground(Color.RED);
+                uhr.setPreferredSize(new Dimension(200, 0)); // Wunschbreite 200px
+                add(uhr, gbc);
+
+                gbc.gridx = 1;
+                gbc.gridy = 2;
+                gbc.weightx = 1.0;
+                gbc.weighty = 0.0;
+                spieler1.setBackground(Color.BLUE);
+                spieler1.setPreferredSize(new Dimension(0, 60)); // Wunschhöhe 60px
+                add(spieler1, gbc);
+
                 revalidate();
                 repaint();
             });
@@ -109,6 +178,8 @@ public class Main extends JFrame {
             c.insets = new Insets(0,0,20,0);
             c.gridy = 1;
             add(Einzelspieler, c);
+
+            //Metavers, kiagenten, autonomes fahren
 
 
             Multiplayer = new JButton("Multiplayer"){
@@ -133,8 +204,21 @@ public class Main extends JFrame {
             Multiplayer.addMouseListener(mouseStart);
             Multiplayer.setPreferredSize(btngroesse);
             Multiplayer.addActionListener(e -> {
+                Einzelspieler.setEnabled(false);
+                Multiplayer.setEnabled(false);
+                Einstellungen.setEnabled(false);
+
                 mpLobby = new MPLobby(this);
                 mpLobby.setVisible(true);
+
+                mpLobby.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        Einzelspieler.setEnabled(true);
+                        Multiplayer.setEnabled(true);
+                        Einstellungen.setEnabled(true);
+                    }
+                });
             });
             c = new GridBagConstraints();
             c.gridx = 0;
@@ -165,8 +249,21 @@ public class Main extends JFrame {
             Einstellungen.addMouseListener(mouseStart);
             Einstellungen.setPreferredSize(btngroesse);
             Einstellungen.addActionListener(e -> {
+                Einzelspieler.setEnabled(false);
+                Multiplayer.setEnabled(false);
+                Einstellungen.setEnabled(false);
+
                 settings = new Settings();
                 settings.setVisible(true);
+
+                settings.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        Einzelspieler.setEnabled(true);
+                        Multiplayer.setEnabled(true);
+                        Einstellungen.setEnabled(true);
+                    }
+                });
             });
             c = new GridBagConstraints();
             c.gridx = 0;
