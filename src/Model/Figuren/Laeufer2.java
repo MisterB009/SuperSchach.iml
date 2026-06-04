@@ -27,7 +27,23 @@ public class Laeufer2 extends Figur {
 
     @Override
     public boolean istGueltigerZug( int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] felder) {
-        // Später die Läufer
-        return true;
+        // gleiches Feld
+        if (zielZeile == startZeile && zielSpalte == startSpalte) {
+            System.out.println("gleiches Feld gewählt");
+            return false;
+        }
+        int horizontaleStrecke = Math.abs(startZeile - zielZeile);
+        int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
+        System.out.println("Läufer test");
+        System.out.println("horizont" +horizontaleStrecke);
+        System.out.println("vertikal" + vertikaleStrecke);
+        if(vertikaleStrecke != 0){
+            if((horizontaleStrecke/vertikaleStrecke == 1)){
+                System.out.println("alles supi -Läufer");
+                return true;
+            }
+        }
+        System.out.println("falsche Bewegung");
+        return false;
     }
 }
