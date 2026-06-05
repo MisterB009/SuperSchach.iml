@@ -8,20 +8,36 @@ import java.io.IOException;
 
 public class Turm2 extends Figur {
 
-    public Turm2(int farbe, int zeile, int spalte) {
-        super(farbe, zeile, spalte);
-
-        if (farbe == 0){ // schwarz
-            try {
-                bild = ImageIO.read(new File("img/RookB.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
+    public Turm2(int farbe, int zeile, int spalte, int stil) {
+        super(farbe, zeile, spalte, stil);
+        System.out.println("turm: "+stil);
+        if (stil == 1) {
+            if (farbe == 0){ // schwarz
+                try {
+                    bild = ImageIO.read(new File("img/RookB.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (farbe == 1){ // weiß
+                try {
+                    bild = ImageIO.read(new File("img/RookW.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } else if (farbe == 1){ // weiß
-            try {
-                bild = ImageIO.read(new File("img/RookW.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
+        }else if (stil == 2){
+            if (farbe == 0){ // schwarz
+                try {
+                    bild = ImageIO.read(new File("img/SuperFiguren/TurnS.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (farbe == 1){ // weiß
+                try {
+                    bild = ImageIO.read(new File("img/SuperFiguren/TurnW.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -9,12 +9,14 @@ public abstract class Figur {
     protected Image bild;
     protected int zeile;
     protected int spalte;
+    private int stil;
 
     // Construktor
-    public Figur(int farbe, int spalten, int zeilen) {
+    public Figur(int farbe, int spalten, int zeilen, int stil) {
         this.farbe = farbe;
         this.zeile = spalten;
         this.spalte = zeilen;
+        this.stil = stil;
     }
 
     public abstract boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder);

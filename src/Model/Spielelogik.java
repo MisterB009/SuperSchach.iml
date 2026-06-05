@@ -1,6 +1,9 @@
 package Model;
 
 import Model.Figuren.*;
+import Start.Settings;
+
+import java.util.Set;
 
 public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
@@ -9,6 +12,7 @@ public class Spielelogik {
     private int letzteStartSpalte = -1;
     private int letzteZielZeile = -1;
     private int letzteZielSpalte = -1;
+    private int stil;
 
     public Spielelogik() {
         this.aufstellung = new Figur[9][9]; // ##
@@ -17,34 +21,48 @@ public class Spielelogik {
 
     private void initialisiereAufstellung() {
         // weiß
-        aufstellung[1][1] = new Turm2(1, 1, 1);
-        aufstellung[1][2] = new Springer2(1, 1, 2);
-        aufstellung[1][3] = new Laeufer2(1, 1, 3);
-        aufstellung[1][4] = new Dame2(1, 1, 4);
-        aufstellung[1][5] = new Koenig2(1, 1, 5);
-        aufstellung[1][6] = new Laeufer2(1, 1, 6);
-        aufstellung[1][7] = new Springer2(1, 1, 7);
-        aufstellung[1][8] = new Turm2(1, 1, 8);
+        if (stil != 2&&stil != 1) {
+            stil = 0;
+        }
+        if (stil == 0){
+            stil = 1;
+        }
+        aufstellung[1][1] = new Turm2(1, 1, 1, stil);
+        aufstellung[1][2] = new Springer2(1, 1, 2, stil);
+        aufstellung[1][3] = new Laeufer2(1, 1, 3, stil);
+        aufstellung[1][4] = new Dame2(1, 1, 4, stil);
+        aufstellung[1][5] = new Koenig2(1, 1, 5, stil);
+        aufstellung[1][6] = new Laeufer2(1, 1, 6, stil);
+        aufstellung[1][7] = new Springer2(1, 1, 7, stil);
+        aufstellung[1][8] = new Turm2(1, 1, 8, stil);
 
         for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[2][spalte] = new Bauer2(1, 2, spalte);
+            aufstellung[2][spalte] = new Bauer2(1, 2, spalte, stil);
 
         }
 
         // schwarz
-        aufstellung[8][1] = new Turm2(0, 8, 1);
-        aufstellung[8][2] = new Springer2(0, 8, 2);
-        aufstellung[8][3] = new Laeufer2(0, 8, 3);
-        aufstellung[8][4] = new Dame2(0, 8, 4);
-        aufstellung[8][5] = new Koenig2(0, 8, 5);
-        aufstellung[8][6] = new Laeufer2(0, 8, 6);
-        aufstellung[8][7] = new Springer2(0, 8, 7);
-        aufstellung[8][8] = new Turm2(0, 8, 8);
+        aufstellung[8][1] = new Turm2(0, 8, 1, stil);
+        aufstellung[8][2] = new Springer2(0, 8, 2, stil);
+        aufstellung[8][3] = new Laeufer2(0, 8, 3, stil);
+        aufstellung[8][4] = new Dame2(0, 8, 4, stil);
+        aufstellung[8][5] = new Koenig2(0, 8, 5, stil);
+        aufstellung[8][6] = new Laeufer2(0, 8, 6, stil);
+        aufstellung[8][7] = new Springer2(0, 8, 7, stil);
+        aufstellung[8][8] = new Turm2(0, 8, 8, stil);
 
         for (int spalte = 1; spalte <= 8; spalte++) {
-            aufstellung[7][spalte] = new Bauer2(0, 7, spalte); // Weiße Bauern
+            aufstellung[7][spalte] = new Bauer2(0, 7, spalte, stil); // Weiße Bauern
         }
 
+    }
+
+    public int getStil() {
+        return stil;
+    }
+
+    public void setStil(int stil) {
+        this.stil = stil;
     }
 
     // abwechseldes Ziehen (Figur 0/ 1)

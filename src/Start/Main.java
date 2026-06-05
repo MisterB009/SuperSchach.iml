@@ -16,8 +16,9 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         new Main();
+        Settings settings = new Settings();
+        settings.setyStil(1);
     }
-
     public Main(){
         frame = this;
         //setSize(1000, 1000);
@@ -126,6 +127,10 @@ public class Main extends JFrame {
                 spieler1 = new JPanel();
                 spieler2 = new JPanel();
                 filler = new JPanel();
+                Settings settings = new Settings();
+                if (settings.getyStil() != 1&&settings.getyStil() != 2){
+                    settings.setyStil(1);
+                }
 
                 Brett board = new Brett();
                 bretter.add(board, BorderLayout.CENTER);
@@ -140,6 +145,17 @@ public class Main extends JFrame {
                 spieler2.setPreferredSize(new Dimension(0, 60)); // Wunschhöhe 60px
                 add(spieler2, gbc);
 
+                JButton zurueck = new JButton("Zurück");
+                zurueck.addActionListener(e1 -> {
+                    getContentPane();
+                    removeAll();
+                    setLayout(new BorderLayout());
+                    WilkommenScreen lobby = new WilkommenScreen();
+                    add(lobby);
+                    revalidate();
+                    repaint();
+                });
+                filler.add(zurueck);
                 gbc.gridx = 0;
                 gbc.gridy = 1;
                 gbc.weightx = 0.0;
