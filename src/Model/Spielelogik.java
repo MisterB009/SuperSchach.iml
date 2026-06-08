@@ -25,7 +25,7 @@ public class Spielelogik {
             stil = 0;
         }
         if (stil == 0){
-            stil = 1;
+            stil = 2;
         }
         aufstellung[1][1] = new Turm2(1, 1, 1, stil);
         aufstellung[1][2] = new Springer2(1, 1, 2, stil);

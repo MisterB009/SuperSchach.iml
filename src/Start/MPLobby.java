@@ -1,16 +1,12 @@
 package Start;
 
-import GUI.Brett;
-import Multiplayer.MPBrett;
+import Multiplayer.Connection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class MPLobby extends JFrame {
@@ -67,51 +63,44 @@ public class MPLobby extends JFrame {
         host.setForeground(Color.WHITE);
         host.setPreferredSize(btngroesse);
         host.addActionListener(e -> {
-            new Thread(() -> {
-                try {
-                    ServerSocket serverSocket = new ServerSocket(49152);
-                    String lokaleIP = java.net.InetAddress.getLocalHost().getHostAddress();
+            String lokaleIP = null;
+            try {
+                lokaleIP = java.net.InetAddress.getLocalHost().getHostAddress();
+            } catch (UnknownHostException ex) {
+                throw new RuntimeException(ex);
+            }
+            JPanel warte = new JPanel();
+            warte.setLayout(new GridBagLayout());
+            JLabel wtext = new JLabel("Warte auf Gegner");
+            JLabel infotext1 = new JLabel("Der Gegner muss ihre IP-Adresse eingeben:");
+            JLabel iptext = new JLabel(lokaleIP);
+            Font font1 = new Font("Arial", Font.BOLD, 60);
+            wtext.setFont(font1);
+            Font font2 = new Font("Arial", Font.BOLD, 30);
+            GridBagConstraints c1 = new GridBagConstraints();
+            c1.gridx = 0;
+            c1.gridy = 0;
+            c1.insets = new Insets(0,0,20,0);
+            warte.add(wtext,c1);
+            c1 = new  GridBagConstraints();
+            c1.gridx = 0;
+            c1.gridy = 1;
+            c1.insets = new Insets(0,0,20,0);
+            infotext1.setFont(font2);
+            warte.add(infotext1,c1);
+            c1 = new GridBagConstraints();
+            c1.gridx = 0;
+            c1.gridy = 2;
+            iptext.setFont(font2);
+            warte.add(iptext,c1);
+            Container cont = getContentPane();
+            cont.removeAll();
+            cont.setLayout(new BorderLayout());
+            cont.add(warte);
+            revalidate();
+            repaint();
 
-
-                    JPanel warte = new JPanel();
-                    warte.setLayout(new GridBagLayout());
-                    JLabel wtext = new JLabel("Warte auf Gegner");
-                    JLabel infotext1 = new JLabel("Der Gegner muss ihre IP-Adresse eingeben:");
-                    JLabel iptext = new JLabel(lokaleIP);
-                    Font font1 = new Font("Arial", Font.BOLD, 60);
-                    wtext.setFont(font1);
-                    Font font2 = new Font("Arial", Font.BOLD, 30);
-                    GridBagConstraints c1 = new GridBagConstraints();
-                    c1.gridx = 0;
-                    c1.gridy = 0;
-                    c1.insets = new Insets(0,0,20,0);
-                    warte.add(wtext,c1);
-                    c1 = new  GridBagConstraints();
-                    c1.gridx = 0;
-                    c1.gridy = 1;
-                    c1.insets = new Insets(0,0,20,0);
-                    infotext1.setFont(font2);
-                    warte.add(infotext1,c1);
-                    c1 = new GridBagConstraints();
-                    c1.gridx = 0;
-                    c1.gridy = 2;
-                    iptext.setFont(font2);
-                    warte.add(iptext,c1);
-                    Container cont = getContentPane();
-                    cont.removeAll();
-                    cont.setLayout(new BorderLayout());
-                    cont.add(warte);
-                    revalidate();
-                    repaint();
-
-
-                    Socket verbindungHalten = serverSocket.accept();
-                    lobbyoeffnen(verbindungHalten, true);
-                    serverSocket.close();
-                } catch (IOException es) {
-                    System.out.println("TOD");
-                }
-            }).start();
+            Connection connectionHost = new Connection(main);
         });
         c = new GridBagConstraints();
         c.gridx = 0;
@@ -155,17 +144,15 @@ public class MPLobby extends JFrame {
         add(client,c);
     }
 
-    private void lobbyoeffnen(Socket verbindung, boolean istHost) {
-        SwingUtilities.invokeLater(() -> {
-            MPBrett lobby = new MPBrett(verbindung, istHost);
-            main.Brettanzeigen(lobby);
-        });
-    }
     public class ipFenster extends JPanel implements KeyListener {
         private JLabel text;
         private JTextField ipadress;
         private JButton verbinden;
 
+
+        public JTextField getIpadress() {
+            return ipadress;
+        }
 
         public ipFenster(){
             setLayout(new GridBagLayout());
@@ -192,6 +179,8 @@ public class MPLobby extends JFrame {
             add(ipadress,c);
 
 
+
+
             verbinden = new JButton("Verbinden"){
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -213,17 +202,7 @@ public class MPLobby extends JFrame {
             verbinden.setForeground(Color.WHITE);
             verbinden.addMouseListener(mouseStart);
             verbinden.addActionListener(e -> {
-                new Thread(() -> {
-                    try {
-                        Socket verbindugzumHost = new Socket(ipadress.getText(),49152);
-                        lobbyoeffnen(verbindugzumHost,false);
-                    } catch (IOException ex) {
-                        SwingUtilities.invokeLater(()-> {
-                            System.out.println("client tod");
-                        });
-                        ex.printStackTrace();
-                    }
-                }).start();
+                Connection connection = new Connection(main, this);
             });
             c = new GridBagConstraints();
             c.gridx = 0;
@@ -246,19 +225,19 @@ public class MPLobby extends JFrame {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                new Thread(() -> {
-                    try {
-                        Socket verbindugzumHost = new Socket(ipadress.getText(),49152);
-                        lobbyoeffnen(verbindugzumHost,false);
-                    } catch (IOException ex) {
-                        SwingUtilities.invokeLater(()-> {
-                            System.out.println("client tod");
-                        });
-                        ex.printStackTrace();
-                    }
-                }).start();
-            }
+//            if (e.getKeyCode() == KeyEvent.VK_ENTER){
+//                new Thread(() -> {
+//                    try {
+//                        Socket verbindugzumHost = new Socket(ipadress.getText(),49152);
+//                        lobbyoeffnen(verbindugzumHost,false);
+//                    } catch (IOException ex) {
+//                        SwingUtilities.invokeLater(()-> {
+//                            System.out.println("client tod");
+//                        });
+//                        ex.printStackTrace();
+//                    }
+//                }).start();
+
         }
     }
 }
