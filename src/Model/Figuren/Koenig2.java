@@ -27,8 +27,31 @@ public class Koenig2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] felder) {
-        // Später die König
-        return true;
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] aufstellung) {
+        int horizontaleStrecke = Math.abs(startZeile - zielZeile);
+        int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
+
+        if(horizontaleStrecke == 1 || vertikaleStrecke == 1 ||
+                (horizontaleStrecke == 1 &&  vertikaleStrecke  == 1) ){
+
+            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
+            if (figurImWeg != null) {
+                if (figurImWeg.getFarbe() == this.getFarbe()) {
+                    System.out.println("Eigene Figur");
+                    return false;
+                }
+                if (figurImWeg.getFarbe() != this.getFarbe()) {
+                    System.out.println("Figur schlagen.");
+                    return true;
+                }
+            }
+            System.out.println("freies Feld");
+            return true;
+        }
+        System.out.println("Könige gehen so nicht");
+        return false;
     }
 }
+
+//rochade - bewegt schalter + turm
+// ins schach gestellt

@@ -26,7 +26,7 @@ public class Laeufer2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug( int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] felder) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung) {
         // gleiches Feld
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
             System.out.println("gleiches Feld gewählt");
@@ -35,15 +35,42 @@ public class Laeufer2 extends Figur {
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
         int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
         System.out.println("Läufer test");
-        System.out.println("horizont" +horizontaleStrecke);
+        System.out.println("horizont" + horizontaleStrecke);
         System.out.println("vertikal" + vertikaleStrecke);
-        if(vertikaleStrecke != 0){
-            if((horizontaleStrecke/vertikaleStrecke == 1)){
-                System.out.println("alles supi -Läufer");
-                return true;
+
+        if ((horizontaleStrecke == vertikaleStrecke)) { // zwischenfelder Prüfen
+            int zeilenRichtung = (zielZeile > startZeile) ? 1 : -1;
+            int spaltenRichtung = (zielSpalte > startSpalte) ? 1 : -1;
+
+            int zeile = startZeile + zeilenRichtung;
+            int spalte = startSpalte + spaltenRichtung;
+
+            while (zeile != zielZeile && spalte != zielSpalte) {
+
+                if (aufstellung[zeile][spalte] != null) {
+                    System.out.println("Figur blockiert den Weg");
+                    return false;
+                }
+
+                zeile += zeilenRichtung;
+                spalte += spaltenRichtung;
             }
+            // Zielfeld prüfen
+            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
+            if (figurImWeg != null) {
+                if (figurImWeg.getFarbe() == this.getFarbe()) {
+                    System.out.println("Eigene Figur");
+                    return false;
+                }
+                if (figurImWeg.getFarbe() != this.getFarbe()) {
+                    System.out.println("Figur schlagen.");
+                    return true;
+                }
+            }
+            System.out.println("freies Feld");
+            return true;
         }
-        System.out.println("falsche Bewegung");
+        System.out.println("was ist hier los?");
         return false;
     }
 }

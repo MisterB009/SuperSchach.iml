@@ -58,9 +58,9 @@ public class Spielelogik {
         }
 //        printBrett();
         if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, felder)) { // macht die Figur legalen Zug?
-            System.out.println("Illegale Bewegung");
-            Figur figurNochDa = felder[zielZeile][zielSpalte];
-            System.out.println("Ist hier was?! " + figurNochDa);
+//            System.out.println("Illegale Bewegung");
+//            Figur figurNochDa = felder[zielZeile][zielSpalte];
+//            System.out.println("Ist hier was?! " + figurNochDa);
             return false;
         }
 
