@@ -54,4 +54,5 @@ public class Koenig2 extends Figur {
 }
 
 //rochade - bewegt schalter + turm
+
 // ins schach gestellt
