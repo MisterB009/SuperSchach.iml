@@ -3,7 +3,8 @@ package Model;
 import Model.Figuren.*;
 
 public class Spielelogik {
-    private Figur[][] felder; // feld anlegen
+    private Figur[][] aufstellung; // feld anlegen
+    private Figur letzteGezogeneFigur;
 
     private int letzteStartZeile = -1;
     private int letzteStartSpalte = -1;
@@ -11,38 +12,38 @@ public class Spielelogik {
     private int letzteZielSpalte = -1;
 
     public Spielelogik() {
-        this.felder = new Figur[8][8]; // ##
+        this.aufstellung = new Figur[8][8]; // ##
         initialisiereAufstellung();
     }
 
     private void initialisiereAufstellung() {
         // --- Schwarze Figuren (oben) ---
-        felder[0][0] = new Turm2(Figur.SCHWARZ);
-        felder[0][1] = new Springer2(Figur.SCHWARZ);
-        felder[0][2] = new Laeufer2(Figur.SCHWARZ);
-        felder[0][3] = new Dame2(Figur.SCHWARZ);
-        felder[0][4] = new Koenig2(Figur.SCHWARZ);
-        felder[0][5] = new Laeufer2(Figur.SCHWARZ);
-        felder[0][6] = new Springer2(Figur.SCHWARZ);
-        felder[0][7] = new Turm2(Figur.SCHWARZ);
+        aufstellung[0][0] = new Turm2(Figur.SCHWARZ);
+        aufstellung[0][1] = new Springer2(Figur.SCHWARZ);
+        aufstellung[0][2] = new Laeufer2(Figur.SCHWARZ);
+        aufstellung[0][3] = new Dame2(Figur.SCHWARZ);
+        aufstellung[0][4] = new Koenig2(Figur.SCHWARZ);
+        aufstellung[0][5] = new Laeufer2(Figur.SCHWARZ);
+        aufstellung[0][6] = new Springer2(Figur.SCHWARZ);
+        aufstellung[0][7] = new Turm2(Figur.SCHWARZ);
 
         for (int i = 0; i < 8; i++) {
-            felder[1][i] = new Bauer2(Figur.SCHWARZ);
+            aufstellung[1][i] = new Bauer2(Figur.SCHWARZ);
         }
 
         // --- Weiße Figuren (unten) ---
         for (int i = 0; i < 8; i++) {
-            felder[6][i] = new Bauer2(Figur.WEISS);
+            aufstellung[6][i] = new Bauer2(Figur.WEISS);
         }
 
-        felder[7][0] = new Turm2(Figur.WEISS);
-        felder[7][1] = new Springer2(Figur.WEISS);
-        felder[7][2] = new Laeufer2(Figur.WEISS);
-        felder[7][3] = new Dame2(Figur.WEISS);
-        felder[7][4] = new Koenig2(Figur.WEISS);
-        felder[7][5] = new Laeufer2(Figur.WEISS);
-        felder[7][6] = new Springer2(Figur.WEISS);
-        felder[7][7] = new Turm2(Figur.WEISS);
+        aufstellung[7][0] = new Turm2(Figur.WEISS);
+        aufstellung[7][1] = new Springer2(Figur.WEISS);
+        aufstellung[7][2] = new Laeufer2(Figur.WEISS);
+        aufstellung[7][3] = new Dame2(Figur.WEISS);
+        aufstellung[7][4] = new Koenig2(Figur.WEISS);
+        aufstellung[7][5] = new Laeufer2(Figur.WEISS);
+        aufstellung[7][6] = new Springer2(Figur.WEISS);
+        aufstellung[7][7] = new Turm2(Figur.WEISS);
     }
 
 
@@ -51,27 +52,28 @@ public class Spielelogik {
 
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
-        Figur figur = felder[startZeile][startSpalte];
+        Figur figur = aufstellung[startZeile][startSpalte];
 
         if (figur == null) { // keine Figur
             return false;
         }
-//        printBrett();
-        if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, felder)) { // macht die Figur legalen Zug?
-//            System.out.println("Illegale Bewegung");
-//            Figur figurNochDa = felder[zielZeile][zielSpalte];
-//            System.out.println("Ist hier was?! " + figurNochDa);
+
+        if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, aufstellung)) { // macht die Figur legalen Zug?
             return false;
         }
 
-        felder[zielZeile][zielSpalte] = figur;
-        felder[startZeile][startSpalte] = null;
+        aufstellung[zielZeile][zielSpalte] = figur;
+        aufstellung[startZeile][startSpalte] = null;
 
-//        figur.setStartZeile(zielZeile);
-//        figur.setStartSpalte(zielSpalte);
+        // letzte Bewegte Figur merken
+        letzteGezogeneFigur = figur;
+        System.out.println("letzte Bewegung: " +figur);
 
+        // Zug ausführen
         setLetzteStartPosition(startZeile, startSpalte);
         setLetzteZielPosition(zielZeile, zielSpalte);
+        // bauernumwandlung prüfen
+        pruefeBauernumwandlung(aufstellung, zielZeile, zielSpalte);
 
         return true;
     }
@@ -81,11 +83,11 @@ public class Spielelogik {
         if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {
             return null;
         }
-        return felder[zeile][spalte];
+        return aufstellung[zeile][spalte];
     }
 
     public void setzeFigur(Figur figur, int zeile, int spalte) {
-        felder[zeile][spalte] = figur;
+        aufstellung[zeile][spalte] = figur;
     }
 
 
@@ -122,8 +124,8 @@ public class Spielelogik {
         return letzteZielZeile;
     }
 
-    public Figur[][] getFelder() {
-        return felder;
+    public Figur[][] getAufstellung() {
+        return aufstellung;
     }
 
     // aufstellung ansehen
@@ -132,7 +134,7 @@ public class Spielelogik {
 
             for (int spalte = 0; spalte < 8; spalte++) {
 
-                Figur figur = felder[zeile][spalte];
+                Figur figur = aufstellung[zeile][spalte];
 
                 if (figur == null) {
                     System.out.print(".. ");
@@ -157,5 +159,71 @@ public class Spielelogik {
 
             System.out.println();
         }
+    }
+
+    public void pruefeBauernumwandlung (Figur[][]aufstellung,int zeile, int spalte){
+
+        Figur figur = aufstellung[zeile][spalte];
+
+        System.out.println("bauernumwandlung");
+        if (!(figur instanceof Bauer2)) { // ist es ein Bauer
+            System.out.println("Bauerntest");
+            return;
+        }
+
+        Bauer2 bauer = (Bauer2) figur;
+        System.out.println("Bauerntest1111");
+
+        if (!bauer.istAufLetzterZeile(zeile)) {
+            System.out.println("kein bauer auf letzter Zeile");
+            return;
+        }
+
+        System.out.println("Bauerntest222");
+
+        javax.swing.JDialog dialog = new javax.swing.JDialog();
+        dialog.setTitle("Bauernumwandlung");
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(null);
+        dialog.setModal(true);
+
+        String[] optionen = {"Dame", "Turm", "Läufer", "Springer"};
+        javax.swing.JComboBox<String> comboBox = new javax.swing.JComboBox<>(optionen);
+
+        javax.swing.JButton okButton = new javax.swing.JButton("OK");
+
+        javax.swing.JPanel panel = new javax.swing.JPanel();
+        panel.add(comboBox);
+        panel.add(okButton);
+
+        dialog.add(panel);
+
+        okButton.addActionListener(e -> {
+
+            String auswahl = (String) comboBox.getSelectedItem();
+
+            switch (auswahl) {
+
+                case "Dame":
+                    aufstellung[zeile][spalte] = new Dame2(bauer.getFarbe());
+                    break;
+
+                case "Turm":
+                    aufstellung[zeile][spalte] = new Turm2(bauer.getFarbe());
+                    break;
+
+                case "Läufer":
+                    aufstellung[zeile][spalte] = new Laeufer2(bauer.getFarbe());
+                    break;
+
+                case "Springer":
+                    aufstellung[zeile][spalte] = new Springer2(bauer.getFarbe());
+                    break;
+            }
+
+            dialog.dispose(); // Fenster schließen
+        });
+
+        dialog.setVisible(true);
     }
 }

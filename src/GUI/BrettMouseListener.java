@@ -34,7 +34,7 @@ public class BrettMouseListener extends MouseAdapter {
             return;
         }
 
-        Figur[][] felder = logik.getFelder();
+        Figur[][] felder = logik.getAufstellung();
 
         // ===== ERSTER KLICK ===== Figur wählen
         if (ausgewaehlteFigur == null) {

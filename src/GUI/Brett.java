@@ -4,9 +4,6 @@ import Model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 public class Brett extends JPanel {
     private static final int FELDGROESSE = 80;
@@ -116,7 +113,7 @@ public class Brett extends JPanel {
         }
 
         // Figuren aufstellen
-        Figur[][] aufstellung = logik.getFelder();
+        Figur[][] aufstellung = logik.getAufstellung();
 
         for (int zeile = 0; zeile < 8; zeile++) {
 

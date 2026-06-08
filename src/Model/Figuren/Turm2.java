@@ -44,12 +44,11 @@ public class Turm2 extends Figur {
 // Zwischenfelder prüfen
             for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) {
                 if (aufstellung[startZeile][spalte] != null) {
-                    System.out.println("Figur blockiert den Weg");
+                    System.out.println("Figur blockiert den Weg-h");
                     return false;
                 }
             }
-
-// Zielfeld prüfen
+            // Zielfeld prüfen
             Figur figurAmZiel = aufstellung[zielZeile][zielSpalte];
 
             if (figurAmZiel != null) {
@@ -66,33 +65,34 @@ public class Turm2 extends Figur {
             return true;
         }
         // || vertikal
-        if (zielSpalte == startSpalte){
-
+        if (zielSpalte == startSpalte) {
             int richtung = (zielZeile > startZeile) ? 1 : -1; // hier ggf. tauschen?
 
-            for (int zeile = startZeile + richtung; zeile != zielSpalte; zeile += richtung) { // zwischenfelder durchgehen
-
+            // Zwischenfelder prüfen
+            for (int zeile = startZeile + richtung; zeile != zielZeile; zeile += richtung) { // zwischenfelder durchgehen
                 if (aufstellung[zeile][startSpalte] != null) { // eine Figur auf dem Weg
-                    System.out.println("Figur blockiert den Weg");
+                    System.out.println("Figur blockiert den Weg-v");
                     return false;
-                } else {
-                    System.out.println("du darfst gehen- v");
-                    Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
-                    if(figurImWeg !=null){
-                        if(figurImWeg.getFarbe() == this.getFarbe()){
-                            System.out.println("Figur gehört dir");
-                            return false;
-                        }
-                        if(figurImWeg.getFarbe() != this.getFarbe()){
-                            System.out.println("Figur schlagen.");
-                            turmBewegt = true;
-                            return true;
-                        }
-                    }
+                }
+            }
+
+            // Zielfeld prüfen
+            System.out.println("du darfst gehen- v");
+            Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
+            if (figurImWeg != null) { // es ist eine figur auf dem Zielfeld
+                if (figurImWeg.getFarbe() == this.getFarbe()) {
+                    System.out.println("Figur gehört dir");
+                    return false;
+                }
+                if (figurImWeg.getFarbe() != this.getFarbe()) {
+                    System.out.println("Figur schlagen.");
                     turmBewegt = true;
                     return true;
                 }
             }
+            // keine FIgur auf dem Zielfeld
+            turmBewegt = true;
+            return true;
         }
         System.out.println("illegaler Zug");
         return false;
