@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Turm2 extends Figur {
+    public boolean turmBewegt = false;
 
     public Turm2(int farbe) {
         super(farbe);
@@ -56,11 +57,11 @@ public class Turm2 extends Figur {
                     System.out.println("Eigene Figur steht dort");
                     return false;
                 }
-
+                turmBewegt = true;
                 System.out.println("Gegnerische Figur schlagen");
                 return true;
             }
-
+            turmBewegt = true;
             System.out.println("Freies Feld");
             return true;
         }
@@ -84,14 +85,35 @@ public class Turm2 extends Figur {
                         }
                         if(figurImWeg.getFarbe() != this.getFarbe()){
                             System.out.println("Figur schlagen.");
+                            turmBewegt = true;
                             return true;
                         }
                     }
+                    turmBewegt = true;
                     return true;
                 }
             }
         }
         System.out.println("illegaler Zug");
         return false;
+    }
+
+    public boolean isTurmBewegt() {
+        return turmBewegt;
+    }
+
+    public void kurzeRochade(Figur[][] aufstellung, int zeile) {
+
+        aufstellung[zeile][5] = aufstellung[zeile][7];
+        aufstellung[zeile][7] = null;
+
+        turmBewegt = true;
+    }
+    public void langeRochade(Figur[][] aufstellung, int zeile) {
+
+        aufstellung[zeile][3] = aufstellung[zeile][0];
+        aufstellung[zeile][0] = null;
+
+        turmBewegt = true;
     }
 }

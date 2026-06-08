@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Koenig2 extends Figur {
+    public boolean koenigBewegt = false;
+
+
     public Koenig2(int farbe) {
         super(farbe);
 
@@ -31,6 +34,52 @@ public class Koenig2 extends Figur {
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
         int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
 
+        //Rochade
+        if (koenigBewegt == false
+                && startZeile == zielZeile
+                && vertikaleStrecke == 2) {
+
+            // kurze Rochade (nach rechts)
+            if (zielSpalte > startSpalte) {
+
+                Figur figur = aufstellung[startZeile][7];
+
+                if (figur instanceof Turm2) {
+
+                    Turm2 turm = (Turm2) figur;
+
+                    if (turm.isTurmBewegt() == false
+                            && aufstellung[startZeile][5] == null
+                            && aufstellung[startZeile][6] == null) {
+                        turm.kurzeRochade(aufstellung, startZeile);
+                        System.out.println("Kurze Rochade erlaubt");
+                        return true;
+                    }
+                }
+            }
+
+            // lange Rochade (nach links)
+            if (zielSpalte < startSpalte) {
+
+                Figur figur = aufstellung[startZeile][0];
+
+                if (figur instanceof Turm2) {
+
+                    Turm2 turm = (Turm2) figur;
+
+                    if (turm.isTurmBewegt() == false
+                            && aufstellung[startZeile][1] == null
+                            && aufstellung[startZeile][2] == null
+                            && aufstellung[startZeile][3] == null) {
+                        turm.langeRochade(aufstellung, startZeile);
+                        System.out.println("Lange Rochade erlaubt");
+                        return true;
+                    }
+                }
+            }
+        }
+
+
         if(horizontaleStrecke == 1 || vertikaleStrecke == 1 ||
                 (horizontaleStrecke == 1 &&  vertikaleStrecke  == 1) ){
 
@@ -42,10 +91,12 @@ public class Koenig2 extends Figur {
                 }
                 if (figurImWeg.getFarbe() != this.getFarbe()) {
                     System.out.println("Figur schlagen.");
+                    koenigBewegt =true;
                     return true;
                 }
             }
             System.out.println("freies Feld");
+            koenigBewegt =true;
             return true;
         }
         System.out.println("Könige gehen so nicht");
