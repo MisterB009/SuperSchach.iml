@@ -17,7 +17,13 @@ public abstract class Figur {
 //        this.StartSpalte = spalten1;
     }
 
-    public abstract boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] felder);
+    public abstract boolean istGueltigerZug(
+            int startZeile,
+            int startSpalte,
+            int zielZeile,
+            int zielSpalte,
+            Figur[][] felder,
+            Spielelogik logik);
 
     //  steht etwas im Weg?
 
@@ -37,22 +43,6 @@ public abstract class Figur {
     public void setBild(Image bild) {
         this.bild = bild;
     }
-
-//    public int getStartZeile() {
-//        return StartZeile;
-//    }
-//
-//    public void setStartZeile(int startZeile) {
-//        this.StartZeile = startZeile;
-//    }
-//
-//    public int getStartSpalte() {
-//        return StartSpalte;
-//    }
-//
-//    public void setStartSpalte(int startSpalte) {
-//        this.StartSpalte = startSpalte;
-//    }
 
 
         protected boolean istZielfeldLeer(Figur[][] aufstellung,

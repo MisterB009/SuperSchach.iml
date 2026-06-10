@@ -1,6 +1,7 @@
 package Model.Figuren;
 
 import Model.Figur;
+import Model.Spielelogik;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -26,7 +27,7 @@ public class Laeufer2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung, Spielelogik logik) {
         // gleiches Feld
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
             System.out.println("gleiches Feld gewählt");

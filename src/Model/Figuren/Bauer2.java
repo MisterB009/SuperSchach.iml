@@ -1,6 +1,7 @@
 package Model.Figuren;
 
 import Model.Figur;
+import Model.Spielelogik;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -28,10 +29,10 @@ public class Bauer2 extends Figur {
 
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung,
+                                   Spielelogik logik) {
         // gleiche Position -> kein Zug
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
-            System.out.println("gleiches Feld gewählt");
             return false;
         }
         if (farbe == WEISS) {
@@ -45,7 +46,10 @@ public class Bauer2 extends Figur {
             if (aufstellung[5][startSpalte] == null
                     && startZeile == 6 && zielZeile == 4
                     && zielSpalte == startSpalte) { // doppelzug
-
+                logik.setEnPassantZeile(zielZeile);
+                logik.setEnPassantSpalte(zielSpalte);
+                logik.setEnPassantMoeglich(true);
+                System.out.println("en passant möglich");
                 return true;
             }
             if (zielZeile == startZeile + 1
@@ -76,13 +80,15 @@ public class Bauer2 extends Figur {
         if (farbe == SCHWARZ) {
             // eine Zeile nach vorne (aus schwarzer Sicht)
             if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
-                System.out.println("legaler Zug");
                 return true;
             }
             if (aufstellung[2][startSpalte] == null
                     && startZeile == 1 && zielZeile == 3
                     && zielSpalte == startSpalte) { // doppelzug
-
+                logik.setEnPassantZeile(zielZeile);
+                logik.setEnPassantSpalte(zielSpalte);
+                logik.setEnPassantMoeglich(true);
+                System.out.println("en passant möglich");
                 return true;
             }
             if (zielZeile == startZeile + 1
@@ -105,87 +111,20 @@ public class Bauer2 extends Figur {
         return false;
     }
 
-        public boolean istAufLetzterZeile ( int zeile){
+    public boolean istAufLetzterZeile(int zeile) {
 
-            // Weiß erreicht Zeile 0
-            if (this.getFarbe() == 1 && zeile == 0) { // zeilen getauscht?
-                return true;
-            }
-
-            // Schwarz erreicht Zeile 7
-            if (this.getFarbe() == 0 && zeile == 7) {
-                return true;
-            }
-            return false;
+        // Weiß erreicht Zeile 0
+        if (this.getFarbe() == 1 && zeile == 0) { // zeilen getauscht?
+            return true;
         }
 
-
-//        public void pruefeBauernumwandlung (Figur[][]aufstellung,int zeile, int spalte){
-//
-//            Figur figur = aufstellung[zeile][spalte];
-//
-//            System.out.println("bauernumwandlung");
-//            if (!(figur instanceof Bauer2)) { // ist es ein Bauer
-//                System.out.println("Bauerntest");
-//                return;
-//            }
-//
-//            Bauer2 bauer = (Bauer2) figur;
-//            System.out.println("Bauerntest1111");
-//
-//            if (!bauer.istAufLetzterZeile(zeile)) {
-//                System.out.println("kein bauer auf letzter Zeile");
-//                return;
-//            }
-//
-//            System.out.println("Bauerntest222");
-//
-//            javax.swing.JDialog dialog = new javax.swing.JDialog();
-//            dialog.setTitle("Bauernumwandlung");
-//            dialog.setSize(300, 150);
-//            dialog.setLocationRelativeTo(null);
-//            dialog.setModal(true);
-//
-//            String[] optionen = {"Dame", "Turm", "Läufer", "Springer"};
-//            javax.swing.JComboBox<String> comboBox = new javax.swing.JComboBox<>(optionen);
-//
-//            javax.swing.JButton okButton = new javax.swing.JButton("OK");
-//
-//            javax.swing.JPanel panel = new javax.swing.JPanel();
-//            panel.add(comboBox);
-//            panel.add(okButton);
-//
-//            dialog.add(panel);
-//
-//            okButton.addActionListener(e -> {
-//
-//                String auswahl = (String) comboBox.getSelectedItem();
-//
-//                switch (auswahl) {
-//
-//                    case "Dame":
-//                        aufstellung[zeile][spalte] = new Dame2(bauer.getFarbe());
-//                        break;
-//
-//                    case "Turm":
-//                        aufstellung[zeile][spalte] = new Turm2(bauer.getFarbe());
-//                        break;
-//
-//                    case "Läufer":
-//                        aufstellung[zeile][spalte] = new Laeufer2(bauer.getFarbe());
-//                        break;
-//
-//                    case "Springer":
-//                        aufstellung[zeile][spalte] = new Springer2(bauer.getFarbe());
-//                        break;
-//                }
-//
-//                dialog.dispose(); // Fenster schließen
-//            });
-//
-//            dialog.setVisible(true);
-//        }
-
-
+        // Schwarz erreicht Zeile 7
+        if (this.getFarbe() == 0 && zeile == 7) {
+            return true;
+        }
+        return false;
     }
+
+
+}
 

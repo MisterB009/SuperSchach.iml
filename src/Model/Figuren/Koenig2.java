@@ -1,6 +1,7 @@
 package Model.Figuren;
 
 import Model.Figur;
+import Model.Spielelogik;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -30,7 +31,7 @@ public class Koenig2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] aufstellung) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] aufstellung, Spielelogik logik) {
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
         int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
 

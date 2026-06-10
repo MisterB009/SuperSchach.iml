@@ -6,6 +6,10 @@ public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
     private Figur letzteGezogeneFigur;
 
+    private boolean enPassantMoeglich = false;
+    private int enPassantZeile;
+    private int enPassantSpalte;
+
     private int letzteStartZeile = -1;
     private int letzteStartSpalte = -1;
     private int letzteZielZeile = -1;
@@ -58,14 +62,35 @@ public class Spielelogik {
             return false;
         }
 
-        if (!figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, aufstellung)) { // macht die Figur legalen Zug?
+        boolean enPassant = istEnPassantZug(
+                figur,
+                startZeile,
+                startSpalte,
+                zielZeile,
+                zielSpalte);
+
+        if (!enPassant &&
+                !figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, aufstellung, this)) {
             return false;
         }
+
+        if (enPassant) { // Gegnerischen Bauern entfernen
+            aufstellung[startZeile][zielSpalte] = null;
+        } // enpassentzeiel / enpassentspalte
 
         aufstellung[zielZeile][zielSpalte] = figur;
         aufstellung[startZeile][startSpalte] = null;
 
         // letzte Bewegte Figur merken
+        enPassantMoeglich = false;
+        if (figur instanceof Bauer2) {
+
+            if (Math.abs(startZeile - zielZeile) == 2) {
+                enPassantMoeglich = true;
+                enPassantZeile = zielZeile;
+                enPassantSpalte = zielSpalte;
+            }
+        }
         letzteGezogeneFigur = figur;
         System.out.println("letzte Bewegung: " +figur);
 
@@ -78,29 +103,6 @@ public class Spielelogik {
         return true;
     }
 
-    // Getter & Setter
-    public Figur getFigur(int zeile, int spalte) {
-        if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {
-            return null;
-        }
-        return aufstellung[zeile][spalte];
-    }
-
-    public void setzeFigur(Figur figur, int zeile, int spalte) {
-        aufstellung[zeile][spalte] = figur;
-    }
-
-
-    public void setLetzteStartPosition(int zeile, int spalte) {
-        letzteStartZeile = zeile;
-        letzteStartSpalte = spalte;
-    }
-
-    public void setLetzteZielPosition(int zeile, int spalte) {
-        letzteZielZeile = zeile;
-        letzteZielSpalte = spalte;
-    }
-
     public void resetMarkierung() {
         letzteStartZeile = -1;
         letzteStartSpalte = -1;
@@ -108,59 +110,8 @@ public class Spielelogik {
         letzteZielSpalte = -1;
     }
 
-    public int getLetzteStartZeile() {
-        return letzteStartZeile;
-    }
 
-    public int getLetzteStartSpalte() {
-        return letzteStartSpalte;
-    }
-
-    public int getLetzteZielSpalte() {
-        return letzteZielSpalte;
-    }
-
-    public int getLetzteZielZeile() {
-        return letzteZielZeile;
-    }
-
-    public Figur[][] getAufstellung() {
-        return aufstellung;
-    }
-
-    // aufstellung ansehen
-    public void printBrett() {
-        for (int zeile = 0; zeile < 8; zeile++) {
-
-            for (int spalte = 0; spalte < 8; spalte++) {
-
-                Figur figur = aufstellung[zeile][spalte];
-
-                if (figur == null) {
-                    System.out.print(".. ");
-                } else {
-
-                    String symbol = "";
-
-                    if (figur instanceof Turm2) symbol = "T";
-                    else if (figur instanceof Springer2) symbol = "S";
-                    else if (figur instanceof Laeufer2) symbol = "L";
-                    else if (figur instanceof Dame2) symbol = "D";
-                    else if (figur instanceof Koenig2) symbol = "K";
-                    else if (figur instanceof Bauer2) symbol = "B";
-
-                    if (figur.getFarbe() == 1) {
-                        System.out.print("W" + symbol + " ");
-                    } else {
-                        System.out.print("S" + symbol + " ");
-                    }
-                }
-            }
-
-            System.out.println();
-        }
-    }
-
+    // BAUERNUMWANDLUNG
     public void pruefeBauernumwandlung (Figur[][]aufstellung,int zeile, int spalte){
 
         Figur figur = aufstellung[zeile][spalte];
@@ -225,5 +176,144 @@ public class Spielelogik {
         });
 
         dialog.setVisible(true);
+    }
+
+
+    // en Passent
+    private boolean istEnPassantZug(
+            Figur figur,
+            int startZeile,
+            int startSpalte,
+            int zielZeile,
+            int zielSpalte) {
+
+        if (!(figur instanceof Bauer2)) { // kein Bauer
+            return false;
+        }
+
+        if (!enPassantMoeglich) { // nur genau nach dem Zug
+            return false;
+        }
+
+        Bauer2 bauer = (Bauer2) figur;
+
+        int richtung;
+
+        if (bauer.getFarbe() == Figur.WEISS) {
+            richtung = -1;
+        } else {
+            richtung = 1;
+        }
+
+        // ''''''''
+        return Math.abs(zielSpalte - startSpalte) == 1
+                && zielZeile == startZeile + richtung
+                && aufstellung[zielZeile][zielSpalte] == null
+                && enPassantZeile == startZeile
+                && enPassantSpalte == zielSpalte;
+    }
+
+//    // aufstellung ansehen
+//    public void printBrett() {
+//        for (int zeile = 0; zeile < 8; zeile++) {
+//
+//            for (int spalte = 0; spalte < 8; spalte++) {
+//
+//                Figur figur = aufstellung[zeile][spalte];
+//
+//                if (figur == null) {
+//                    System.out.print(".. ");
+//                } else {
+//
+//                    String symbol = "";
+//
+//                    if (figur instanceof Turm2) symbol = "T";
+//                    else if (figur instanceof Springer2) symbol = "S";
+//                    else if (figur instanceof Laeufer2) symbol = "L";
+//                    else if (figur instanceof Dame2) symbol = "D";
+//                    else if (figur instanceof Koenig2) symbol = "K";
+//                    else if (figur instanceof Bauer2) symbol = "B";
+//
+//                    if (figur.getFarbe() == 1) {
+//                        System.out.print("W" + symbol + " ");
+//                    } else {
+//                        System.out.print("S" + symbol + " ");
+//                    }
+//                }
+//            }
+//
+//            System.out.println();
+//        }
+//    }
+
+    // Getter  &&  Setter
+    public Figur getLetzteGezogeneFigur() {
+        return letzteGezogeneFigur;
+    }
+
+    public int getEnPassantZeile() {
+        return enPassantZeile;
+    }
+
+    public void setEnPassantZeile(int enPassantZeile) {
+        this.enPassantZeile = enPassantZeile;
+    }
+
+    public int getEnPassantSpalte() {
+        return enPassantSpalte;
+    }
+
+    public void setEnPassantSpalte(int enPassantSpalte) {
+        this.enPassantSpalte = enPassantSpalte;
+    }
+
+    public boolean isEnPassantMoeglich() {
+        return enPassantMoeglich;
+    }
+
+    public void setEnPassantMoeglich(boolean enPassantMoeglich) {
+        this.enPassantMoeglich = enPassantMoeglich;
+    }
+
+    public int getLetzteStartZeile() {
+        return letzteStartZeile;
+    }
+
+    public int getLetzteStartSpalte() {
+        return letzteStartSpalte;
+    }
+
+    public int getLetzteZielSpalte() {
+        return letzteZielSpalte;
+    }
+
+    public int getLetzteZielZeile() {
+        return letzteZielZeile;
+    }
+
+    public Figur[][] getAufstellung() {
+        return aufstellung;
+    }
+    // Getter & Setter
+    public Figur getFigur(int zeile, int spalte) {
+        if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {
+            return null;
+        }
+        return aufstellung[zeile][spalte];
+    }
+
+    public void setzeFigur(Figur figur, int zeile, int spalte) {
+        aufstellung[zeile][spalte] = figur;
+    }
+
+
+    public void setLetzteStartPosition(int zeile, int spalte) {
+        letzteStartZeile = zeile;
+        letzteStartSpalte = spalte;
+    }
+
+    public void setLetzteZielPosition(int zeile, int spalte) {
+        letzteZielZeile = zeile;
+        letzteZielSpalte = spalte;
     }
 }

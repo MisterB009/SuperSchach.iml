@@ -1,6 +1,7 @@
 package Model.Figuren;
 
 import Model.Figur;
+import Model.Spielelogik;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -28,7 +29,7 @@ public class Turm2 extends Figur {
     }
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung) {
+    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung, Spielelogik logik) {
 
         // gleiche Position -> kein Zug
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
