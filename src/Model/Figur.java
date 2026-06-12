@@ -27,24 +27,6 @@ public abstract class Figur {
 
     //  steht etwas im Weg?
 
-    // Getter & Setter
-    public int getFarbe() {
-        return farbe;
-    }
-
-    public void setFarbe(int farbe) {
-        this.farbe = farbe;
-    }
-
-    public Image getBild() {
-        return bild;
-    }
-
-    public void setBild(Image bild) {
-        this.bild = bild;
-    }
-
-
         protected boolean istZielfeldLeer(Figur[][] aufstellung,
                                       int zielZeile,
                                       int zielSpalte) {
@@ -65,5 +47,22 @@ public abstract class Figur {
         Figur figurAufFeld = aufstellung[zielZeile][zielSpalte];
 
         return figurAufFeld != null && figurAufFeld.getFarbe() != this.getFarbe();
+    }
+
+    // Getter & Setter
+    public int getFarbe() {
+        return farbe;
+    }
+
+    public void setFarbe(int farbe) {
+        this.farbe = farbe;
+    }
+
+    public Image getBild() {
+        return bild;
+    }
+
+    public void setBild(Image bild) {
+        this.bild = bild;
     }
 }

@@ -51,9 +51,11 @@ public class Spielelogik {
     }
 
 
-
     // abwechseldes Ziehen (Figur 0/ 1)
 
+
+
+    // Figur ziehen
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
         Figur figur = aufstellung[startZeile][startSpalte];
@@ -62,12 +64,7 @@ public class Spielelogik {
             return false;
         }
 
-        boolean enPassant = istEnPassantZug(
-                figur,
-                startZeile,
-                startSpalte,
-                zielZeile,
-                zielSpalte);
+        boolean enPassant = istEnPassantZug(figur, startZeile, startSpalte, zielZeile, zielSpalte);
 
         if (!enPassant &&
                 !figur.istGueltigerZug(startZeile, startSpalte, zielZeile, zielSpalte, aufstellung, this)) {
@@ -76,10 +73,20 @@ public class Spielelogik {
 
         if (enPassant) { // Gegnerischen Bauern entfernen
             aufstellung[startZeile][zielSpalte] = null;
-        } // enpassentzeiel / enpassentspalte
+        }
+
+        Figur geschlageneFigur = aufstellung[zielZeile][zielSpalte]; // FIgur merken
 
         aufstellung[zielZeile][zielSpalte] = figur;
         aufstellung[startZeile][startSpalte] = null;
+
+        if (istKoenigImSchach(figur.getFarbe())) {   // Zug rückgängig machen
+            aufstellung[startZeile][startSpalte] = figur;
+            aufstellung[zielZeile][zielSpalte] = geschlageneFigur;
+
+            System.out.println("König steht im Schach!");
+            return false;
+        }
 
         // letzte Bewegte Figur merken
         enPassantMoeglich = false;
@@ -111,7 +118,7 @@ public class Spielelogik {
     }
 
 
-    // BAUERNUMWANDLUNG
+    //     BAUERNUMWANDLUNG
     public void pruefeBauernumwandlung (Figur[][]aufstellung,int zeile, int spalte){
 
         Figur figur = aufstellung[zeile][spalte];
@@ -123,15 +130,11 @@ public class Spielelogik {
         }
 
         Bauer2 bauer = (Bauer2) figur;
-        System.out.println("Bauerntest1111");
 
         if (!bauer.istAufLetzterZeile(zeile)) {
             System.out.println("kein bauer auf letzter Zeile");
             return;
         }
-
-        System.out.println("Bauerntest222");
-
         javax.swing.JDialog dialog = new javax.swing.JDialog();
         dialog.setTitle("Bauernumwandlung");
         dialog.setSize(300, 150);
@@ -171,80 +174,95 @@ public class Spielelogik {
                     aufstellung[zeile][spalte] = new Springer2(bauer.getFarbe());
                     break;
             }
-
             dialog.dispose(); // Fenster schließen
         });
-
         dialog.setVisible(true);
     }
 
 
-    // en Passent
-    private boolean istEnPassantZug(
-            Figur figur,
-            int startZeile,
-            int startSpalte,
-            int zielZeile,
+    //  en Passent
+    private boolean istEnPassantZug(Figur figur, int startZeile, int startSpalte, int zielZeile,
             int zielSpalte) {
 
-        if (!(figur instanceof Bauer2)) { // kein Bauer
+        if (!(figur instanceof Bauer2)) { // ist es ein Bauer?
             return false;
         }
-
         if (!enPassantMoeglich) { // nur genau nach dem Zug
             return false;
         }
-
         Bauer2 bauer = (Bauer2) figur;
-
         int richtung;
-
         if (bauer.getFarbe() == Figur.WEISS) {
             richtung = -1;
         } else {
             richtung = 1;
         }
-
-        // ''''''''
-        return Math.abs(zielSpalte - startSpalte) == 1
-                && zielZeile == startZeile + richtung
-                && aufstellung[zielZeile][zielSpalte] == null
+        return Math.abs(zielSpalte - startSpalte) == 1 // einen nach Vorne
+                && zielZeile == startZeile + richtung  // nach rechts - links gegangen
+                && aufstellung[zielZeile][zielSpalte] == null // leeres Feld
                 && enPassantZeile == startZeile
                 && enPassantSpalte == zielSpalte;
     }
 
-//    // aufstellung ansehen
-//    public void printBrett() {
-//        for (int zeile = 0; zeile < 8; zeile++) {
-//
-//            for (int spalte = 0; spalte < 8; spalte++) {
-//
-//                Figur figur = aufstellung[zeile][spalte];
-//
-//                if (figur == null) {
-//                    System.out.print(".. ");
-//                } else {
-//
-//                    String symbol = "";
-//
-//                    if (figur instanceof Turm2) symbol = "T";
-//                    else if (figur instanceof Springer2) symbol = "S";
-//                    else if (figur instanceof Laeufer2) symbol = "L";
-//                    else if (figur instanceof Dame2) symbol = "D";
-//                    else if (figur instanceof Koenig2) symbol = "K";
-//                    else if (figur instanceof Bauer2) symbol = "B";
-//
-//                    if (figur.getFarbe() == 1) {
-//                        System.out.print("W" + symbol + " ");
-//                    } else {
-//                        System.out.print("S" + symbol + " ");
-//                    }
-//                }
-//            }
-//
-//            System.out.println();
-//        }
-//    }
+
+    //       SCHACH PRÜFEN!!
+    public int[] findeKoenig(int farbe) {
+
+        for (int zeile = 0; zeile < 8; zeile++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
+
+                Figur figur = aufstellung[zeile][spalte];
+
+                if (figur instanceof Koenig2 &&
+                        figur.getFarbe() == farbe) {
+
+                    return new int[]{zeile, spalte};
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public boolean istKoenigImSchach(int farbe) {
+
+        int[] koenigPos = findeKoenig(farbe);
+
+        if (koenigPos == null) {
+            return false;
+        }
+
+        int koenigZeile = koenigPos[0];
+        int koenigSpalte = koenigPos[1];
+
+        for (int zeile = 0; zeile < 8; zeile++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
+
+                Figur figur = aufstellung[zeile][spalte];
+
+                if (figur == null) {
+                    continue;
+                }
+
+                if (figur.getFarbe() == farbe) {
+                    continue;
+                }
+
+                if (figur.istGueltigerZug(
+                        zeile,
+                        spalte,
+                        koenigZeile,
+                        koenigSpalte,
+                        aufstellung,
+                        this)) {
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     // Getter  &&  Setter
     public Figur getLetzteGezogeneFigur() {
@@ -294,7 +312,7 @@ public class Spielelogik {
     public Figur[][] getAufstellung() {
         return aufstellung;
     }
-    // Getter & Setter
+
     public Figur getFigur(int zeile, int spalte) {
         if (zeile < 1 || zeile > 8 || spalte < 1 || spalte > 8) {
             return null;

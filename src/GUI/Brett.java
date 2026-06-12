@@ -5,6 +5,7 @@ import Model.*;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class Brett extends JPanel {
     private static final int FELDGROESSE = 80;
     private static final int BRETT_GROESSE = 8 * FELDGROESSE;
@@ -36,13 +37,24 @@ public class Brett extends JPanel {
         Color zugauswahl = new Color(121, 155, 130);
         Color lzherkunft = new Color(146, 177, 102);
         Color lzziel = new Color(195, 216, 135);
+        Color schach = new Color(220, 80, 80);
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         Color color = dunkel;
 
-        int y3 = 80;
+        int[] weisserKoenig = null;
+        int[] schwarzerKoenig = null;
 
+        if (logik.istKoenigImSchach(1)) {
+            weisserKoenig = logik.findeKoenig(1);
+        }
+
+        if (logik.istKoenigImSchach(0)) {
+            schwarzerKoenig = logik.findeKoenig(0);
+        }
+
+        int y3 = 80;
         for (int i = 0; i < 8; i++) { // Zeilen
             int x3;
             x3 = 80;
@@ -58,19 +70,16 @@ public class Brett extends JPanel {
                 // Markierung Figur
                 if (i == logik.getLetzteStartZeile()  && j == logik.getLetzteStartSpalte()) {
                     g.setColor(lzherkunft);
-                    hx =  x3 + 80;
-                    hy =  y3 - 160;
-//                    System.out.println(
-//                            "Markierung: Zeile=" + logik.getLetzteStartZeile()
-//                                    + " Spalte=" + logik.getLetzteStartSpalte()
-//                    );
                 } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
-                    g.setColor(color);
-                    g.fillRect(hx , hy , 80, 80);
-//                    repaint();
                     g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
                     g.setColor(color);
+                }
+                // SCHACH FARBE
+                if (weisserKoenig != null && i == weisserKoenig[0] && j == weisserKoenig[1]) {
+                    g.setColor(schach);
+                } else if (schwarzerKoenig != null && i == schwarzerKoenig[0] && j == schwarzerKoenig[1]) {
+                    g.setColor(schach);
                 }
                 g.fillRect(x3, y3, 80, 80); // füllen
                 x3 = x3 + 80; // alle weiteren Reihen

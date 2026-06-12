@@ -82,9 +82,11 @@ public class Bauer2 extends Figur {
             if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
                 return true;
             }
-            if (aufstellung[2][startSpalte] == null
+            if (aufstellung[2][startSpalte] == null // Feld dazwischen Frei
+                    && aufstellung[3][startSpalte] == null // Zielfeld frei
                     && startZeile == 1 && zielZeile == 3
                     && zielSpalte == startSpalte) { // doppelzug
+
                 logik.setEnPassantZeile(zielZeile);
                 logik.setEnPassantSpalte(zielSpalte);
                 logik.setEnPassantMoeglich(true);
