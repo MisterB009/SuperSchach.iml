@@ -99,7 +99,6 @@ public class Spielelogik {
             }
         }
         letzteGezogeneFigur = figur;
-        System.out.println("letzte Bewegung: " +figur);
 
         // Zug ausführen
         setLetzteStartPosition(startZeile, startSpalte);
@@ -123,16 +122,13 @@ public class Spielelogik {
 
         Figur figur = aufstellung[zeile][spalte];
 
-        System.out.println("bauernumwandlung");
         if (!(figur instanceof Bauer2)) { // ist es ein Bauer
-            System.out.println("Bauerntest");
             return;
         }
 
         Bauer2 bauer = (Bauer2) figur;
 
         if (!bauer.istAufLetzterZeile(zeile)) {
-            System.out.println("kein bauer auf letzter Zeile");
             return;
         }
         javax.swing.JDialog dialog = new javax.swing.JDialog();
@@ -248,19 +244,11 @@ public class Spielelogik {
                     continue;
                 }
 
-                if (figur.istGueltigerZug(
-                        zeile,
-                        spalte,
-                        koenigZeile,
-                        koenigSpalte,
-                        aufstellung,
-                        this)) {
-
-                    return true;
+                if (figur.istGueltigerZug(zeile, spalte, koenigZeile, koenigSpalte, aufstellung, this)) {
+                    return true; // landet die Figur mit ihrem Bewegmuster auf dem Feld des Königs?
                 }
             }
         }
-
         return false;
     }
 
