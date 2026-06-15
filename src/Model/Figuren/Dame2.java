@@ -40,7 +40,6 @@ public class Dame2 extends Figur {
     public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung, Spielelogik logik) {
         // gleiche Position -> kein Zug
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
-            System.out.println("gleiches Feld gewählt");
             return false;
         }
         // -- horizontaler Zug
@@ -71,35 +70,39 @@ public class Dame2 extends Figur {
             return true;
         }
         // || vertikal
-        if (zielSpalte == startSpalte){
+        if (zielSpalte == startSpalte) {
 
-            int richtung = (zielZeile > startZeile) ? 1 : -1; // hier ggf. tauschen?
+            int richtung = (zielZeile > startZeile) ? 1 : -1;
 
-            for (int zeile = startZeile + richtung; zeile != zielSpalte; zeile += richtung) { // zwischenfelder durchgehen
+            // Zwischenfelder prüfen
+            for (int zeile = startZeile + richtung; zeile != zielZeile; zeile += richtung) {
 
-                if (aufstellung[zeile][startSpalte] != null) { // eine Figur auf dem Weg
+                if (aufstellung[zeile][startSpalte] != null) {
                     System.out.println("Figur blockiert den Weg");
                     return false;
-                } else {
-                    System.out.println("du darfst gehen- v");
-                    Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
-                    if(figurImWeg !=null){
-                        if(figurImWeg.getFarbe() == this.getFarbe()){
-                            System.out.println("Figur gehört dir");
-                            return false;
-                        }
-                        if(figurImWeg.getFarbe() != this.getFarbe()){
-                            System.out.println("Figur schlagen.");
-                            return true;
-                        }
-                    }
-                    return true;
                 }
             }
+
+            // Zielfeld prüfen
+            Figur figurAmZiel = aufstellung[zielZeile][zielSpalte];
+
+            if (figurAmZiel != null) {
+
+                if (figurAmZiel.getFarbe() == this.getFarbe()) {
+                    System.out.println("Eigene Figur steht dort");
+                    return false;
+                }
+
+                System.out.println("Gegnerische Figur schlagen");
+                return true;
+            }
+
+            System.out.println("Freies Feld");
+            return true;
         }
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
         int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
-        System.out.println("Dame test");
+
 
         if ((horizontaleStrecke == vertikaleStrecke)) { // zwischenfelder Prüfen
             int zeilenRichtung = (zielZeile > startZeile) ? 1 : -1;
@@ -133,7 +136,6 @@ public class Dame2 extends Figur {
             System.out.println("freies Feld");
             return true;
         }
-        System.out.println("was ist hier los?");
         return false;
 
 

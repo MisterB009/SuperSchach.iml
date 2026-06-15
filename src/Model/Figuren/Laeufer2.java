@@ -30,14 +30,10 @@ public class Laeufer2 extends Figur {
     public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung, Spielelogik logik) {
         // gleiches Feld
         if (zielZeile == startZeile && zielSpalte == startSpalte) {
-            System.out.println("gleiches Feld gewählt");
             return false;
         }
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
         int vertikaleStrecke = Math.abs(startSpalte - zielSpalte);
-        System.out.println("Läufer test");
-        System.out.println("horizont" + horizontaleStrecke);
-        System.out.println("vertikal" + vertikaleStrecke);
 
         if ((horizontaleStrecke == vertikaleStrecke)) { // zwischenfelder Prüfen
             int zeilenRichtung = (zielZeile > startZeile) ? 1 : -1;
@@ -71,7 +67,6 @@ public class Laeufer2 extends Figur {
             System.out.println("freies Feld");
             return true;
         }
-        System.out.println("was ist hier los?");
         return false;
     }
 }

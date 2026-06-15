@@ -15,10 +15,13 @@ public class BrettMouseListener extends MouseAdapter {
     private int startZeile;
     private int startSpalte;
 
+    private GeschlagenePanel panel;
 
-    public BrettMouseListener(Brett brett, Spielelogik logik) {
+
+    public BrettMouseListener(Brett brett, Spielelogik logik, GeschlagenePanel panel) {
         this.brett = brett;
         this.logik = logik;
+        this.panel = panel;
     }
 
 
@@ -77,6 +80,11 @@ public class BrettMouseListener extends MouseAdapter {
             }
             ausgewaehlteFigur = null;
             brett.repaint();
+            if(panel != null){
+                System.out.println("Update aufgerufen#######################");
+                panel.aktualisieren(logik);
+            }
+
         }
     }
 

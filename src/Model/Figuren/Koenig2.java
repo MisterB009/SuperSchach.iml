@@ -53,7 +53,7 @@ public class Koenig2 extends Figur {
                             && aufstellung[startZeile][5] == null
                             && aufstellung[startZeile][6] == null) {
                         turm.kurzeRochade(aufstellung, startZeile);
-                        System.out.println("Kurze Rochade erlaubt");
+//                        System.out.println("Kurze Rochade erlaubt");
                         return true;
                     }
                 }
@@ -73,7 +73,7 @@ public class Koenig2 extends Figur {
                             && aufstellung[startZeile][2] == null
                             && aufstellung[startZeile][3] == null) {
                         turm.langeRochade(aufstellung, startZeile);
-                        System.out.println("Lange Rochade erlaubt");
+//                        System.out.println("Lange Rochade erlaubt");
                         return true;
                     }
                 }
@@ -87,24 +87,19 @@ public class Koenig2 extends Figur {
             Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
             if (figurImWeg != null) {
                 if (figurImWeg.getFarbe() == this.getFarbe()) {
-                    System.out.println("Eigene Figur");
+//                    System.out.println("Eigene Figur");
                     return false;
                 }
                 if (figurImWeg.getFarbe() != this.getFarbe()) {
-                    System.out.println("Figur schlagen.");
+//                    System.out.println("Figur schlagen.");
                     koenigBewegt =true;
                     return true;
                 }
             }
-            System.out.println("freies Feld");
+
             koenigBewegt =true;
             return true;
         }
-        System.out.println("Könige gehen so nicht");
         return false;
     }
 }
-
-//rochade - bewegt schalter + turm
-
-// ins schach gestellt

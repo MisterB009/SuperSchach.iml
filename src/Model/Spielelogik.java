@@ -2,9 +2,15 @@ package Model;
 
 import Model.Figuren.*;
 
+import java.util.ArrayList;
+
 public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
     private Figur letzteGezogeneFigur;
+
+    ArrayList<Figur> geschlageneFigurenWeiss = new ArrayList<>();
+    ArrayList<Figur> geschlageneFigurenSchwarz = new ArrayList<>();
+
 
     private boolean enPassantMoeglich = false;
     private int enPassantZeile;
@@ -54,7 +60,6 @@ public class Spielelogik {
     // abwechseldes Ziehen (Figur 0/ 1)
 
 
-
     // Figur ziehen
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
@@ -83,10 +88,14 @@ public class Spielelogik {
         if (istKoenigImSchach(figur.getFarbe())) {   // Zug rückgängig machen
             aufstellung[startZeile][startSpalte] = figur;
             aufstellung[zielZeile][zielSpalte] = geschlageneFigur;
-
+            geschlageneFigur = null;
             System.out.println("König steht im Schach!");
             return false;
         }
+
+
+        geschlageneFigur = null;
+        System.out.println("Geschlagene Liste: " + geschlageneFigurenSchwarz + "weiß: " + geschlageneFigurenWeiss);
 
         // letzte Bewegte Figur merken
         enPassantMoeglich = false;
@@ -103,8 +112,19 @@ public class Spielelogik {
         // Zug ausführen
         setLetzteStartPosition(startZeile, startSpalte);
         setLetzteZielPosition(zielZeile, zielSpalte);
-        // bauernumwandlung prüfen
+
         pruefeBauernumwandlung(aufstellung, zielZeile, zielSpalte);
+        if (geschlageneFigur != null) { // liste hinzufügen
+            if (geschlageneFigur.getFarbe() == 1) {
+                geschlageneFigurenWeiss.add(geschlageneFigur);
+            }
+            if (geschlageneFigur.getFarbe() == 0) {
+                geschlageneFigurenSchwarz.add(geschlageneFigur);
+            }
+        }
+        System.out.println("Geschlagen jetzt: " + geschlageneFigur);
+        System.out.println("Weiss Liste: " + geschlageneFigurenWeiss.size());
+        System.out.println("Schwarz Liste: " + geschlageneFigurenSchwarz.size());
 
         return true;
     }
@@ -118,7 +138,7 @@ public class Spielelogik {
 
 
     //     BAUERNUMWANDLUNG
-    public void pruefeBauernumwandlung (Figur[][]aufstellung,int zeile, int spalte){
+    public void pruefeBauernumwandlung(Figur[][] aufstellung, int zeile, int spalte) {
 
         Figur figur = aufstellung[zeile][spalte];
 
@@ -178,7 +198,7 @@ public class Spielelogik {
 
     //  en Passent
     private boolean istEnPassantZug(Figur figur, int startZeile, int startSpalte, int zielZeile,
-            int zielSpalte) {
+                                    int zielSpalte) {
 
         if (!(figur instanceof Bauer2)) { // ist es ein Bauer?
             return false;
@@ -321,5 +341,13 @@ public class Spielelogik {
     public void setLetzteZielPosition(int zeile, int spalte) {
         letzteZielZeile = zeile;
         letzteZielSpalte = spalte;
+    }
+
+    public ArrayList<Figur> getGeschlageneFigurenSchwarz() {
+        return geschlageneFigurenSchwarz;
+    }
+
+    public ArrayList<Figur> getGeschlageneFigurenWeiss() {
+        return geschlageneFigurenWeiss;
     }
 }

@@ -12,6 +12,8 @@ public class Brett extends JPanel {
 
     private Spielelogik logik; // Referenz auf die Spielelogik
 
+    private GeschlagenePanel geschlagenePanel;
+
     private Figur ausgewaehlteFigur = null;
     private int startZeile;
     private int startSpalte;
@@ -19,7 +21,7 @@ public class Brett extends JPanel {
 
     public Brett() {
         this.logik = new Spielelogik(); // Spielelogik erzeugen
-        addMouseListener(new BrettMouseListener(this, logik));
+        addMouseListener(new BrettMouseListener(this, logik, geschlagenePanel));
 
     }
 
@@ -138,6 +140,11 @@ public class Brett extends JPanel {
                 }
             }
         }
+    }
+
+    //Setter & Getter
+    public void setGeschlagenePanel(GeschlagenePanel panel) {
+        this.geschlagenePanel = panel;
     }
 }
 

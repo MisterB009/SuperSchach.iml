@@ -42,7 +42,7 @@ public class Turm2 extends Figur {
 
             int richtung = (zielSpalte > startSpalte) ? 1 : -1; // ist Zielspalte größer als Startspalte -> richtung 1 = wird größer
 
-// Zwischenfelder prüfen
+        // Zwischenfelder prüfen
             for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) {
                 if (aufstellung[startZeile][spalte] != null) {
                     System.out.println("Figur blockiert den Weg-h");

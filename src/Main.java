@@ -1,22 +1,36 @@
-//import GUI.MouseHover;
 import GUI.Brett;
+import GUI.GeschlagenePanel;
 
 import javax.swing.*;
 
 public class Main extends JFrame {
 
-    public static void main(String[] args) {
-        JFrame frame = new Main();
-        frame.setSize(1000, 1000);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Main() {
 
+        setTitle("Schach");
+        setSize(1100, 900);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-
-    }
-    public Main(){
         Brett board = new Brett();
-        add(board);
+        GeschlagenePanel panel = new GeschlagenePanel();
+
+        board.setGeschlagenePanel(panel);
+
+        JSplitPane split = new JSplitPane(
+                JSplitPane.HORIZONTAL_SPLIT,
+                board,
+                panel
+        );
+
+        split.setDividerLocation(850);
+
+        add(split);
+
+        setVisible(true);
     }
-    //Test
+
+    public static void main(String[] args) {
+        new Main();
+    }
 }
