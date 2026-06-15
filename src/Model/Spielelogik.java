@@ -18,7 +18,7 @@ public class Spielelogik {
         this.aufstellung = new Figur[9][9]; // ##
         initialisiereAufstellung();
     }
-
+//änderung
     private void initialisiereAufstellung() {
         // weiß
         if (stil != 2&&stil != 1) {
