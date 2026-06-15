@@ -43,99 +43,43 @@ public class Bauer2 extends Figur {
 
 
     @Override
-    public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte, Figur[][] aufstellung,
-                                   Spielelogik logik) {
+    public boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder) {
         // gleiche Position -> kein Zug
-        if (zielZeile == startZeile && zielSpalte == startSpalte) {
+        if (zielZeile == zeile && zielSpalte == spalte) {
+            System.out.println("gleiches Feld gewählt");
             return false;
         }
-        if (farbe == WEISS) {
+        if (farbe == WEIß) {
+
             // eine Zeile nach vorne, gleiche Spalte
-            if (zielZeile == startZeile - 1
-                    && zielSpalte == startSpalte
-                    && aufstellung[zielZeile][zielSpalte] == null) {
-
+            if (zielZeile == zeile + 1 && zielSpalte == spalte) {
+                System.out.println("legaler Zug");
                 return true;
             }
-            if (aufstellung[5][startSpalte] == null
-                    && startZeile == 6 && zielZeile == 4
-                    && zielSpalte == startSpalte) { // doppelzug
-                logik.setEnPassantZeile(zielZeile);
-                logik.setEnPassantSpalte(zielSpalte);
-                logik.setEnPassantMoeglich(true);
-                System.out.println("en passant möglich");
+            if (zeile == 2 && zielZeile == 4) {
                 return true;
-            }
-            if (zielZeile == startZeile + 1
-                    && Math.abs(zielSpalte - startSpalte) == 1) {
-
-                Figur zielFigur = aufstellung[zielZeile][zielSpalte];
-
-                if (zielFigur != null
-                        && zielFigur.getFarbe() != this.getFarbe()) {
-
-                    return true;
-                }
-            } // schräg schlagen
-            if (zielZeile == startZeile - 1
-                    && Math.abs(startSpalte - zielSpalte) == 1) {
-
-                Figur zielFigur = aufstellung[zielZeile][zielSpalte];
-                if (zielFigur != null
-                        && zielFigur.getFarbe() != this.getFarbe()) {
-
-                    return true;
-
-                }
             }
         }
 
         // Schwarz
         if (farbe == SCHWARZ) {
+
             // eine Zeile nach vorne (aus schwarzer Sicht)
-            if (zielZeile == startZeile + 1 && zielSpalte == startSpalte) {
+            if (zielZeile == zeile - 1 && zielSpalte == spalte) {
+                System.out.println("legaler Zug");
                 return true;
             }
-            if (aufstellung[2][startSpalte] == null // Feld dazwischen Frei
-                    && aufstellung[3][startSpalte] == null // Zielfeld frei
-                    && startZeile == 1 && zielZeile == 3
-                    && zielSpalte == startSpalte) { // doppelzug
-
-                logik.setEnPassantZeile(zielZeile);
-                logik.setEnPassantSpalte(zielSpalte);
-                logik.setEnPassantMoeglich(true);
+            if (zeile == 7 && zielZeile == 5) {
                 return true;
             }
-            if (zielZeile == startZeile + 1
-                    && Math.abs(startSpalte - zielSpalte) == 1) {
 
-                Figur zielFigur = aufstellung[zielZeile][zielSpalte];
-                if (zielFigur != null
-                        && zielFigur.getFarbe() != this.getFarbe()) {
-
-                    return true;
-
-                }
-            }
         }
-        // en passent (speicherung des letzten Zuges; wege)
+        // Schräg schlagen -Ist auf dem Feld eine andersfarbige Figur? -  Figur[][] felder nutzen
+
+        System.out.println("illegaler Zug");
         return false;
-    }
 
-    public boolean istAufLetzterZeile(int zeile) {
-
-        // Weiß erreicht Zeile 0
-        if (this.getFarbe() == 1 && zeile == 0) { // zeilen getauscht?
-            return true;
-        }
-
-        // Schwarz erreicht Zeile 7
-        if (this.getFarbe() == 0 && zeile == 7) {
-            return true;
-        }
-        return false;
     }
 
 
 }
-
