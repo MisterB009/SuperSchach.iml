@@ -17,13 +17,10 @@ public class BrettMouseListener extends MouseAdapter {
     private int startZeile;
     private int startSpalte;
 
-    private GeschlagenePanel panel;
 
-
-    public BrettMouseListener(Brett brett, Spielelogik logik, GeschlagenePanel panel) {
+    public BrettMouseListener(Brett brett, Spielelogik logik) {
         this.brett = brett;
         this.logik = logik;
-        this.panel = panel;
     }
     public BrettMouseListener(MPBrett mpBrett, Spielelogik logik){
         this.mpBrett = mpBrett;
@@ -34,16 +31,15 @@ public class BrettMouseListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        int zeile =  (e.getY()) / 80 -1 ;
-        int spalte = e.getX() / 80 -1 ;
-
+        int spalte = e.getX() / 80;
+        int zeile = 9 - (e.getY() / 80);
 
         // außerhalb
-        if (spalte < 0 || spalte > 8 || zeile < 0 || zeile > 8) {
+        if (spalte < 1 || spalte > 8 || zeile < 1 || zeile > 8) {
             return;
         }
 
-        Figur[][] felder = logik.getAufstellung();
+        Figur[][] felder = logik.getFelder();
 
         // ===== ERSTER KLICK ===== Figur wählen
         if (ausgewaehlteFigur == null) {
@@ -55,10 +51,8 @@ public class BrettMouseListener extends MouseAdapter {
 
                 startZeile = zeile;
                 startSpalte = spalte;
-                System.out.println(
-                        "Klick: Zeile=" + zeile
-                                + " Spalte=" + spalte
-                );
+                System.out.println("Start Zeile: " + startZeile);
+                System.out.println("Start Spalte: "+ startSpalte);
 
                 logik.setLetzteStartPosition(zeile, spalte);
 
@@ -86,11 +80,6 @@ public class BrettMouseListener extends MouseAdapter {
             }
             ausgewaehlteFigur = null;
             brett.repaint();
-            if(panel != null){
-                System.out.println("Update aufgerufen#######################");
-                panel.aktualisieren(logik);
-            }
-
         }
     }
 
