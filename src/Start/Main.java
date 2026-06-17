@@ -43,6 +43,11 @@ public class Main extends JFrame {
         private MPLobby mpLobby;
         private Settings settings;
 
+        JMenuBar bar;
+        JMenu files;
+        JMenuItem save;
+        JMenuItem load;
+
         private JPanel bretter;
         private JPanel uhr;
         private JPanel spieler1;
@@ -120,6 +125,21 @@ public class Main extends JFrame {
 //                this.setLayout(new BorderLayout());
 //                Brett board = new Brett();
 //                add(board);
+
+                bar = new JMenuBar();
+                files = new JMenu("Brett verwalten");
+                save = new JMenuItem("Speichern");
+                save.addActionListener(e1 -> {
+
+                });
+                load = new JMenuItem("Laden");
+                load.addActionListener(e1 -> {
+
+                });
+                bar.add(files);
+                files.add(save);
+                files.add(load);
+                setJMenuBar(bar);
 
                 bretter = new JPanel(new BorderLayout());
                 uhr = new JPanel();
