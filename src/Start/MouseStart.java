@@ -47,4 +47,3 @@ public class MouseStart implements MouseListener {
         hilfBtn.setForeground(Color.WHITE);
     }
 }
-//commit

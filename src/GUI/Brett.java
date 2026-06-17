@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 // HALLLOOO
+//noch ein ahllo
 
 public class Brett extends JPanel {
 
