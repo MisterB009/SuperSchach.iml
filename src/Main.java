@@ -15,7 +15,7 @@ public class Main extends JFrame {
         Brett board = new Brett();
         GeschlagenePanel panel = new GeschlagenePanel();
 
-        board.setGeschlagenePanel(panel);
+//        board.setGeschlagenePanel(panel); ########################
 
         JSplitPane split = new JSplitPane(
                 JSplitPane.HORIZONTAL_SPLIT,
@@ -34,3 +34,4 @@ public class Main extends JFrame {
         new Main();
     }
 }
+// Richtig

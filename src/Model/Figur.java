@@ -4,24 +4,48 @@ import java.awt.*;
 
 public abstract class Figur {
     protected static final int SCHWARZ = 0;
-    protected static final int WEIß = 1;
+    protected static final int WEISS = 1;
     protected int farbe;
     protected Image bild;
-    protected int zeile;
-    protected int spalte;
+//    protected int StartZeile;
+//    protected int StartSpalte;
     private int stil;
 
     // Construktor
-    public Figur(int farbe, int spalten, int zeilen, int stil) {
+    public Figur(int farbe, int stil) {
         this.farbe = farbe;
-        this.zeile = spalten;
-        this.spalte = zeilen;
         this.stil = stil;
     }
 
-    public abstract boolean istGueltigerZug(int zielZeile, int zielSpalte, Figur[][] felder);
+    public abstract boolean istGueltigerZug(
+            int startZeile,
+            int startSpalte,
+            int zielZeile,
+            int zielSpalte,
+            Figur[][] felder,
+            Spielelogik logik);
 
-    //  steht etwas im Weg?
+        protected boolean istZielfeldLeer(Figur[][] aufstellung,
+                                      int zielZeile,
+                                      int zielSpalte) {
+
+        return aufstellung[zielZeile][zielSpalte] == null;
+    }
+
+    protected boolean istEigeneFigur(Figur[][] aufstellung, int zielZeile, int zielSpalte) {
+
+        Figur figurAufFeld = aufstellung[zielZeile][zielSpalte];
+
+        return figurAufFeld != null &&
+                figurAufFeld.getFarbe() == this.getFarbe();
+    }
+
+    protected boolean istGegnerischeFigur(Figur[][] aufstellung, int zielZeile, int zielSpalte) {
+
+        Figur figurAufFeld = aufstellung[zielZeile][zielSpalte];
+
+        return figurAufFeld != null && figurAufFeld.getFarbe() != this.getFarbe();
+    }
 
     // Getter & Setter
     public int getFarbe() {
@@ -38,21 +62,5 @@ public abstract class Figur {
 
     public void setBild(Image bild) {
         this.bild = bild;
-    }
-
-    public int getZeile() {
-        return zeile;
-    }
-
-    public void setZeile(int zeile) {
-        this.zeile = zeile;
-    }
-
-    public int getSpalte() {
-        return spalte;
-    }
-
-    public void setSpalte(int spalte) {
-        this.spalte = spalte;
     }
 }

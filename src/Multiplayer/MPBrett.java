@@ -3,7 +3,7 @@ package Multiplayer;
 import GUI.BrettMouseListener;
 import Model.Figur;
 import Model.Spielelogik;
-import Start.MPLobby;
+//import Start.MPLobby;
 
 import javax.swing.*;
 import java.awt.*;
@@ -111,7 +111,7 @@ public class MPBrett extends JPanel {
         }
 
         // Figuren aufstellen
-        Figur[][] aufstellung = logik.getFelder();
+        Figur[][] aufstellung = logik.getAufstellung();
 
         for (int zeile = 0; zeile < 9; zeile++) {
 

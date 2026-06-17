@@ -194,8 +194,8 @@ public class MPLobby extends JFrame {
                     g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
                     g2.dispose();
                     super.paintComponent(g);
-                    }
-                };
+                }
+            };
             verbinden.setFocusPainted(false);
             verbinden.setBorderPainted(false);
             verbinden.setContentAreaFilled(false);

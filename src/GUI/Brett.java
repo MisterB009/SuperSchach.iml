@@ -1,7 +1,7 @@
 package GUI;
 
 import Model.*;
-import Start.Main;
+// import Start.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,20 +9,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+// HALLLOOO
+
 public class Brett extends JPanel {
 
     private Spielelogik logik; // Referenz auf die Spielelogik
 
     private Figur ausgewaehlteFigur = null;
-    private int startZeile;
-    private int startSpalte;
-    int hx,hy;
-
+    //    private int startZeile;
+//    private int startSpalte;
+//    int hx,hy;
+    // so soll es aussehen
+    private GeschlagenePanel panel;
 
     public Brett() {
 
         this.logik = new Spielelogik(); // Spielelogik erzeugen
-        addMouseListener(new BrettMouseListener(this, logik));
+        addMouseListener(new BrettMouseListener(this, logik, panel));
     }
 
 
@@ -36,49 +39,60 @@ public class Brett extends JPanel {
         Color zugauswahl = new Color(121, 155, 130);
         Color lzherkunft = new Color(146, 177, 102);
         Color lzziel = new Color(195, 216, 135);
+        Color schach = new Color(220, 80, 80);
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = hell;
+        Color color = dunkel;
 
-        int x2 = 80;
+        int[] weisserKoenig = null;
+        int[] schwarzerKoenig = null;
 
+        if (logik.istKoenigImSchach(1)) {
+            weisserKoenig = logik.findeKoenig(1);
+        }
+
+        if (logik.istKoenigImSchach(0)) {
+            schwarzerKoenig = logik.findeKoenig(0);
+        }
+
+        int y3 = 80;
         for (int i = 0; i < 8; i++) { // Zeilen
-            int y2;
-            y2 = 80;
+            int x3;
+            x3 = 80;
             for (int j = 0; j < 8; j++) {// Spalte
                 if (j == 0 && i > 0) { // Color immer abwechseln
-                    if (color.equals(hell)) {
-                        color = dunkel;
-                    } else {
+                    if (color.equals(dunkel)) {
                         color = hell;
+                    } else {
+                        color = dunkel;
                     }
                 }
 
                 // Markierung Figur
-                if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
-                    g.setColor(klick);
-                    hx =  x2;
-                    hy = y2;
-                } else if (i == logik.getLetzteZielSpalte() && j == logik.getLetzteZielZeile()) {
+                if (i == logik.getLetzteStartZeile()  && j == logik.getLetzteStartSpalte()) {
                     g.setColor(lzherkunft);
-                    g.fillRect(hx, hy, 80, 80);
-                    repaint();
+                } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
                     g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
                     g.setColor(color);
                 }
+                // SCHACH FARBE
+                if (weisserKoenig != null && i == weisserKoenig[0] && j == weisserKoenig[1]) {
+                    g.setColor(schach);
+                } else if (schwarzerKoenig != null && i == schwarzerKoenig[0] && j == schwarzerKoenig[1]) {
+                    g.setColor(schach);
+                }
+                g.fillRect(x3, y3, 80, 80); // füllen
+                x3 = x3 + 80; // alle weiteren Reihen
 
-                g.fillRect(y2, x2, 80, 80); // füllen
-                y2 = y2 + 80; // alle weiteren Reihen
-
-                if (color.equals(hell)) {
-                    color = dunkel;
-                } else {
+                if (color.equals(dunkel)) {
                     color = hell;
+                } else {
+                    color = dunkel;
                 }
             }
-            x2 = x2 + 80;
+            y3 = y3 + 80;
         }
         int xstart = 80;
         int ystart = 80;
@@ -110,22 +124,28 @@ public class Brett extends JPanel {
         }
 
         // Figuren aufstellen
-        Figur[][] aufstellung = logik.getFelder();
+        Figur[][] aufstellung = logik.getAufstellung();
 
-        for (int zeile = 0; zeile < 9; zeile++) {
+        for (int zeile = 0; zeile < 8; zeile++) {
 
-            for (int spalte = 0; spalte < 9; spalte++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
 
                 Figur figur = aufstellung[zeile][spalte];
 
                 if (figur != null) {
 
-                    int x = (spalte - 1) * 80 + 80;
-                    int y = (9 - zeile) * 80;
+                    int x = spalte * 80 + 80;// werden verschoben, s.d. sie auf den Feldern dargestellt werden
+                    int y = zeile * 80 + 80;
                     g.drawImage(figur.getBild(), x, y, 80, 80, this);
                 }
             }
         }
     }
+
+    //Setter & Getter
+//    public void setGeschlagenePanel(GeschlagenePanel panel) {
+//        this.geschlagenePanel = panel;
+//    }
 }
+// test
 
