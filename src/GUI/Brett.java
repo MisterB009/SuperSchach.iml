@@ -9,23 +9,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-// HALLLOOO
-//noch ein ahllo
-
 public class Brett extends JPanel {
 
     private Spielelogik logik; // Referenz auf die Spielelogik
 
     private Figur ausgewaehlteFigur = null;
-    //    private int startZeile;
-//    private int startSpalte;
-//    int hx,hy;
-    // so soll es aussehen
+
     private GeschlagenePanel panel;
 
-    public Brett() {
+    public Brett( Spielelogik logik, GeschlagenePanel panel) {
 
-        this.logik = new Spielelogik(); // Spielelogik erzeugen
+        this.logik = logik; // Spielelogik aufgreifen
         addMouseListener(new BrettMouseListener(this, logik, panel));
     }
 

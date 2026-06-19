@@ -33,6 +33,8 @@ class Spielelogik {
     + pruefeBauernumwandlung(...)
 }
 
+Spielelogik -->  GeschlagenePanel : speichert
+
 class Turm2 {
     + turmBewegt : boolean
     + kurzeRochade()
@@ -85,20 +87,21 @@ class GeschlagenePanel {
     + aktualisieren(Spielelogik)
 }
 
-Brett --> Spielelogik
-Brett --> BrettMouseListener
-Brett --> GeschlagenePanel
-BrettMouseListener --> Spielelogik
-BrettMouseListener --> Brett
+
+
+Brett --*  BrettMouseListener : nutzt
+Brett --> GeschlagenePanel : nutzt
+BrettMouseListener --> Spielelogik : übergibt Informationen
 BrettMouseListener --> GeschlagenePanel
 
-GeschlagenePanel --> Spielelogik
+
 
 ' =========================
 ' Start
 ' =========================
 
 class Main
+Main ->  WilkommenScreen : erstellt
 
 class WilkommenScreen
 
@@ -114,16 +117,24 @@ class Settings {
     + setyStil(int)
 }
 
-Main *-- WilkommenScreen
-WilkommenScreen --> Brett
-WilkommenScreen --> MPLobby
-WilkommenScreen --> Settings
 
-MouseStart --> WilkommenScreen
-MouseStart --> MPLobby
+
+WilkommenScreen --> Brett : EinzelspielerButton
+WilkommenScreen --> MPLobby : MultiplayerButton
+WilkommenScreen --> Settings : Einstellungen
+WilkommenScreen --> Spielelogik : erstellt
+WilkommenScreen --> GeschlagenePanel : erstellt
+WilkommenScreen --> Brett : erstellt
+
+
+
+
+WilkommenScreen --> MouseStart
+MPLobby -->  MouseStart
 
 MPLobby *-- ipFenster
-MPLobby --> Main
+
+Connection -> MPBrett
 
 Settings --> Spielelogik
 

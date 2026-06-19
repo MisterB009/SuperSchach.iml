@@ -1,5 +1,7 @@
 package Start;//import GUI.MouseHover;
 import GUI.Brett;
+import GUI.GeschlagenePanel;
+import Model.Spielelogik;
 import Multiplayer.MPBrett;
 
 import javax.imageio.ImageIO;
@@ -131,8 +133,14 @@ public class Main extends JFrame {
                     settings.setyStil(1);
                 }
 
-                Brett board = new Brett();
+                Spielelogik logik = new Spielelogik();
+                GeschlagenePanel panel =
+                        new GeschlagenePanel();
+                Brett board = new Brett(logik, panel);
                 bretter.add(board, BorderLayout.CENTER);
+
+
+
                 this.setLayout(new GridBagLayout());
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.fill = GridBagConstraints.BOTH;
@@ -169,14 +177,42 @@ public class Main extends JFrame {
                 gbc.weighty = 1.0;
                 add(bretter, gbc);
 
+//                gbc.gridx = 2;
+//                gbc.gridy = 1;
+//                gbc.weightx = 0.0;
+//                gbc.weighty = 1.0;
+//                uhr.setBackground(Color.RED);
+//                uhr.setPreferredSize(new Dimension(200, 0)); // Wunschbreite 200px
+//                add(uhr, gbc);
+
+//                JSplitPane split = new JSplitPane(
+//                        JSplitPane.HORIZONTAL_SPLIT,
+//                        board,
+//                        panel
+//                );
+//
+//                split.setDividerLocation(250);
+//
+//                add(split);
+//
+//                GeschlagenePanel panel =
+//                        new GeschlagenePanel();
+
+                panel.setPreferredSize(new Dimension(250, 0));
+
                 gbc.gridx = 2;
                 gbc.gridy = 1;
                 gbc.weightx = 0.0;
                 gbc.weighty = 1.0;
-                uhr.setBackground(Color.RED);
-                uhr.setPreferredSize(new Dimension(200, 0)); // Wunschbreite 200px
-                add(uhr, gbc);
 
+                add(panel, gbc);
+
+                gbc.gridx = 2;
+                gbc.gridy = 1;
+                gbc.weightx = 0.0;
+                gbc.weighty = 1.0;
+
+                add(panel, gbc);
                 gbc.gridx = 1;
                 gbc.gridy = 2;
                 gbc.weightx = 1.0;
