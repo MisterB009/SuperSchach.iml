@@ -28,6 +28,7 @@ public class Spielelogik {
         initialisiereAufstellung();
     }
 
+
     private void initialisiereAufstellung() {
         // --- Schwarze Figuren (oben) ---
         aufstellung[0][0] = new Turm2(Figur.SCHWARZ, stil);
