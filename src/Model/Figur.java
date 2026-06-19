@@ -6,7 +6,7 @@ public abstract class Figur {
     protected static final int SCHWARZ = 0;
     protected static final int WEISS = 1;
     protected int farbe;
-    protected Image bild;
+    protected transient Image bild;
 //    protected int StartZeile;
 //    protected int StartSpalte;
     private int stil;

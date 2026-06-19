@@ -12,8 +12,33 @@ public class Saves {
 
     private String spielToJson(Spielelogik logik) {
         Gson gson = new Gson();
-        // Falls deine Figuren vor dem Speichern noch spezielle Anpassungen brauchen,
-        // könntest du hier (wie im Beispiel) eine Vorbereitungsmethode aufrufen.
         return gson.toJson(logik);
+    }
+
+    private Spielelogik spielFromJson(String spielAsJson){
+        Gson gson = new Gson();
+        Spielelogik logik = gson.fromJson(spielAsJson, Spielelogik.class);
+        return logik;
+    }
+
+    public void speicherSpiel(Spielelogik aktuell){
+        try {
+            Files.writeString(Path.of("spiel.json"), spielToJson(aktuell));
+            System.out.println("speicher");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public Spielelogik laden(){
+        try {
+            String jsonText = Files.readString(Path.of("spiel.json"));
+            Spielelogik geladen = spielFromJson(jsonText);
+            System.out.println("laden");
+            return geladen;
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

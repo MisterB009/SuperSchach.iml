@@ -31,6 +31,14 @@ public class Brett extends JPanel {
         addMouseListener(new BrettMouseListener(this, logik, panel));
     }
 
+    public Spielelogik getLogik(){
+        return this.logik;
+    }
+
+    public void setLogik(Spielelogik neu){
+        this.logik = neu;
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {

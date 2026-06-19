@@ -1,5 +1,7 @@
 package Start;//import GUI.MouseHover;
+import Datenverwaltung.Saves;
 import GUI.Brett;
+import Model.Spielelogik;
 import Multiplayer.MPBrett;
 
 import javax.imageio.ImageIO;
@@ -122,6 +124,8 @@ public class Main extends JFrame {
             Einzelspieler.addActionListener(e -> {
                 getContentPane();
                 removeAll();
+                Saves saves = new Saves();
+                Brett board = new Brett();
 //                this.setLayout(new BorderLayout());
 //                Brett board = new Brett();
 //                add(board);
@@ -130,11 +134,16 @@ public class Main extends JFrame {
                 files = new JMenu("Brett verwalten");
                 save = new JMenuItem("Speichern");
                 save.addActionListener(e1 -> {
-
+                    saves.speicherSpiel(board.getLogik());
                 });
                 load = new JMenuItem("Laden");
                 load.addActionListener(e1 -> {
+                    Spielelogik geladen = saves.laden();
 
+                    if (geladen != null){
+                        board.setLogik(geladen);
+                    }
+                    board.repaint();
                 });
                 bar.add(files);
                 files.add(save);
@@ -151,7 +160,6 @@ public class Main extends JFrame {
                     settings.setyStil(1);
                 }
 
-                Brett board = new Brett();
                 bretter.add(board, BorderLayout.CENTER);
                 this.setLayout(new GridBagLayout());
                 GridBagConstraints gbc = new GridBagConstraints();
