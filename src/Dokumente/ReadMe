@@ -1,0 +1,24 @@
+Übersicht
+Diese Anwendung ist ein in Java entwickeltes Schachspiel mit grafischer Benutzeroberfläche auf Basis von Swing. Das Schachbrett wird dargestellt, Figuren können per Mausklick ausgewählt und gezogen werden. Die Spiellogik überprüft die Gültigkeit von Zügen und unterstützt mehrere Schach-Sonderregeln.
+Funktionen
+•	Vollständiges Schachbrett mit grafischer Darstellung
+•	Auswahl und Bewegung von Figuren per Mausklick
+•	Prüfung gültiger Züge für alle Figuren
+•	Schach-Erkennung (König im Schach)
+•	Rochade (kurz und lang)
+•	En-Passant-Schlagen
+•	Bauernumwandlung mit Auswahlfenster (nur wenn dieser auf dem letzten Feld steht)
+•	Hervorhebung des zuletzt ausgeführten Zuges (grün)
+•	Farbige Markierung eines Königs im Schach (rot)
+
+Aktueller Entwicklungsstand
+✔ Grundlegende Spiellogik
+Die Figur, die gezogen werden soll, anklicken und nach Schachregeln ziehen.
+✔ Schach-Erkennung
+Steht der König im Schach leuchtet sein Feld rot. Er darf nicht ins Schach gezogen werden
+✔ Rochade
+Stehen zwischen dem König und Turm keine Figuren und der jeweilige Turm/ König wurden nicht bewegt, kann man eine Rochade durchführen. Dazu bewegt man den König zwei Felder Richtung Turm.
+✔ En Passant
+Zieht ein gegnerischer Bauer von seiner Ausgangsposition zwei Felder vor und landet dabei direkt neben einem eigenen Bauern, darf dieser eigene Bauer im unmittelbar folgenden Zug schlagen, als wäre der gegnerische Bauer nur ein Feld vorgerückt. Der schlagende Bauer zieht dabei diagonal auf das Feld hinter dem gegnerischen Bauern, der anschließend vom Brett entfernt wird.
+✔ Bauernumwandlung
+Befindet sich der Bauer auf dem letzten Feld der gegenüberliegenden Seite, so darf man eine Bauernumwandlung durchführen. Im Fenster muss ausgewählt werden, welche Figur den Bauern ersetzten soll.

@@ -1,0 +1,28 @@
+Darstellung des Schachbretts
+Das Schachbrett wird zweidimensional dargestellt und besteht aus einem 8 × 8 Felder großen Spielfeld. Die Felder werden in abwechselnden Farben dargestellt und mit den üblichen Schachkoordinaten (A–H und 1–8) beschriftet.
+Die Figuren werden grafisch auf den jeweiligen Feldern angezeigt. Zusätzlich werden besondere Zustände visuell hervorgehoben, beispielsweise das (Start- und Zielfeld) und wenn der König im Schach steht.
+Spielfiguren
+Zu Beginn einer Partie werden alle Figuren automatisch in ihrer Standardaufstellung positioniert. Jede Figur besitzt ihre eigenen Bewegungsregeln und kann nur entsprechend dieser Regeln bewegt werden, zudem erben alle von der Klasse „Figur“. Dabei wird auch darauf geachtet, ob sich eine Figur im Weg der Bewegung steht und ob es eine eigene Figur ist. Nur Figuren die auf dem Zielfeld der Bewegung stehen können geschlagen werden.
+Auswahl und Bewegung von Figuren
+Der Spieler kann eine Figur durch Anklicken auswählen und anschließend auf ein Zielfeld ziehen, dies geschieht im MouseListener.
+Besondere Schachregeln
+Besondere Schachregeln wie der Sonderzug „En Passant“ und die Bauernumwandlung werden in der „Spielelogik“ geprüft. Bei der Bauernumwandlung wird dabei geprüft, ob die Figur auf der letzten Reihe steht. Daraufhin öffnet sich ein Fenster, in der eine neue Figur gewählt werden kann. Diese ersetzt den gezogenen Bauern.
+Verwaltung des Spielzustands
+Die Anwendung verwaltet jederzeit die aktuelle Figurenaufstellung, die Positionen der Könige, den zuletzt ausgeführten Zug,mögliche En-Passant-Züge, den Zustand „Schach“. Es wird noch nicht Schachmatt geprüft und auch Patt wurde noch nicht itegiert.
+Diese Informationen werden von der Spiel-Logik bereitgestellt und von der grafischen Oberfläche dargestellt.
+Architektur
+Die Anwendung folgt einer Trennung zwischen Benutzeroberfläche und Spiel-Logik.
+In der GUI wird das Schachbrett erstellt, die Figuren angezeigt und die Mausklickt mit dem MouseListener verarbeitet. Die Spielelogik ist verantwortlich für die Verwaltung der Figuren und Spielzustandes, das Ziehen der Figuren und kontrollieren der Sonderregeln. Alle Figuren erben von der Oberklasse und füllen die „abstracte“ Methode „istGültigerZug“ aus.
+Client-Server-Modell
+
+
+Speichern-laden (Persistent)
+
+
+Threads?
+
+Collection Framework
+
+
+
+

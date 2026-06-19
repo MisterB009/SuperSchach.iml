@@ -1,0 +1,141 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' Model
+' =========================
+
+abstract class Figur {
+    # farbe : int
+    # bild : Image
+    - stil : int
+    + istGueltigerZug(...)
+    + getFarbe() : int
+    + getBild() : Image
+}
+
+class Spielelogik {
+    - aufstellung : Figur[][]
+    - letzteGezogeneFigur : Figur
+    - geschlageneFigurenWeiss
+    - geschlageneFigurenSchwarz
+    - enPassantMoeglich : boolean
+    - letzteStartZeile : int
+    - letzteStartSpalte : int
+    - letzteZielZeile : int
+    - letzteZielSpalte : int
+    - stil : int
+
+    + bewegeFigur(...)
+    + getAufstellung()
+    + istKoenigImSchach(int)
+    + findeKoenig(int)
+    + pruefeBauernumwandlung(...)
+}
+
+class Turm2 {
+    + turmBewegt : boolean
+    + kurzeRochade()
+    + langeRochade()
+}
+
+class Springer2
+class Laeufer2
+class Bauer2
+class Dame2
+
+class Koenig2 {
+    + koenigBewegt : boolean
+}
+
+Figur <|-- Turm2
+Figur <|-- Springer2
+Figur <|-- Laeufer2
+Figur <|-- Koenig2
+Figur <|-- Bauer2
+Figur <|-- Dame2
+
+Spielelogik "1" *-- "32" Figur : verwaltet
+
+' =========================
+' GUI
+' =========================
+
+class Brett {
+    - logik : Spielelogik
+    - ausgewaehlteFigur : Figur
+    - panel : GeschlagenePanel
+
+    + paintComponent(Graphics)
+}
+
+class BrettMouseListener {
+    - brett : Brett
+    - logik : Spielelogik
+    - ausgewaehlteFigur : Figur
+    - startZeile : int
+    - startSpalte : int
+    - panel : GeschlagenePanel
+
+    + mouseClicked(MouseEvent)
+}
+
+class GeschlagenePanel {
+    - area : JTextArea
+    + aktualisieren(Spielelogik)
+}
+
+Brett --> Spielelogik
+Brett --> BrettMouseListener
+Brett --> GeschlagenePanel
+BrettMouseListener --> Spielelogik
+BrettMouseListener --> Brett
+BrettMouseListener --> GeschlagenePanel
+
+GeschlagenePanel --> Spielelogik
+
+' =========================
+' Start
+' =========================
+
+class Main
+
+class WilkommenScreen
+
+class MouseStart
+
+class MPLobby
+
+class ipFenster
+
+class Settings {
+    - yStil : int
+    + getyStil() : int
+    + setyStil(int)
+}
+
+Main *-- WilkommenScreen
+WilkommenScreen --> Brett
+WilkommenScreen --> MPLobby
+WilkommenScreen --> Settings
+
+MouseStart --> WilkommenScreen
+MouseStart --> MPLobby
+
+MPLobby *-- ipFenster
+MPLobby --> Main
+
+Settings --> Spielelogik
+
+' =========================
+' Multiplayer
+' =========================
+
+class MPBrett
+class Connection
+
+BrettMouseListener --> MPBrett
+MPLobby --> Connection
+ipFenster --> Connection
+
+@enduml
