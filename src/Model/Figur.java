@@ -11,6 +11,10 @@ public abstract class Figur {
 //    protected int StartSpalte;
     private int stil;
 
+    public int getStil() {
+        return stil;
+    }
+
     // Construktor
     public Figur(int farbe, int stil) {
         this.farbe = farbe;

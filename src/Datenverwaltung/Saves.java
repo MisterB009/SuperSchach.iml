@@ -58,6 +58,35 @@ public class Saves {
         return logik;
     }
 
+    private void reinitializeImages(Spielelogik logik) {
+        Figur[][] aufstellung = logik.getAufstellung();
+        for (int zeile = 0; zeile < 8; zeile++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
+                Figur figur = aufstellung[zeile][spalte];
+                if (figur != null) {
+                    Figur neuesFigur = recreateFigur(figur);
+                    if (neuesFigur != null) {
+                        aufstellung[zeile][spalte] = neuesFigur;
+                    }
+                }
+            }
+        }
+    }
+
+    private Figur recreateFigur(Figur alt) {
+        int farbe = alt.getFarbe();
+        int stil = alt.getStil();
+
+        if (alt instanceof Bauer2) return new Bauer2(farbe, stil);
+        if (alt instanceof Turm2) return new Turm2(farbe, stil);
+        if (alt instanceof Springer2) return new Springer2(farbe, stil);
+        if (alt instanceof Laeufer2) return new Laeufer2(farbe, stil);
+        if (alt instanceof Dame2) return new Dame2(farbe, stil);
+        if (alt instanceof Koenig2) return new Koenig2(farbe, stil);
+
+        return null;
+    }
+
     public void speicherSpiel(Spielelogik aktuell){
         try {
             Files.writeString(Path.of("spiel.json"), spielToJson(aktuell));
@@ -71,6 +100,7 @@ public class Saves {
         try {
             String jsonText = Files.readString(Path.of("spiel.json"));
             Spielelogik geladen = spielFromJson(jsonText);
+            reinitializeImages(geladen);
             System.out.println("laden");
             return geladen;
         } catch (IOException e){
