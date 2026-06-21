@@ -142,8 +142,8 @@ public class Main extends JFrame {
 
                     if (geladen != null){
                         board.setLogik(geladen);
+                        board.repaint();
                     }
-                    board.repaint();
                 });
                 bar.add(files);
                 files.add(save);
