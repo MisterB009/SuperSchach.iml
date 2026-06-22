@@ -37,8 +37,8 @@ public class Brett extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Color hell = new Color(222, 227, 230);
-        Color dunkel = new Color(140, 162, 173);
+        Color dungelgrau = new Color(140, 162, 173);
+        Color hellgrau =  new Color(222, 227, 230);
         Color klick = new Color(80, 124, 101);
         Color zugauswahl = new Color(121, 155, 130);
         Color lzherkunft = new Color(146, 177, 102);
@@ -47,7 +47,7 @@ public class Brett extends JPanel {
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = dunkel;
+        Color color = hellgrau;
 
         int[] weisserKoenig = null;
         int[] schwarzerKoenig = null;
@@ -66,10 +66,10 @@ public class Brett extends JPanel {
             x3 = 80;
             for (int j = 0; j < 8; j++) {// Spalte
                 if (j == 0 && i > 0) { // Color immer abwechseln
-                    if (color.equals(dunkel)) {
-                        color = hell;
+                    if (color.equals(hellgrau)) {
+                        color = dungelgrau;
                     } else {
-                        color = dunkel;
+                        color = hellgrau;
                     }
                 }
 
@@ -90,10 +90,10 @@ public class Brett extends JPanel {
                 g.fillRect(x3, y3, 80, 80); // füllen
                 x3 = x3 + 80; // alle weiteren Reihen
 
-                if (color.equals(dunkel)) {
-                    color = hell;
+                if (color.equals(hellgrau)) {
+                    color = dungelgrau;
                 } else {
-                    color = dunkel;
+                    color = hellgrau;
                 }
             }
             y3 = y3 + 80;
