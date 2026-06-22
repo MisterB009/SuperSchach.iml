@@ -1,6 +1,7 @@
 package Start;//import GUI.MouseHover;
 import Datenverwaltung.Saves;
 import GUI.Brett;
+import GUI.BrettMouseListener;
 import GUI.GeschlagenePanel;
 import Model.Spielelogik;
 import Multiplayer.MPBrett;
@@ -146,6 +147,10 @@ public class Main extends JFrame {
 
                     if (geladen != null){
                         board.setLogik(geladen);
+                        BrettMouseListener listener = board.getMouseListener();
+                        if (listener != null) {
+                            listener.setLogik(geladen);
+                        }
                         board.repaint();
                     }
                 });

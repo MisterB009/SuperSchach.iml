@@ -31,6 +31,10 @@ public class BrettMouseListener extends MouseAdapter {
     }
 
 
+    public void setLogik(Spielelogik logik) {
+        this.logik = logik;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 

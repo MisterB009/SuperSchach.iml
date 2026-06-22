@@ -32,6 +32,15 @@ public class Brett extends JPanel {
         this.logik = neu;
     }
 
+    public BrettMouseListener getMouseListener() {
+        for (MouseListener ml : this.getMouseListeners()) {
+            if (ml instanceof BrettMouseListener) {
+                return (BrettMouseListener) ml;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {
