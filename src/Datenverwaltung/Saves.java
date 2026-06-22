@@ -43,12 +43,12 @@ public class Saves {
                     String type = obj.get("type").getAsString();
 
                     switch(type) {
-                        case "Bauer2": return context.deserialize(json, Bauer.class);
-                        case "Turm2": return context.deserialize(json, Turm.class);
-                        case "Springer2": return context.deserialize(json, Springer.class);
-                        case "Laeufer2": return context.deserialize(json, Laeufer.class);
-                        case "Dame2": return context.deserialize(json, Dame.class);
-                        case "Koenig2": return context.deserialize(json, Koenig.class);
+                        case "Bauer": return context.deserialize(json, Bauer.class);
+                        case "Turm": return context.deserialize(json, Turm.class);
+                        case "Springer": return context.deserialize(json, Springer.class);
+                        case "Laeufer": return context.deserialize(json, Laeufer.class);
+                        case "Dame": return context.deserialize(json, Dame.class);
+                        case "Koenig": return context.deserialize(json, Koenig.class);
                         default: throw new JsonParseException("Unknown figure type: " + type);
                     }
                 })

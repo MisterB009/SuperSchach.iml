@@ -66,7 +66,6 @@ public class Dame extends Figur {
         // Zwischenfelder prüfen
             for (int spalte = startSpalte + richtung; spalte != zielSpalte; spalte += richtung) {
                 if (aufstellung[startZeile][spalte] != null) {
-                    System.out.println("Figur blockiert den Weg");
                     return false;
                 }
             }
@@ -75,15 +74,10 @@ public class Dame extends Figur {
 
             if (figurAmZiel != null) {
                 if (figurAmZiel.getFarbe() == this.getFarbe()) {
-                    System.out.println("Eigene Figur steht dort");
                     return false;
                 }
-
-                System.out.println("Gegnerische Figur schlagen");
                 return true;
             }
-
-            System.out.println("Freies Feld");
             return true;
         }
         // || vertikal
@@ -95,7 +89,6 @@ public class Dame extends Figur {
             for (int zeile = startZeile + richtung; zeile != zielZeile; zeile += richtung) {
 
                 if (aufstellung[zeile][startSpalte] != null) {
-                    System.out.println("Figur blockiert den Weg");
                     return false;
                 }
             }
@@ -106,15 +99,10 @@ public class Dame extends Figur {
             if (figurAmZiel != null) {
 
                 if (figurAmZiel.getFarbe() == this.getFarbe()) {
-                    System.out.println("Eigene Figur steht dort");
                     return false;
                 }
-
-                System.out.println("Gegnerische Figur schlagen");
                 return true;
             }
-
-            System.out.println("Freies Feld");
             return true;
         }
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
@@ -131,7 +119,6 @@ public class Dame extends Figur {
             while (zeile != zielZeile && spalte != zielSpalte) {
 
                 if (aufstellung[zeile][spalte] != null) {
-                    System.out.println("Figur blockiert den Weg");
                     return false;
                 }
 
@@ -142,15 +129,12 @@ public class Dame extends Figur {
             Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
             if (figurImWeg != null) {
                 if (figurImWeg.getFarbe() == this.getFarbe()) {
-                    System.out.println("Eigene Figur");
                     return false;
                 }
                 if (figurImWeg.getFarbe() != this.getFarbe()) {
-                    System.out.println("Figur schlagen.");
                     return true;
                 }
             }
-            System.out.println("freies Feld");
             return true;
         }
         return false;

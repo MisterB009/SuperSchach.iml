@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
     private Figur letzteGezogeneFigur;
+    private boolean weissAmZug = true;
 
     ArrayList<Figur> geschlageneFigurenWeiss = new ArrayList<>();
     ArrayList<Figur> geschlageneFigurenSchwarz = new ArrayList<>();
@@ -69,9 +70,12 @@ public class Spielelogik {
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
         Figur figur = aufstellung[startZeile][startSpalte];
-        System.out.println("Stil = " + stil);
 
         if (figur == null) { // keine Figur
+            return false;
+        }
+        if (figur.getFarbe() == 1 && !weissAmZug || figur.getFarbe() == 0 && weissAmZug  ){// figur weiß, aber nicht am zug; figur schwarz weiß am zug
+            System.out.println("Du bist nicht am Zug");
             return false;
         }
 
@@ -128,7 +132,8 @@ public class Spielelogik {
         System.out.println("Geschlagen jetzt: " + geschlageneFigur);
         System.out.println("Weiss Liste: " + geschlageneFigurenWeiss.size());
         System.out.println("Schwarz Liste: " + geschlageneFigurenSchwarz.size());
-
+        weissAmZug = !weissAmZug; // Farbwechsel
+        System.out.println("weissAmZug" + weissAmZug);
         return true;
     }
 

@@ -65,7 +65,6 @@ public class Bauer extends Figur {
                 logik.setEnPassantZeile(zielZeile);
                 logik.setEnPassantSpalte(zielSpalte);
                 logik.setEnPassantMoeglich(true);
-                System.out.println("en passant möglich");
                 return true;
             }
             if (zielZeile == startZeile + 1

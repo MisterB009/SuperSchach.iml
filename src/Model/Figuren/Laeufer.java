@@ -73,15 +73,12 @@ public class Laeufer extends Figur {
             Figur figurImWeg = aufstellung[zielZeile][zielSpalte];
             if (figurImWeg != null) {
                 if (figurImWeg.getFarbe() == this.getFarbe()) {
-                    System.out.println("Eigene Figur");
                     return false;
                 }
                 if (figurImWeg.getFarbe() != this.getFarbe()) {
-                    System.out.println("Figur schlagen.");
                     return true;
                 }
             }
-            System.out.println("freies Feld");
             return true;
         }
         return false;
