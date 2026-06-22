@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Dame2 extends Figur {
+public class Dame extends Figur {
 
-    public Dame2(int farbe, int stil) {
+    public Dame(int farbe, int stil) {
         super(farbe,  stil);
         if (stil == 1) {
             if (farbe == 0) { // schwarz

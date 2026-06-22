@@ -7,10 +7,10 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Turm2 extends Figur {
+public class Turm extends Figur {
     public boolean turmBewegt = false;
 
-    public Turm2(int farbe, int stil) {
+    public Turm(int farbe, int stil) {
         super(farbe, stil);
         System.out.println("turm: "+stil);
         if (stil == 1) {

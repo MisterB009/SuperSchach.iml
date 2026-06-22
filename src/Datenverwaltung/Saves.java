@@ -7,7 +7,6 @@ import Model.Spielelogik;
 import com.google.gson.*;
 
 import java.io.IOException;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,12 +43,12 @@ public class Saves {
                     String type = obj.get("type").getAsString();
 
                     switch(type) {
-                        case "Bauer2": return context.deserialize(json, Bauer2.class);
-                        case "Turm2": return context.deserialize(json, Turm2.class);
-                        case "Springer2": return context.deserialize(json, Springer2.class);
-                        case "Laeufer2": return context.deserialize(json, Laeufer2.class);
-                        case "Dame2": return context.deserialize(json, Dame2.class);
-                        case "Koenig2": return context.deserialize(json, Koenig2.class);
+                        case "Bauer2": return context.deserialize(json, Bauer.class);
+                        case "Turm2": return context.deserialize(json, Turm.class);
+                        case "Springer2": return context.deserialize(json, Springer.class);
+                        case "Laeufer2": return context.deserialize(json, Laeufer.class);
+                        case "Dame2": return context.deserialize(json, Dame.class);
+                        case "Koenig2": return context.deserialize(json, Koenig.class);
                         default: throw new JsonParseException("Unknown figure type: " + type);
                     }
                 })
@@ -77,12 +76,12 @@ public class Saves {
         int farbe = alt.getFarbe();
         int stil = alt.getStil();
 
-        if (alt instanceof Bauer2) return new Bauer2(farbe, stil);
-        if (alt instanceof Turm2) return new Turm2(farbe, stil);
-        if (alt instanceof Springer2) return new Springer2(farbe, stil);
-        if (alt instanceof Laeufer2) return new Laeufer2(farbe, stil);
-        if (alt instanceof Dame2) return new Dame2(farbe, stil);
-        if (alt instanceof Koenig2) return new Koenig2(farbe, stil);
+        if (alt instanceof Bauer) return new Bauer(farbe, stil);
+        if (alt instanceof Turm) return new Turm(farbe, stil);
+        if (alt instanceof Springer) return new Springer(farbe, stil);
+        if (alt instanceof Laeufer) return new Laeufer(farbe, stil);
+        if (alt instanceof Dame) return new Dame(farbe, stil);
+        if (alt instanceof Koenig) return new Koenig(farbe, stil);
 
         return null;
     }

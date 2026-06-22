@@ -7,8 +7,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Laeufer2 extends Figur {
-    public Laeufer2(int farbe, int stil) {
+public class Laeufer extends Figur {
+    public Laeufer(int farbe, int stil) {
         super(farbe, stil);
 
         if (stil == 1) {

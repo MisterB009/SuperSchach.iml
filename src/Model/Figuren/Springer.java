@@ -7,8 +7,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Springer2 extends Figur {
-    public Springer2(int farbe, int stil) {
+public class Springer extends Figur {
+    public Springer(int farbe, int stil) {
         super(farbe,  stil);
         if (stil == 1) {
             if (farbe == 0){ // schwarz
