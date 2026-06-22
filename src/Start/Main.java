@@ -126,7 +126,10 @@ public class Main extends JFrame {
                 getContentPane();
                 removeAll();
                 Saves saves = new Saves();
-                Brett board = new Brett();
+                Spielelogik logik = new Spielelogik();
+                GeschlagenePanel panel =
+                        new GeschlagenePanel();
+                Brett board = new Brett(logik, panel);
 //                this.setLayout(new BorderLayout());
 //                Brett board = new Brett();
 //                add(board);
@@ -161,10 +164,6 @@ public class Main extends JFrame {
                     settings.setyStil(1);
                 }
 
-                Spielelogik logik = new Spielelogik();
-                GeschlagenePanel panel =
-                        new GeschlagenePanel();
-                Brett board = new Brett(logik, panel);
                 bretter.add(board, BorderLayout.CENTER);
 
 
