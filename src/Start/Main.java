@@ -176,6 +176,7 @@ public class Main extends JFrame {
                 zurueck.addActionListener(e1 -> {
                     getContentPane();
                     removeAll();
+                    setJMenuBar(null);
                     setLayout(new BorderLayout());
                     WilkommenScreen lobby = new WilkommenScreen();
                     add(lobby);
