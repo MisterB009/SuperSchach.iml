@@ -1,4 +1,5 @@
 package Start;//import GUI.MouseHover;
+import Datenverwaltung.Saves;
 import GUI.Brett;
 import GUI.GeschlagenePanel;
 import Model.Spielelogik;
@@ -44,6 +45,11 @@ public class Main extends JFrame {
         private Image hintergrund;
         private MPLobby mpLobby;
         private Settings settings;
+
+        JMenuBar bar;
+        JMenu files;
+        JMenuItem save;
+        JMenuItem load;
 
         private JPanel bretter;
         private JPanel uhr;
@@ -119,9 +125,31 @@ public class Main extends JFrame {
             Einzelspieler.addActionListener(e -> {
                 getContentPane();
                 removeAll();
+                Saves saves = new Saves();
+                Brett board = new Brett();
 //                this.setLayout(new BorderLayout());
 //                Brett board = new Brett();
 //                add(board);
+
+                bar = new JMenuBar();
+                files = new JMenu("Brett verwalten");
+                save = new JMenuItem("Speichern");
+                save.addActionListener(e1 -> {
+                    saves.speicherSpiel(board.getLogik());
+                });
+                load = new JMenuItem("Laden");
+                load.addActionListener(e1 -> {
+                    Spielelogik geladen = saves.laden();
+
+                    if (geladen != null){
+                        board.setLogik(geladen);
+                        board.repaint();
+                    }
+                });
+                bar.add(files);
+                files.add(save);
+                files.add(load);
+                setJMenuBar(bar);
 
                 bretter = new JPanel(new BorderLayout());
                 uhr = new JPanel();
@@ -156,6 +184,7 @@ public class Main extends JFrame {
                 zurueck.addActionListener(e1 -> {
                     getContentPane();
                     removeAll();
+                    setJMenuBar(null);
                     setLayout(new BorderLayout());
                     WilkommenScreen lobby = new WilkommenScreen();
                     add(lobby);

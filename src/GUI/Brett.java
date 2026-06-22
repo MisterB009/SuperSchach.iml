@@ -1,6 +1,7 @@
 package GUI;
 
 import Model.*;
+import Start.Main;
 // import Start.Main;
 
 import javax.swing.*;
@@ -21,6 +22,14 @@ public class Brett extends JPanel {
 
         this.logik = logik; // Spielelogik aufgreifen
         addMouseListener(new BrettMouseListener(this, logik, panel));
+    }
+
+    public Spielelogik getLogik(){
+        return this.logik;
+    }
+
+    public void setLogik(Spielelogik neu){
+        this.logik = neu;
     }
 
 

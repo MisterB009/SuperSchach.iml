@@ -41,8 +41,8 @@ public class Springer2 extends Figur {
                 }
             }
         }
-
     }
+
     // @Override
 //    public boolean istGueltigerZug(int zielRow, int zielCol) {
 //        x +/- 2 && y +/-1  ||

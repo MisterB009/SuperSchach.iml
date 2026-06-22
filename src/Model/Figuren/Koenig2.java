@@ -44,6 +44,7 @@ public class Koenig2 extends Figur {
         }
     }
 
+
     @Override
     public boolean istGueltigerZug(int startZeile, int startSpalte, int zielZeile, int zielSpalte,Figur[][] aufstellung, Spielelogik logik) {
         int horizontaleStrecke = Math.abs(startZeile - zielZeile);
