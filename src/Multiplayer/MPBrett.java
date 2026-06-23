@@ -16,16 +16,19 @@ public class MPBrett extends JPanel {
     private boolean istHost;
 
     private Spielelogik logik; // Referenz auf die Spielelogik
-
     private Figur ausgewaehlteFigur = null;
-
     private GeschlagenePanel panel;
 
-    public MPBrett(Socket verbindung, boolean istHost, GeschlagenePanel panel, Spielelogik logik) {
+    private Connection connection;
+    private BrettMouseListener mouseListener;
+
+    public MPBrett(Socket verbindung, boolean istHost, GeschlagenePanel panel, Spielelogik logik, Connection connection) {
         this.socket = verbindung;
         this.istHost = istHost;
-        this.logik = logik; // Spielelogik erzeugen
-        addMouseListener(new BrettMouseListener(this, logik, panel));
+        this.logik = logik;
+        this.connection = connection;
+        this.mouseListener = new BrettMouseListener(this, logik, panel);
+        addMouseListener(mouseListener);
     }
 
     public Spielelogik getLogik(){
@@ -34,6 +37,19 @@ public class MPBrett extends JPanel {
 
     public void setLogik(Spielelogik neu){
         this.logik = neu;
+    }
+
+    public GeschlagenePanel getPanel(){
+        return this.panel;
+    }
+
+    public boolean canMove(){
+        int currentPlayerColor = logik.weissAmZug ? 1 : 0;
+        if (istHost) {
+            return currentPlayerColor == 1;  // Host is white (1)
+        } else {
+            return currentPlayerColor == 0;  // Client is black (0)
+        }
     }
 
     public BrettMouseListener getMouseListener() {
@@ -45,6 +61,9 @@ public class MPBrett extends JPanel {
         return null;
     }
 
+    public Connection getConnection() {
+        return this.connection;
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

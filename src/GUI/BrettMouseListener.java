@@ -4,6 +4,7 @@ import Model.Figur;
 import Model.Spielelogik;
 import Multiplayer.MPBrett;
 
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -74,7 +75,11 @@ public class BrettMouseListener extends MouseAdapter {
 
                 logik.setLetzteStartPosition(zeile, spalte);
 
-                brett.repaint();
+                if (brett != null) {
+                    brett.repaint();
+                } else if (mpBrett != null) {
+                    mpBrett.repaint();
+                }
             }
         }
 
@@ -84,20 +89,49 @@ public class BrettMouseListener extends MouseAdapter {
             if (zeile == startZeile && spalte == startSpalte) {
                 ausgewaehlteFigur = null;
                 logik.resetMarkierung();
-                brett.repaint();
+                if (brett != null) {
+                    brett.repaint();
+                } else if (mpBrett != null) {
+                    mpBrett.repaint();
+                }
                 return;
             }
+
+            if (mpBrett != null && !mpBrett.canMove()) {
+                ausgewaehlteFigur = null;
+                logik.resetMarkierung();
+                if (mpBrett != null) {
+                    mpBrett.repaint();
+                }
+                JOptionPane.showMessageDialog(null, "Es ist nicht dein Zug!");
+                return;
+            }
+
 
             // legaler Zug
             boolean erfolgreich = logik.bewegeFigur(startZeile,startSpalte,zeile, spalte );
             if (!erfolgreich) {
                 ausgewaehlteFigur = null;
                 logik.resetMarkierung();
-                brett.repaint();
+                if (brett != null) {
+                    brett.repaint();
+                } else if (mpBrett != null) {
+                    mpBrett.repaint();
+                }
                 return;
             }
             ausgewaehlteFigur = null;
-            brett.repaint();
+
+            if (mpBrett != null && mpBrett.getConnection() != null) {
+                mpBrett.getConnection().sendMove(startZeile, startSpalte, zeile, spalte);
+            }
+
+            if (brett != null) {
+                brett.repaint();
+            } else if (mpBrett != null) {
+                mpBrett.repaint();
+            }
+
             if(panel != null){
                 System.out.println("Update aufgerufen#######################");
                 panel.aktualisieren(logik);
@@ -118,4 +152,5 @@ public class BrettMouseListener extends MouseAdapter {
     public int getStartZeile() {
         return startZeile;
     }
+
 }
