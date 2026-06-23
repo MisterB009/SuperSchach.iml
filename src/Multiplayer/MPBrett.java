@@ -44,7 +44,7 @@ public class MPBrett extends JPanel {
     }
 
     public boolean canMove(){
-        int currentPlayerColor = logik.weissAmZug ? 1 : 0;
+        int currentPlayerColor = logik.isWeissAmZug() ? 1 : 0;
         if (istHost) {
             return currentPlayerColor == 1;  // Host is white (1)
         } else {

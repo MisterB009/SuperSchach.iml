@@ -351,4 +351,8 @@ public class Spielelogik {
     public void setStil(int stil) {
         this.stil = stil;
     }
+
+    public boolean isWeissAmZug() {
+        return weissAmZug;
+    }
 }
