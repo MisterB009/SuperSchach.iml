@@ -1,12 +1,14 @@
 package Multiplayer;
 
 import GUI.BrettMouseListener;
+import GUI.GeschlagenePanel;
 import Model.Figur;
 import Model.Spielelogik;
 //import Start.MPLobby;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.net.Socket;
 
 public class MPBrett extends JPanel {
@@ -16,70 +18,98 @@ public class MPBrett extends JPanel {
     private Spielelogik logik; // Referenz auf die Spielelogik
 
     private Figur ausgewaehlteFigur = null;
-    private int startZeile;
-    private int startSpalte;
-    int hx,hy;
 
-    public MPBrett(Socket verbindung, boolean istHost){
+    private GeschlagenePanel panel;
+
+    public MPBrett(Socket verbindung, boolean istHost, GeschlagenePanel panel, Spielelogik logik) {
         this.socket = verbindung;
         this.istHost = istHost;
-        this.logik = new Spielelogik(); // Spielelogik erzeugen
-        addMouseListener(new BrettMouseListener(this, logik));
+        this.logik = logik; // Spielelogik erzeugen
+        addMouseListener(new BrettMouseListener(this, logik, panel));
     }
+
+    public Spielelogik getLogik(){
+        return this.logik;
+    }
+
+    public void setLogik(Spielelogik neu){
+        this.logik = neu;
+    }
+
+    public BrettMouseListener getMouseListener() {
+        for (MouseListener ml : this.getMouseListeners()) {
+            if (ml instanceof BrettMouseListener) {
+                return (BrettMouseListener) ml;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Color hell = new Color(222, 227, 230);
-        Color dunkel = new Color(140, 162, 173);
+        Color dungelgrau = new Color(140, 162, 173);
+        Color hellgrau = new Color(222, 227, 230);
         Color klick = new Color(80, 124, 101);
         Color zugauswahl = new Color(121, 155, 130);
         Color lzherkunft = new Color(146, 177, 102);
         Color lzziel = new Color(195, 216, 135);
+        Color schach = new Color(220, 80, 80);
 
         g.setColor(Color.darkGray); // Hintergrund
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Color color = hell;
+        Color color = hellgrau;
 
-        int x2 = 80;
+        int[] weisserKoenig = null;
+        int[] schwarzerKoenig = null;
 
+        if (logik.istKoenigImSchach(1)) {
+            weisserKoenig = logik.findeKoenig(1);
+        }
+
+        if (logik.istKoenigImSchach(0)) {
+            schwarzerKoenig = logik.findeKoenig(0);
+        }
+
+        int y3 = 80;
         for (int i = 0; i < 8; i++) { // Zeilen
-            int y2;
-            y2 = 80;
+            int x3;
+            x3 = 80;
             for (int j = 0; j < 8; j++) {// Spalte
                 if (j == 0 && i > 0) { // Color immer abwechseln
-                    if (color.equals(hell)) {
-                        color = dunkel;
+                    if (color.equals(hellgrau)) {
+                        color = dungelgrau;
                     } else {
-                        color = hell;
+                        color = hellgrau;
                     }
                 }
 
                 // Markierung Figur
                 if (i == logik.getLetzteStartZeile() && j == logik.getLetzteStartSpalte()) {
-                    g.setColor(klick);
-                    hx =  x2;
-                    hy = y2;
-                } else if (i == logik.getLetzteZielSpalte() && j == logik.getLetzteZielZeile()) {
                     g.setColor(lzherkunft);
-                    g.fillRect(hx, hy, 80, 80);
-                    repaint();
+                } else if (i == logik.getLetzteZielZeile() && j == logik.getLetzteZielSpalte()) {
                     g.setColor(lzziel);//A: nach einem zug das Herkunftsfeld mit lzherkunft färben und das Zielfeld mit lzziel
                 } else {
                     g.setColor(color);
                 }
+                // SCHACH FARBE
+                if (weisserKoenig != null && i == weisserKoenig[0] && j == weisserKoenig[1]) {
+                    g.setColor(schach);
+                } else if (schwarzerKoenig != null && i == schwarzerKoenig[0] && j == schwarzerKoenig[1]) {
+                    g.setColor(schach);
+                }
+                g.fillRect(x3, y3, 80, 80); // füllen
+                x3 = x3 + 80; // alle weiteren Reihen
 
-                g.fillRect(y2, x2, 80, 80); // füllen
-                y2 = y2 + 80; // alle weiteren Reihen
-
-                if (color.equals(hell)) {
-                    color = dunkel;
+                if (color.equals(hellgrau)) {
+                    color = dungelgrau;
                 } else {
-                    color = hell;
+                    color = hellgrau;
                 }
             }
-            x2 = x2 + 80;
+            y3 = y3 + 80;
         }
         int xstart = 80;
         int ystart = 80;
@@ -113,16 +143,16 @@ public class MPBrett extends JPanel {
         // Figuren aufstellen
         Figur[][] aufstellung = logik.getAufstellung();
 
-        for (int zeile = 0; zeile < 9; zeile++) {
+        for (int zeile = 0; zeile < 8; zeile++) {
 
-            for (int spalte = 0; spalte < 9; spalte++) {
+            for (int spalte = 0; spalte < 8; spalte++) {
 
                 Figur figur = aufstellung[zeile][spalte];
 
                 if (figur != null) {
 
-                    int x = (spalte - 1) * 80 + 80;
-                    int y = (9 - zeile) * 80;
+                    int x = spalte * 80 + 80;// werden verschoben, s.d. sie auf den Feldern dargestellt werden
+                    int y = zeile * 80 + 80;
                     g.drawImage(figur.getBild(), x, y, 80, 80, this);
                 }
             }

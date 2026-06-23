@@ -25,9 +25,10 @@ public class BrettMouseListener extends MouseAdapter {
         this.logik = logik;
         this.panel = panel;
     }
-    public BrettMouseListener(MPBrett mpBrett, Spielelogik logik){
+    public BrettMouseListener(MPBrett mpBrett, Spielelogik logik, GeschlagenePanel panel) {
         this.mpBrett = mpBrett;
         this.logik = logik;
+        this.panel = panel;
     }
 
 

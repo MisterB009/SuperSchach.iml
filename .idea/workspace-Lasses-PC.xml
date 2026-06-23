@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d2bc0c89-672e-46d1-98f7-30eb099a7429" name="Changes" comment="zurück button" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="59" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MisterB024Hub&quot;
+  }
+}</component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;MisterB024&quot;,
+      &quot;fullname&quot;: &quot;Lasse Borwig&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.com/MisterB024/SuperSchach.git&quot;,
+    &quot;second&quot;: &quot;d5453c44-6b71-4d1d-9ea1-551c958f45df&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MisterB024Hub/SuperSchach.git",
+    "accountId": "7a617ddd-dae2-4c5b-a56d-f0112713127f"
+  }
+}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="3.835765557826427E-93" />
+      <entry key="MS500" value="4.1821336479607243E-19" />
+      <entry key="S2" value="6.27008500782592E-5" />
+      <entry key="S5" value="0.053504402167840574" />
+      <entry key="S10" value="0.5473305631804644" />
+      <entry key="S30" value="2.676674633837102" />
+      <entry key="S60" value="4.002668381895267" />
+      <entry key="M2" value="4.899109976017736" />
+      <entry key="M5" value="5.532295467398757" />
+      <entry key="M10" value="5.761332090137654" />
+      <entry key="M15" value="5.839797951302314" />
+      <entry key="M30" value="5.919348841034522" />
+      <entry key="H1" value="5.959620785661376" />
+      <entry key="H2" value="6.163145161339314" />
+      <entry key="H4" value="15.166572581672545" />
+      <entry key="D1" value="254.6278328344753" />
+      <entry key="W1" value="445.2491098089754" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0" />
+      <entry key="M10" value="1.0" />
+      <entry key="M15" value="1.0" />
+      <entry key="M30" value="1.0000000000103482" />
+      <entry key="H1" value="1.0000286107532856" />
+      <entry key="H2" value="1.0576382717129449" />
+      <entry key="H4" value="3.7674990434193085" />
+      <entry key="D1" value="73.523711067111" />
+      <entry key="W1" value="128.43257267394733" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="3.9439478474044585E-5" />
+      <entry key="MS500" value="0.13157889433867984" />
+      <entry key="S2" value="0.6023399442470977" />
+      <entry key="S5" value="0.8698825942877195" />
+      <entry key="S10" value="1.4506244003951156" />
+      <entry key="S30" value="3.6429813811332186" />
+      <entry key="S60" value="4.9855654716183535" />
+      <entry key="M2" value="5.890483686051405" />
+      <entry key="M5" value="6.5288252335697425" />
+      <entry key="M10" value="6.759593521149408" />
+      <entry key="M15" value="6.838638125142926" />
+      <entry key="M30" value="6.918768534544702" />
+      <entry key="H1" value="6.959359118602239" />
+      <entry key="H2" value="7.220611413309734" />
+      <entry key="H4" value="18.933324998160515" />
+      <entry key="D1" value="328.1484573409078" />
+      <entry key="W1" value="573.680902999524" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3DlJ1yC0cHIO0FQf8jM4ImuhQyV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lassesspaß2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/labor/OneDrive - Wirtschaftsakademie Schleswig-Holstein GmbH/1. Semester/Programmieren 1/SuperSchach/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\labor\OneDrive - Wirtschaftsakademie Schleswig-Holstein GmbH\1. Semester\Programmieren 1\SuperSchach\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Start.Main" />
+      <module name="SuperSchach" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2bc0c89-672e-46d1-98f7-30eb099a7429" name="Changes" comment="" />
+      <created>1778850512422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778850512422</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial">
+      <option name="closed" value="true" />
+      <created>1778850633454</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778850633454</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test Lasse">
+      <option name="closed" value="true" />
+      <created>1778850831345</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778850831345</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Erster Test mit visuellen Objekten">
+      <option name="closed" value="true" />
+      <created>1778855195275</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778855195275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Funktionierendes Schachbrett ohne Figuren, mit Koordinaten">
+      <option name="closed" value="true" />
+      <created>1778876513266</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778876513266</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Anpassung der Farben vom Spielbrett">
+      <option name="closed" value="true" />
+      <created>1778877296068</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778877296068</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Erstellen der Figuren">
+      <option name="closed" value="true" />
+      <created>1779107048969</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1779107048970</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Figuren PNGs">
+      <option name="closed" value="true" />
+      <created>1779110463267</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779110463267</updated>
+    </task>
+    <task id="LOCAL-00008" summary="angepasste Figuren">
+      <option name="closed" value="true" />
+      <created>1779112050146</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1779112050146</updated>
+    </task>
+    <task id="LOCAL-00009" summary="überflüssige Klassen gelöscht">
+      <option name="closed" value="true" />
+      <created>1779116331764</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1779116331764</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Pixelgrößen der PNGs und die Verschiebung auf dem Brett angepasst">
+      <option name="closed" value="true" />
+      <created>1779137504722</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779137504722</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Hintergrundfarbe geändert">
+      <option name="closed" value="true" />
+      <created>1779137730987</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779137730987</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Figuren hunzugefügt">
+      <option name="closed" value="true" />
+      <created>1779175053511</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779175053511</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Hover angepasst, sodass nur Figurenfelder gehovert werden">
+      <option name="closed" value="true" />
+      <created>1779189475426</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779189475426</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fehler gelöst beim Hovern">
+      <option name="closed" value="true" />
+      <created>1779190273234</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779190273234</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Test">
+      <option name="closed" value="true" />
+      <created>1779870825037</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779870825037</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Hover und Anzeige des letzen Zuges angepasst mit Auftrag in Class Brett">
+      <option name="closed" value="true" />
+      <created>1779873122902</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779873122902</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Buttons funktionieren jetzt im Start screen">
+      <option name="closed" value="true" />
+      <created>1780044815260</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1780044815260</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Startscreen graphisch angepasst">
+      <option name="closed" value="true" />
+      <created>1780329810504</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1780329810504</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Multiplayer gestartet. Gebrochener Mann">
+      <option name="closed" value="true" />
+      <created>1780343588429</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1780343588429</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Multiplayer sollte jetzt auch funktionieren: Test steht noch aus">
+      <option name="closed" value="true" />
+      <created>1780383751510</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1780383751510</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Design angepasst">
+      <option name="closed" value="true" />
+      <created>1780397207082</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1780397207082</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Eine Farbe vergessen">
+      <option name="closed" value="true" />
+      <created>1780397748507</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1780397748507</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Eine Farbe vergessen">
+      <option name="closed" value="true" />
+      <created>1780398992155</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1780398992155</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Icons angepasst und brett layout angepasst">
+      <option name="closed" value="true" />
+      <created>1780476261979</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1780476261979</updated>
+    </task>
+    <task id="LOCAL-00025" summary="erste eintsellungen">
+      <option name="closed" value="true" />
+      <created>1780684346635</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1780684346636</updated>
+    </task>
+    <task id="LOCAL-00026" summary="mp überarbeitet">
+      <option name="closed" value="true" />
+      <created>1780926808197</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1780926808197</updated>
+    </task>
+    <task id="LOCAL-00027" summary="ja">
+      <option name="closed" value="true" />
+      <created>1781523476226</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1781523476226</updated>
+    </task>
+    <task id="LOCAL-00028" summary="test">
+      <option name="closed" value="true" />
+      <created>1781524704631</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1781524704631</updated>
+    </task>
+    <task id="LOCAL-00029" summary="änderung">
+      <option name="closed" value="true" />
+      <created>1781525178968</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1781525178968</updated>
+    </task>
+    <task id="LOCAL-00030" summary="änderung">
+      <option name="closed" value="true" />
+      <created>1781525245246</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1781525245246</updated>
+    </task>
+    <task id="LOCAL-00031" summary="toll">
+      <option name="closed" value="true" />
+      <created>1781703574590</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1781703574590</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Speichern laden">
+      <option name="closed" value="true" />
+      <created>1781716988185</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1781716988185</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Speichern laden in besser">
+      <option name="closed" value="true" />
+      <created>1781871671982</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1781871671983</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Speichern laden in besser2">
+      <option name="closed" value="true" />
+      <created>1781882330599</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1781882330600</updated>
+    </task>
+    <task id="LOCAL-00035" summary="laden funks fast">
+      <option name="closed" value="true" />
+      <created>1782051419287</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1782051419287</updated>
+    </task>
+    <task id="LOCAL-00036" summary="laden funks fast2">
+      <option name="closed" value="true" />
+      <created>1782051897722</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1782051897722</updated>
+    </task>
+    <task id="LOCAL-00037" summary="laden speicher funktioniert komplett">
+      <option name="closed" value="true" />
+      <created>1782053124265</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1782053124265</updated>
+    </task>
+    <task id="LOCAL-00038" summary="zurück button">
+      <option name="closed" value="true" />
+      <created>1782126458113</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1782126458113</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="lassesspaß2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Figuren hunzugefügt" />
+    <MESSAGE value="Hover angepasst, sodass nur Figurenfelder gehovert werden" />
+    <MESSAGE value="Fehler gelöst beim Hovern" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="Hover und Anzeige des letzen Zuges angepasst mit Auftrag in Class Brett" />
+    <MESSAGE value="Buttons funktionieren jetzt im Start screen" />
+    <MESSAGE value="Startscreen graphisch angepasst" />
+    <MESSAGE value="Multiplayer gestartet. Gebrochener Mann" />
+    <MESSAGE value="Multiplayer sollte jetzt auch funktionieren: Test steht noch aus" />
+    <MESSAGE value="Design angepasst" />
+    <MESSAGE value="Eine Farbe vergessen" />
+    <MESSAGE value="Icons angepasst und brett layout angepasst" />
+    <MESSAGE value="erste eintsellungen" />
+    <MESSAGE value="mp überarbeitet" />
+    <MESSAGE value="ja" />
+    <MESSAGE value="test" />
+    <MESSAGE value="änderung" />
+    <MESSAGE value="toll" />
+    <MESSAGE value="Speichern laden" />
+    <MESSAGE value="Speichern laden in besser" />
+    <MESSAGE value="Speichern laden in besser2" />
+    <MESSAGE value="laden funks fast" />
+    <MESSAGE value="laden funks fast2" />
+    <MESSAGE value="laden speicher funktioniert komplett" />
+    <MESSAGE value="zurück button" />
+    <option name="LAST_COMMIT_MESSAGE" value="zurück button" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

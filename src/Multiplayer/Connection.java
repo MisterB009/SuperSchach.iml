@@ -1,5 +1,8 @@
 package Multiplayer;
 
+import Datenverwaltung.Saves;
+import GUI.GeschlagenePanel;
+import Model.Spielelogik;
 import Start.MPLobby;
 import Start.Main;
 
@@ -60,7 +63,11 @@ public class Connection {
 
     private void lobbyoeffnen(Socket verbindung, boolean istHost) {
         SwingUtilities.invokeLater(() -> {
-            MPBrett lobby = new MPBrett(verbindung, istHost);
+            Saves saves = new Saves();
+            Spielelogik logik = new Spielelogik();
+            GeschlagenePanel panel =
+                    new GeschlagenePanel();
+            MPBrett lobby = new MPBrett(verbindung, istHost, panel, logik);
             main.Brettanzeigen(lobby);
         });
     }
