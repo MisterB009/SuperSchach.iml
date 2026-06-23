@@ -77,7 +77,6 @@ public class Connection {
 //        });
         SwingUtilities.invokeLater(() -> {
             try {
-                // ✅ CHANGE 8: Setup streams immediately upon connection
                 setupStreams(verbindung);
                 this.istHost = istHost;
 
@@ -87,7 +86,6 @@ public class Connection {
 
                 mpBrett = new MPBrett(verbindung, istHost, panel, logik, this);
 
-                // ✅ CHANGE 9: Start listening for opponent moves
                 listenForMoves(mpBrett);
 
                 main.Brettanzeigen(mpBrett);
