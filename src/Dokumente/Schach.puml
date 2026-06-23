@@ -1,152 +1,152 @@
 @startuml
 skinparam classAttributeIconSize 0
+left to right direction
 
-' =========================
-' Model
-' =========================
+package "Logik" {
 
-abstract class Figur {
-    # farbe : int
-    # bild : Image
-    - stil : int
-    + istGueltigerZug(...)
-    + getFarbe() : int
-    + getBild() : Image
+    abstract class Figur {
+        # farbe : int
+        # bild : Image
+        - stil : int
+        + istGueltigerZug(...)
+        + getFarbe() : int
+        + getBild() : Image
+    }
+
+    class Spielelogik {
+        - aufstellung : Figur[][]
+        - letzteGezogeneFigur : Figur
+        - geschlageneFigurenWeiss
+        - geschlageneFigurenSchwarz
+        - enPassantMoeglich : boolean
+        - letzteStartZeile : int
+        - letzteStartSpalte : int
+        - letzteZielZeile : int
+        - letzteZielSpalte : int
+        - stil : int
+
+        + bewegeFigur(...)
+        + getAufstellung()
+        + istKoenigImSchach(int)
+        + findeKoenig(int)
+        + pruefeBauernumwandlung(...)
+    }
+
+    class Turm2 {
+        + turmBewegt : boolean
+        + kurzeRochade()
+        + langeRochade()
+    }
+
+    class Springer2
+    class Laeufer2
+    class Bauer2
+    class Dame2
+
+    class Koenig2 {
+        + koenigBewegt : boolean
+    }
 }
 
-class Spielelogik {
-    - aufstellung : Figur[][]
-    - letzteGezogeneFigur : Figur
-    - geschlageneFigurenWeiss
-    - geschlageneFigurenSchwarz
-    - enPassantMoeglich : boolean
-    - letzteStartZeile : int
-    - letzteStartSpalte : int
-    - letzteZielZeile : int
-    - letzteZielSpalte : int
-    - stil : int
+package "GUI" {
 
-    + bewegeFigur(...)
-    + getAufstellung()
-    + istKoenigImSchach(int)
-    + findeKoenig(int)
-    + pruefeBauernumwandlung(...)
+    class Brett {
+        - logik : Spielelogik
+        - ausgewaehlteFigur : Figur
+        - panel : GeschlagenePanel
+
+        + paintComponent(Graphics)
+    }
+
+    class BrettMouseListener {
+        - brett : Brett
+        - logik : Spielelogik
+        - ausgewaehlteFigur : Figur
+        - startZeile : int
+        - startSpalte : int
+        - panel : GeschlagenePanel
+
+        + mouseClicked(MouseEvent)
+    }
+
+    class GeschlagenePanel {
+        - area : JTextArea
+        + aktualisieren(Spielelogik)
+    }
 }
 
-Spielelogik -->  GeschlagenePanel : speichert
+package "Start" {
 
-class Turm2 {
-    + turmBewegt : boolean
-    + kurzeRochade()
-    + langeRochade()
+    class Main
+
+    class WilkommenScreen
+
+    class MouseStart
+
+    class MPLobby
+
+    class ipFenster
+
+    class Settings {
+        - yStil : int
+        + getyStil() : int
+        + setyStil(int)
+    }
 }
 
-class Springer2
-class Laeufer2
-class Bauer2
-class Dame2
+package "Multiplayer" {
 
-class Koenig2 {
-    + koenigBewegt : boolean
+    class MPBrett
+
+    class Connection
 }
+
+'=========================
+' Vererbung
+'=========================
 
 Figur <|-- Turm2
 Figur <|-- Springer2
 Figur <|-- Laeufer2
-Figur <|-- Koenig2
 Figur <|-- Bauer2
 Figur <|-- Dame2
+Figur <|-- Koenig2
+
+'=========================
+' Komposition / Aggregation
+'=========================
 
 Spielelogik "1" *-- "32" Figur : verwaltet
+Brett --* BrettMouseListener : nutzt
+MPLobby *-- ipFenster
 
-' =========================
-' GUI
-' =========================
+'=========================
+' Abhängigkeiten
+'=========================
 
-class Brett {
-    - logik : Spielelogik
-    - ausgewaehlteFigur : Figur
-    - panel : GeschlagenePanel
+Spielelogik --> GeschlagenePanel : speichert
 
-    + paintComponent(Graphics)
-}
-
-class BrettMouseListener {
-    - brett : Brett
-    - logik : Spielelogik
-    - ausgewaehlteFigur : Figur
-    - startZeile : int
-    - startSpalte : int
-    - panel : GeschlagenePanel
-
-    + mouseClicked(MouseEvent)
-}
-
-class GeschlagenePanel {
-    - area : JTextArea
-    + aktualisieren(Spielelogik)
-}
-
-
-
-Brett --*  BrettMouseListener : nutzt
 Brett --> GeschlagenePanel : nutzt
 BrettMouseListener --> Spielelogik : übergibt Informationen
 BrettMouseListener --> GeschlagenePanel
+BrettMouseListener --> MPBrett
 
+Main --> WilkommenScreen : erstellt
 
-
-' =========================
-' Start
-' =========================
-
-class Main
-Main ->  WilkommenScreen : erstellt
-
-class WilkommenScreen
-
-class MouseStart
-
-class MPLobby
-
-class ipFenster
-
-class Settings {
-    - yStil : int
-    + getyStil() : int
-    + setyStil(int)
-}
-
-
-
-WilkommenScreen --> Brett : EinzelspielerButton
-WilkommenScreen --> MPLobby : MultiplayerButton
-WilkommenScreen --> Settings : Einstellungen
+WilkommenScreen --> Brett : erstellt
 WilkommenScreen --> Spielelogik : erstellt
 WilkommenScreen --> GeschlagenePanel : erstellt
-WilkommenScreen --> Brett : erstellt
-
-
-
-
+WilkommenScreen --> Brett : Einzelspieler
+WilkommenScreen --> MPLobby : Multiplayer
+WilkommenScreen --> Settings : Einstellungen
 WilkommenScreen --> MouseStart
-MPLobby -->  MouseStart
 
-MPLobby *-- ipFenster
+MPLobby --> MouseStart
+MPLobby --> Connection
 
-Connection -> MPBrett
+ipFenster --> Connection
+Connection --> MPBrett
 
 Settings --> Spielelogik
-
-' =========================
-' Multiplayer
-' =========================
-
-class MPBrett
-class Connection
-
-BrettMouseListener --> MPBrett
-MPLobby --> Connection
-ipFenster --> Connection
 
 @enduml

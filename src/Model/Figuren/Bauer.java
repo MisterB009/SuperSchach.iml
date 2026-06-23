@@ -4,13 +4,12 @@ import Model.Figur;
 import Model.Spielelogik;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Bauer2 extends Figur {
+public class Bauer extends Figur {
 
-    public Bauer2(int farbe, int stil) {
+    public Bauer(int farbe, int stil) {
         super(farbe, stil);
         if (stil == 1){
             if (farbe == 0){ // schwarz
@@ -66,7 +65,6 @@ public class Bauer2 extends Figur {
                 logik.setEnPassantZeile(zielZeile);
                 logik.setEnPassantSpalte(zielSpalte);
                 logik.setEnPassantMoeglich(true);
-                System.out.println("en passant möglich");
                 return true;
             }
             if (zielZeile == startZeile + 1

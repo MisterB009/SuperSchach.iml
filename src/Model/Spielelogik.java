@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
     private Figur letzteGezogeneFigur;
+    private boolean weissAmZug = true;
 
     ArrayList<Figur> geschlageneFigurenWeiss = new ArrayList<>();
     ArrayList<Figur> geschlageneFigurenSchwarz = new ArrayList<>();
@@ -31,34 +32,34 @@ public class Spielelogik {
 
     private void initialisiereAufstellung() {
         // --- Schwarze Figuren (oben) ---
-        aufstellung[0][0] = new Turm2(Figur.SCHWARZ, stil);
-        aufstellung[0][1] = new Springer2(Figur.SCHWARZ, stil);
-        aufstellung[0][2] = new Laeufer2(Figur.SCHWARZ, stil );
-        aufstellung[0][3] = new Dame2(Figur.SCHWARZ, stil);
-        aufstellung[0][4] = new Koenig2(Figur.SCHWARZ, stil);
-        aufstellung[0][5] = new Laeufer2(Figur.SCHWARZ, stil);
-        aufstellung[0][6] = new Springer2(Figur.SCHWARZ, stil);
-        aufstellung[0][7] = new Turm2(Figur.SCHWARZ, stil);
+        aufstellung[0][0] = new Turm(Figur.SCHWARZ, stil);
+        aufstellung[0][1] = new Springer(Figur.SCHWARZ, stil);
+        aufstellung[0][2] = new Laeufer(Figur.SCHWARZ, stil );
+        aufstellung[0][3] = new Dame(Figur.SCHWARZ, stil);
+        aufstellung[0][4] = new Koenig(Figur.SCHWARZ, stil);
+        aufstellung[0][5] = new Laeufer(Figur.SCHWARZ, stil);
+        aufstellung[0][6] = new Springer(Figur.SCHWARZ, stil);
+        aufstellung[0][7] = new Turm(Figur.SCHWARZ, stil);
 
         for (int i = 0; i < 8; i++) {
-            aufstellung[1][i] = new Bauer2(Figur.SCHWARZ, stil);
+            aufstellung[1][i] = new Bauer(Figur.SCHWARZ, stil);
         }
 
         // --- Weiße Figuren (unten) ---
         for (int i = 0; i < 8; i++) {
-            aufstellung[6][i] = new Bauer2(Figur.WEISS, stil);
+            aufstellung[6][i] = new Bauer(Figur.WEISS, stil);
         }
 
 
 
-        aufstellung[7][0] = new Turm2(Figur.WEISS,stil);
-        aufstellung[7][1] = new Springer2(Figur.WEISS, stil);
-        aufstellung[7][2] = new Laeufer2(Figur.WEISS, stil);
-        aufstellung[7][3] = new Dame2(Figur.WEISS, stil);
-        aufstellung[7][4] = new Koenig2(Figur.WEISS, stil);
-        aufstellung[7][5] = new Laeufer2(Figur.WEISS, stil);
-        aufstellung[7][6] = new Springer2(Figur.WEISS, stil);
-        aufstellung[7][7] = new Turm2(Figur.WEISS,stil);
+        aufstellung[7][0] = new Turm(Figur.WEISS,stil);
+        aufstellung[7][1] = new Springer(Figur.WEISS, stil);
+        aufstellung[7][2] = new Laeufer(Figur.WEISS, stil);
+        aufstellung[7][3] = new Dame(Figur.WEISS, stil);
+        aufstellung[7][4] = new Koenig(Figur.WEISS, stil);
+        aufstellung[7][5] = new Laeufer(Figur.WEISS, stil);
+        aufstellung[7][6] = new Springer(Figur.WEISS, stil);
+        aufstellung[7][7] = new Turm(Figur.WEISS,stil);
     }
 
 
@@ -69,9 +70,12 @@ public class Spielelogik {
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 
         Figur figur = aufstellung[startZeile][startSpalte];
-        System.out.println("Stil = " + stil);
 
         if (figur == null) { // keine Figur
+            return false;
+        }
+        if (figur.getFarbe() == 1 && !weissAmZug || figur.getFarbe() == 0 && weissAmZug  ){// figur weiß, aber nicht am zug; figur schwarz weiß am zug
+            System.out.println("Du bist nicht am Zug");
             return false;
         }
 
@@ -102,7 +106,7 @@ public class Spielelogik {
 
         // letzte Bewegte Figur merken
         enPassantMoeglich = false;
-        if (figur instanceof Bauer2) {
+        if (figur instanceof Bauer) {
 
             if (Math.abs(startZeile - zielZeile) == 2) {
                 enPassantMoeglich = true;
@@ -128,7 +132,8 @@ public class Spielelogik {
         System.out.println("Geschlagen jetzt: " + geschlageneFigur);
         System.out.println("Weiss Liste: " + geschlageneFigurenWeiss.size());
         System.out.println("Schwarz Liste: " + geschlageneFigurenSchwarz.size());
-
+        weissAmZug = !weissAmZug; // Farbwechsel
+        System.out.println("weissAmZug" + weissAmZug);
         return true;
     }
 
@@ -145,11 +150,11 @@ public class Spielelogik {
 
         Figur figur = aufstellung[zeile][spalte];
 
-        if (!(figur instanceof Bauer2)) { // ist es ein Bauer
+        if (!(figur instanceof Bauer)) { // ist es ein Bauer
             return;
         }
 
-        Bauer2 bauer = (Bauer2) figur;
+        Bauer bauer = (Bauer) figur;
 
         if (!bauer.istAufLetzterZeile(zeile)) {
             return;
@@ -178,19 +183,19 @@ public class Spielelogik {
             switch (auswahl) {
 
                 case "Dame":
-                    aufstellung[zeile][spalte] = new Dame2(bauer.getFarbe(), stil);
+                    aufstellung[zeile][spalte] = new Dame(bauer.getFarbe(), stil);
                     break;
 
                 case "Turm":
-                    aufstellung[zeile][spalte] = new Turm2(bauer.getFarbe(), stil);
+                    aufstellung[zeile][spalte] = new Turm(bauer.getFarbe(), stil);
                     break;
 
                 case "Läufer":
-                    aufstellung[zeile][spalte] = new Laeufer2(bauer.getFarbe(),stil);
+                    aufstellung[zeile][spalte] = new Laeufer(bauer.getFarbe(),stil);
                     break;
 
                 case "Springer":
-                    aufstellung[zeile][spalte] = new Springer2(bauer.getFarbe(),stil);
+                    aufstellung[zeile][spalte] = new Springer(bauer.getFarbe(),stil);
                     break;
             }
             dialog.dispose(); // Fenster schließen
@@ -203,13 +208,13 @@ public class Spielelogik {
     private boolean istEnPassantZug(Figur figur, int startZeile, int startSpalte, int zielZeile,
                                     int zielSpalte) {
 
-        if (!(figur instanceof Bauer2)) { // ist es ein Bauer?
+        if (!(figur instanceof Bauer)) { // ist es ein Bauer?
             return false;
         }
         if (!enPassantMoeglich) { // nur genau nach dem Zug
             return false;
         }
-        Bauer2 bauer = (Bauer2) figur;
+        Bauer bauer = (Bauer) figur;
         int richtung;
         if (bauer.getFarbe() == Figur.WEISS) {
             richtung = -1;
@@ -232,7 +237,7 @@ public class Spielelogik {
 
                 Figur figur = aufstellung[zeile][spalte];
 
-                if (figur instanceof Koenig2 &&
+                if (figur instanceof Koenig &&
                         figur.getFarbe() == farbe) {
 
                     return new int[]{zeile, spalte};

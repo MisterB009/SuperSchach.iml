@@ -7,10 +7,10 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-public class Koenig2 extends Figur {
+public class Koenig extends Figur {
     public boolean koenigBewegt = false;
 
-    public Koenig2(int farbe, int stil) {
+    public Koenig(int farbe, int stil) {
         super(farbe, stil);
 
         if (stil == 1) {
@@ -60,9 +60,9 @@ public class Koenig2 extends Figur {
 
                 Figur figur = aufstellung[startZeile][7];
 
-                if (figur instanceof Turm2) {
+                if (figur instanceof Turm) {
 
-                    Turm2 turm = (Turm2) figur;
+                    Turm turm = (Turm) figur;
 
                     if (turm.isTurmBewegt() == false
                             && aufstellung[startZeile][5] == null
@@ -79,9 +79,9 @@ public class Koenig2 extends Figur {
 
                 Figur figur = aufstellung[startZeile][0];
 
-                if (figur instanceof Turm2) {
+                if (figur instanceof Turm) {
 
-                    Turm2 turm = (Turm2) figur;
+                    Turm turm = (Turm) figur;
 
                     if (turm.isTurmBewegt() == false
                             && aufstellung[startZeile][1] == null
