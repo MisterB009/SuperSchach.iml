@@ -1,5 +1,6 @@
 package Model;
 
+import Datenverwaltung.Saves;
 import Model.Figuren.*;
 // import Start.Settings;
 
@@ -9,6 +10,7 @@ public class Spielelogik {
     private Figur[][] aufstellung; // feld anlegen
     private Figur letzteGezogeneFigur;
     private boolean weissAmZug = true;
+    private Saves saves;
 
     ArrayList<Figur> geschlageneFigurenWeiss = new ArrayList<>();
     ArrayList<Figur> geschlageneFigurenSchwarz = new ArrayList<>();
@@ -130,6 +132,7 @@ public class Spielelogik {
         System.out.println("Schwarz Liste: " + geschlageneFigurenSchwarz.size());
         weissAmZug = !weissAmZug; // Farbwechsel
         System.out.println("weissAmZug" + weissAmZug);
+        saves.zwischenspeicher(this);
         return true;
     }
 

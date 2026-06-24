@@ -100,4 +100,24 @@ public class Saves {
             return null;
         }
     }
+    public void zwischenspeicher(Spielelogik logik){
+        try {
+            Files.writeString(Path.of("cache.json"), spielToJson(logik));
+            System.out.println("speicher");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public Spielelogik loadCache(){
+        try {
+            String jsonText = Files.readString(Path.of("cache.json"));
+            Spielelogik geladen = spielFromJson(jsonText);
+            reinitializeImages(geladen);
+            System.out.println("laden");
+            return geladen;
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

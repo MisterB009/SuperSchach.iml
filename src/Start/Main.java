@@ -75,8 +75,94 @@ public class Main extends JFrame {
         public void Brettanzeigen(MPBrett lobby){
             getContentPane();
             removeAll();
-            setLayout(new BorderLayout());
-            add(lobby);
+            Saves saves = new Saves();
+            GeschlagenePanel panel =
+                    new GeschlagenePanel();
+
+            bar = new JMenuBar();
+            files = new JMenu("Brett verwalten");
+            save = new JMenuItem("Speichern");
+            save.addActionListener(e1 -> {
+                saves.speicherSpiel(lobby.getLogik());
+            });
+            bar.add(files);
+            files.add(save);
+            setJMenuBar(bar);
+
+            bretter = new JPanel(new BorderLayout());
+            uhr = new JPanel();
+            spieler1 = new JPanel();
+            spieler2 = new JPanel();
+            filler = new JPanel();
+            Settings settings = new Settings();
+            if (settings.getyStil() != 1&&settings.getyStil() != 2){
+                settings.setyStil(1);
+            }
+
+            bretter.add(lobby, BorderLayout.CENTER);
+
+            this.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.0;
+            spieler2.setBackground(Color.GREEN);
+            spieler2.setPreferredSize(new Dimension(0, 60)); // Wunschhöhe 60px
+            add(spieler2, gbc);
+
+            JButton zurueck = new JButton("ZurÜck");
+            zurueck.addActionListener(e1 -> {
+//                Spielelogik geladen = saves.loadCache();
+//
+//                if (geladen != null){
+//                    lobby.setLogik(geladen);
+//                    BrettMouseListener listener = lobby.getMouseListener();
+//                    if (listener != null) {
+//                        listener.setLogik(geladen);
+//                    }
+//                    lobby.repaint();
+//                }
+            });
+            filler.add(zurueck);
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.weightx = 0.0;
+            gbc.weighty = 1.0;
+            filler.setBackground(Color.YELLOW);
+            filler.setPreferredSize(new Dimension(80, 0)); // Wunschbreite 80px
+            add(filler, gbc);
+
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            add(bretter, gbc);
+
+            panel.setPreferredSize(new Dimension(250, 0));
+
+            gbc.gridx = 2;
+            gbc.gridy = 1;
+            gbc.weightx = 0.0;
+            gbc.weighty = 1.0;
+
+            add(panel, gbc);
+
+            gbc.gridx = 2;
+            gbc.gridy = 1;
+            gbc.weightx = 0.0;
+            gbc.weighty = 1.0;
+
+            add(panel, gbc);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.0;
+            spieler1.setBackground(Color.BLUE);
+            spieler1.setPreferredSize(new Dimension(0, 60)); // Wunschhöhe 60px
+            add(spieler1, gbc);
+
             revalidate();
             repaint();
             mpLobby.dispose();

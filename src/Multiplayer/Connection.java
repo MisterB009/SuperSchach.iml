@@ -72,14 +72,12 @@ public class Connection {
                 setupStreams(verbindung);
                 this.istHost = istHost;
 
-                Saves saves = new Saves();
                 Spielelogik logik = new Spielelogik();
                 GeschlagenePanel panel = new GeschlagenePanel();
 
                 mpBrett = new MPBrett(verbindung, istHost, panel, logik, this);
 
                 listenForMoves(mpBrett);
-
                 main.Brettanzeigen(mpBrett);
             } catch (IOException e) {
                 System.err.println("Error setting up streams: " + e.getMessage());
