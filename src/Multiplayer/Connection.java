@@ -5,6 +5,7 @@ import GUI.GeschlagenePanel;
 import Model.Spielelogik;
 import Start.MPLobby;
 import Start.Main;
+import Multiplayer.Move;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -88,9 +89,22 @@ public class Connection {
 
     private void setupStreams(Socket socket) throws IOException {
         this.socket = socket;
-        out = new ObjectOutputStream(socket.getOutputStream());
+//        out = new ObjectOutputStream(socket.getOutputStream());
+//        out.flush();
+//        in = new ObjectInputStream(socket.getInputStream());
+
+        if (istHost) {
+            // Host (server) creates input stream FIRST
+            in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
+        } else {
+            // Client creates output stream FIRST
+            out = new ObjectOutputStream(socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(socket.getInputStream());
+        }
+
         out.flush();
-        in = new ObjectInputStream(socket.getInputStream());
     }
 
     public void sendMove(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
