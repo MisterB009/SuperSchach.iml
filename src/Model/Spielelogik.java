@@ -27,7 +27,8 @@ public class Spielelogik {
     private int stil = 1; // ggf. irgendwo in den einstellungen setzten
 
     public Spielelogik() {
-        this.aufstellung = new Figur[8][8]; // ##
+        this.aufstellung = new Figur[8][8];// ##
+        this.saves = new Saves();
         initialisiereAufstellung();
     }
 
