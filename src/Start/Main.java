@@ -5,6 +5,7 @@ import GUI.BrettMouseListener;
 import GUI.GeschlagenePanel;
 import Model.Spielelogik;
 import Multiplayer.MPBrett;
+import Multiplayer.takeBack;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -37,6 +38,11 @@ public class Main extends JFrame {
         add(start);
         setVisible(true);
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public class WilkommenScreen extends JPanel{
         private JLabel Start;
         private JButton Einzelspieler;
@@ -45,6 +51,7 @@ public class Main extends JFrame {
         private Image hintergrund;
         private MPLobby mpLobby;
         private Settings settings;
+
 
         JMenuBar bar;
         JMenu files;
@@ -114,16 +121,7 @@ public class Main extends JFrame {
 
             JButton zurueck = new JButton("ZurÜck");
             zurueck.addActionListener(e1 -> {
-//                Spielelogik geladen = saves.loadCache();
-//
-//                if (geladen != null){
-//                    lobby.setLogik(geladen);
-//                    BrettMouseListener listener = lobby.getMouseListener();
-//                    if (listener != null) {
-//                        listener.setLogik(geladen);
-//                    }
-//                    lobby.repaint();
-//                }
+                takeBack takeBack = new takeBack(getFrame(), true, saves, lobby);
             });
             filler.add(zurueck);
             gbc.gridx = 0;
