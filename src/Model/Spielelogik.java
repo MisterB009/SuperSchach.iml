@@ -62,10 +62,6 @@ public class Spielelogik {
         aufstellung[7][7] = new Turm(Figur.WEISS,stil);
     }
 
-
-    // abwechseldes Ziehen (Figur 0/ 1)
-
-
     // Figur ziehen
     public boolean bewegeFigur(int startZeile, int startSpalte, int zielZeile, int zielSpalte) {
 

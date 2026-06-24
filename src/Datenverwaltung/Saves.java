@@ -15,9 +15,6 @@ public class Saves {
     private Brett brett;
 
     private String spielToJson(Spielelogik logik) {
-//        Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
-//        Gson gson = new Gson();
-//        return gson.toJson(logik);
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Figur.class, new JsonSerializer<Figur>() {
                     @Override
@@ -33,10 +30,6 @@ public class Saves {
     }
 
     private Spielelogik spielFromJson(String spielAsJson){
-//        Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
-//        Gson gson = new Gson();
-//        Spielelogik logik = gson.fromJson(spielAsJson, Spielelogik.class);
-//        return logik;
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Figur.class, (JsonDeserializer<Figur>) (json, typeOfT, context) -> {
                     JsonObject obj = json.getAsJsonObject();

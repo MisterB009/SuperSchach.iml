@@ -154,11 +154,5 @@ public class Brett extends JPanel {
             }
         }
     }
-
-    //Setter & Getter
-//    public void setGeschlagenePanel(GeschlagenePanel panel) {
-//        this.geschlagenePanel = panel;
-//    }
 }
-// test
 

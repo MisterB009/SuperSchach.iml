@@ -24,7 +24,6 @@ public class Main extends JFrame {
     }
     public Main(){
         frame = this;
-        //setSize(1000, 1000);
         setMinimumSize(new Dimension(1500,1000));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,7 +114,6 @@ public class Main extends JFrame {
                     g2.dispose();
                     super.paintComponent(g);
                 }
-                //test
             };
             Einzelspieler.setFocusPainted(false);
             Einzelspieler.setBorderPainted(false);
@@ -131,9 +129,6 @@ public class Main extends JFrame {
                 GeschlagenePanel panel =
                         new GeschlagenePanel();
                 Brett board = new Brett(logik, panel);
-//                this.setLayout(new BorderLayout());
-//                Brett board = new Brett();
-//                add(board);
 
                 bar = new JMenuBar();
                 files = new JMenu("Brett verwalten");
@@ -210,27 +205,6 @@ public class Main extends JFrame {
                 gbc.weighty = 1.0;
                 add(bretter, gbc);
 
-//                gbc.gridx = 2;
-//                gbc.gridy = 1;
-//                gbc.weightx = 0.0;
-//                gbc.weighty = 1.0;
-//                uhr.setBackground(Color.RED);
-//                uhr.setPreferredSize(new Dimension(200, 0)); // Wunschbreite 200px
-//                add(uhr, gbc);
-
-//                JSplitPane split = new JSplitPane(
-//                        JSplitPane.HORIZONTAL_SPLIT,
-//                        board,
-//                        panel
-//                );
-//
-//                split.setDividerLocation(250);
-//
-//                add(split);
-//
-//                GeschlagenePanel panel =
-//                        new GeschlagenePanel();
-
                 panel.setPreferredSize(new Dimension(250, 0));
 
                 gbc.gridx = 2;
@@ -262,8 +236,6 @@ public class Main extends JFrame {
             c.insets = new Insets(0,0,20,0);
             c.gridy = 1;
             add(Einzelspieler, c);
-
-            //Metavers, kiagenten, autonomes fahren
 
 
             Multiplayer = new JButton("Multiplayer"){

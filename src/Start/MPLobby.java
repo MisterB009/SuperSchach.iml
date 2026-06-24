@@ -225,18 +225,6 @@ public class MPLobby extends JFrame {
 
         @Override
         public void keyReleased(KeyEvent e) {
-//            if (e.getKeyCode() == KeyEvent.VK_ENTER){
-//                new Thread(() -> {
-//                    try {
-//                        Socket verbindugzumHost = new Socket(ipadress.getText(),49152);
-//                        lobbyoeffnen(verbindugzumHost,false);
-//                    } catch (IOException ex) {
-//                        SwingUtilities.invokeLater(()-> {
-//                            System.out.println("client tod");
-//                        });
-//                        ex.printStackTrace();
-//                    }
-//                }).start();
 
         }
     }

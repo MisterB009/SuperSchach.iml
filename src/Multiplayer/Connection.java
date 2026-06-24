@@ -67,14 +67,6 @@ public class Connection {
     }
 
     private void lobbyoeffnen(Socket verbindung, boolean istHost) {
-//        SwingUtilities.invokeLater(() -> {
-//            Saves saves = new Saves();
-//            Spielelogik logik = new Spielelogik();
-//            GeschlagenePanel panel =
-//                    new GeschlagenePanel();
-//            MPBrett lobby = new MPBrett(verbindung, istHost, panel, logik);
-//            main.Brettanzeigen(lobby);
-//        });
         SwingUtilities.invokeLater(() -> {
             try {
                 setupStreams(verbindung);
